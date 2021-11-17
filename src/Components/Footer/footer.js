@@ -4,7 +4,7 @@ function Footer() {
     return (
         <footer>
             <div className="footer__content d-md-flex">
-                <div className="footer_right">
+                <div className="footer_left">
                     <div className="span-dots">
                         <span className="item">mirage school</span>
                         <span className="item">
@@ -18,7 +18,7 @@ function Footer() {
                     </div>
                 </div>
                 
-                <div className="footer_left">
+                <div className="footer_right">
                     <ul className="flex align-center justify-evenly">
                         <li>
                         <a href="/">Term Of Service</a>

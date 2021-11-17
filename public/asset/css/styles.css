@@ -377,7 +377,8 @@ footer .footer__content .footer_left li i {
   footer .footer_left li i {
     margin-right: 5px;
   }
-
+}
+@media (max-width: 782px) {
   .listings .listing__items {
     padding: 10px 5px;
   }
