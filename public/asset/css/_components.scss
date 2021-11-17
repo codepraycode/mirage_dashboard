@@ -60,7 +60,7 @@
 
 .breadcrumb {
     margin: -5px 0 0 0;
-    padding: 20px 50px;
+    padding: 20px 70px;
     background: #F7F8FB;
     display: flex;
     align-items: center;
@@ -73,37 +73,151 @@
     }
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 10px;
-    border: 1px solid;
-    border-color: #eef1f6;
-    .footer_left {
-        font-size: 14px;
-        font-weight: 300;
+.search-input {
+    position: relative;
+    input {
+        padding: 5px 10px 5px 30px;
+        color: #556379bb;
+        // width: 300px;
+    }
+    i {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        bottom: 10px;
+        font-size: 13px;
+        font-weight: 100;
         color: #62738d;
-        margin-right: 25px;
-        li {
-            margin: 10px;
+    }
+}
+
+.listings {
+    // max-height: 0px;
+    // border-width: 1px 0 1px 0;
+    // border-style: solid;
+    // border-color: #e2e2e2;
+    // border-bottom: 1px solid #e2e2e2;
+    position: relative;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    &:hover {
+        background: #f7f7f7;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        background: #e2e2e2;
+        height: 1px;
+    }
+    .listing__items {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 70px;
+        // color: #757474;
+        b {
+            font-weight: 400;
+            line-height: 10px;
+        }
+        span {
+            font-size: 13px;
+            font-weight: 300;
+            margin-right: 3px;
+        }
+        h3 {
+            margin: 0;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        .left {
+            display: flex;
+            align-items: center;
+            .list__item--logo {
+                height: 50px;
+                width: 50px;
+                img {
+                    width: 100%;
+                }
+            }
+            .list__item--property {
+                margin-left: 10px;
+            }
+        }
+        .right {
+            text-align: center;
+            span {
+                font-weight: 300;
+            }
             i {
-                margin-right: 5px;
+                margin-left: 10px;
+                font-size: 15px;
+                background: transparent;
             }
         }
     }
 }
 
-@media (max-width: 687px) {
+footer {
+    position: relative;
+    width: 100% !important;
+    overflow-x: hidden;
+    .footer__content {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 10px;
+        border: 1px solid;
+        border-color: #eef1f6;
+        font-size: 14px;
+        font-weight: 300;
+        color: #62738d;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // .footer_right {
+        //     align-items: center;
+        //     justify-content: space-evenly;
+        //     span {
+        //         display: inline-block;
+        //         width: fit-content;
+        //         margin-right: 20px !important;
+        //         position: relative;
+        //         &::after {
+        //             content: '•';
+        //             display: inline-block;
+        //             position: relative;
+        //             top: 0px;
+        //             right: -10px;
+        //             color: #b4b3b3;
+        //         }
+        //         &:last-of-type {
+        //             margin-right: 0px !important;
+        //             &::after {
+        //                 display: none;
+        //             }
+        //         }
+        //     }
+        // }
+        .footer_left {
+            margin-right: 25px;
+            li {
+                margin: 10px;
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 601px) {
     .breadcrumb {
         padding: 20px 10px;
     }
     footer {
-        display: block;
+        display: block !important;
         text-align: center;
         .footer_left {
             font-size: 12px;
@@ -114,6 +228,17 @@ footer {
                 i {
                     margin-right: 5px;
                 }
+            }
+        }
+    }
+    .listings {
+        .listing__items {
+            padding: 10px 5px;
+            // color: #757474;
+            h3 {
+                margin: 0;
+                font-weight: 500;
+                font-size: 18px;
             }
         }
     }
