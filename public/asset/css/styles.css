@@ -1,0 +1,192 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Signika Negative", sans-serif;
+}
+
+a {
+  background-color: transparent;
+  color: #79589F;
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 22px;
+  height: 32px;
+  -webkit-font-smoothing: antialiased !important;
+  text-align: center;
+  padding: 4px 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+  background-clip: border-box !important;
+  background-origin: border-box !important;
+  border: 0;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #79589f;
+  color: #fdfdfd;
+}
+
+.btn-primary-outline {
+  color: #79589f;
+  background-color: #fdfdfd;
+  border: 1px solid #79589f;
+}
+.btn-primary-outline:hover {
+  background-color: #f1efef;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.flex {
+  display: flex;
+}
+.flex.align-center {
+  align-items: center;
+}
+.flex.justify-center {
+  justify-content: center;
+}
+.flex.justify-between {
+  justify-content: space-between;
+}
+.flex.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.navbar {
+  height: 70px;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  line-height: 12px;
+  font-weight: 700;
+  position: relative;
+  font-family: "Shippori Antique B1", sans-serif;
+}
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #a97cdb;
+  height: 3px;
+  width: 100%;
+}
+.navbar .nav__property .logo {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+.navbar .nav__property .logo .brand-logo {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+.navbar .nav__user {
+  display: flex;
+  margin-right: 15px;
+}
+.navbar .nav__user .icon-nav-toggle {
+  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU%2BQ29tYmluZWQgU2hhcGUgQ29weSAyPC90aXRsZT48cGF0aCBkPSJNMiA0YTIgMiAwIDEgMCAwLTQgMiAyIDAgMCAwIDAgNHptMCA3YTIgMiAwIDEgMCAwLTQgMiAyIDAgMCAwIDAgNHptMCA3YTIgMiAwIDEgMCAwLTQgMiAyIDAgMCAwIDAgNHpNOSA0YTIgMiAwIDEgMCAwLTQgMiAyIDAgMCAwIDAgNHptMCA3YTIgMiAwIDEgMCAwLTQgMiAyIDAgMCAwIDAgNHptMCA3YTIgMiAwIDEgMCAwLTQgMiAyIDAgMCAwIDAgNHptNy0xNGEyIDIgMCAxIDAgMC00IDIgMiAwIDAgMCAwIDR6bTAgN2EyIDIgMCAxIDAgMC00IDIgMiAwIDAgMCAwIDR6bTAgN2EyIDIgMCAxIDAgMC00IDIgMiAwIDAgMCAwIDR6IiBmaWxsPSIjOERDQUU5IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4%3D);
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 32px;
+  height: 50px;
+  display: inline-block;
+  cursor: pointer;
+}
+.navbar .nav__user .avatar__container .user__avatar {
+  width: 30px;
+  height: 30px;
+  padding-top: 10px;
+  margin-left: 10px;
+}
+.navbar .nav__user .avatar__container .user__avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.breadcrumb {
+  margin: -5px 0 0 0;
+  padding: 20px 50px;
+  background: #F7F8FB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.breadcrumb .left_crumb {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 12px;
+  color: #79589f;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  border: 1px solid;
+  border-color: #eef1f6;
+}
+footer .footer_left {
+  font-size: 14px;
+  font-weight: 300;
+  color: #62738d;
+  margin-right: 25px;
+}
+footer .footer_left li {
+  margin: 10px;
+}
+footer .footer_left li i {
+  margin-right: 5px;
+}
+
+@media (max-width: 687px) {
+  .breadcrumb {
+    padding: 20px 10px;
+  }
+
+  footer {
+    display: block;
+    text-align: center;
+  }
+  footer .footer_left {
+    font-size: 12px;
+    font-weight: 300;
+    color: #62738d;
+  }
+  footer .footer_left li {
+    margin: 10px;
+  }
+  footer .footer_left li i {
+    margin-right: 5px;
+  }
+}/*# sourceMappingURL=styles.css.map */
