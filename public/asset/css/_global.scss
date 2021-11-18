@@ -35,7 +35,8 @@ a {
     transition: all 0.3s ease-in-out;
 }
 
-.btn-primary {
+.btn-primary,
+.bg-primary {
     background-color: #79589f;
     color: #fdfdfd;
 }
@@ -172,10 +173,35 @@ input {
     margin-left: 10px;
 }
 
+.mr-2 {
+    margin-right: 10px;
+}
+
+.mb-1 {
+    margin-bottom: 10px;
+}
+
+.mb-2 {
+    margin-bottom: 20px;
+}
+
+.float-right {
+    float: right;
+}
+
+.dropdown-menu {
+    display: none;
+}
+
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    // justify-content: space-between !important;
+    justify-content: space-around;
+}
+
+p {
+    margin: 0;
 }
 
 @media (max-width: 687px) {

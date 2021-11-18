@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import BreadCrumb from '../../widget/BreadCrumb/breadcrumb';
 import TabNav from '../../widget/Tab/navTab';
+import Activities from './activities';
 class Overview extends Component {
     school = {
         name:'Homat'
@@ -24,18 +25,20 @@ class Overview extends Component {
                 </div>
             </BreadCrumb>
 
-                        <TabNav/>
+            <TabNav/>
 
             <div className="container">
                 <div className="row">
                     <div className="col">
                         
-                            <i>Panel</i>
+                            <p className="mb-2"><i>Panel</i></p>
+                            <div style={{width:'300px', height:'300px'}}></div>
                         
                     </div>
 
                     <div className="col">
-                        <i>Activity</i>
+                        <p className="mb-2"><i>Activity</i></p>
+                        <Activities/>
                     </div>
                 </div>
                 
