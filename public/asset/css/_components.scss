@@ -231,6 +231,68 @@
     }
 }
 
+.groupings {
+    // max-height: 0px;
+    // border-width: 1px 0 1px 0;
+    // border-style: solid;
+    // border-color: #e2e2e2;
+    // border-bottom: 1px solid #e2e2e2;
+    .group__items {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        position: relative;
+        transition: all 0.2s ease-in;
+        cursor: pointer;
+        &:hover {
+            background: #f7f7f7;
+        }
+        border: 1px solid #e2e2e2;
+        ;
+        // color: #757474;
+        b {
+            font-weight: 400;
+            line-height: 10px;
+        }
+        span {
+            font-size: 13px;
+            font-weight: 300;
+            margin-right: 3px;
+        }
+        h3 {
+            margin: 0;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        .left {
+            display: flex;
+            align-items: center;
+            .list__item--logo {
+                height: 50px;
+                width: 50px;
+                img {
+                    width: 100%;
+                }
+            }
+            .list__item--property {
+                margin-left: 10px;
+            }
+        }
+        .right {
+            text-align: center;
+            span {
+                font-weight: 300;
+            }
+            i {
+                margin-left: 10px;
+                font-size: 15px;
+                background: transparent;
+            }
+        }
+    }
+}
+
 .activities {
     // display: flex;
     // flex-wrap: wrap;
@@ -306,12 +368,14 @@ footer {
         padding: 10px 10px;
         border: 1px solid;
         border-color: #eef1f6;
+        background: #fff;
         font-size: 14px;
         font-weight: 300;
         color: #62738d;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        z-index: 12;
         // .footer_right {
         //     align-items: center;
         //     justify-content: space-evenly;
