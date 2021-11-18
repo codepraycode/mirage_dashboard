@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import BreadCrumb from '../../widget/BreadCrumb/breadcrumb';
 import TabNav from '../../widget/Tab/navTab';
-class Overview extends Component {
+class Settings extends Component {
     school = {
         name:'Homat'
     }
@@ -30,7 +30,7 @@ class Overview extends Component {
                 <div className="row">
                     <div className="col">
                         
-                            <i>Panel</i>
+                            <i>Settings panel</i>
                         
                     </div>
 
@@ -51,4 +51,4 @@ class Overview extends Component {
     }
 }
 
-export default Overview;
+export default Settings;

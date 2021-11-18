@@ -49,6 +49,21 @@ a {
     }
 }
 
+.btn-success {
+    background-color: #11cc11;
+    color: #fdfdfd;
+}
+
+.btn-success-outline {
+    color: #11cc11;
+    background-color: #fdfdfd;
+    border: 1px solid #11cc11;
+    &:hover {
+        background-color: #11cc1194;
+        color: #fdfdfd;
+    }
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -150,6 +165,17 @@ input {
 
 .text-grey {
     color: #757474;
+}
+
+.mx-1 {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 @media (max-width: 687px) {

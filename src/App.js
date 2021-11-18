@@ -1,11 +1,13 @@
-import Layout from './Hoc/Layout/layout';
-import Overview from './Components/Overview/overview';
+import {BrowserRouter} from 'react-router-dom';
+import AppRoutes from "./routes";
+
 
 function App() {
   return (
-    <Layout>
-      <Overview/>
-    </Layout>
+    <BrowserRouter>
+      <AppRoutes/>
+    </BrowserRouter>
+    
   );
 }
 

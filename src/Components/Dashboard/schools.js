@@ -8,6 +8,7 @@ class Schools extends Component {
                 id:1,
                 key:'Ajfdjskoekmlldkke',
                 name:'Homat School',
+                slug:'homat-school',
                 logo:'/asset/img/logos/millwall.svg',
                 website:'www.something.com',
                 date_created:'20/25/3029',
@@ -18,6 +19,7 @@ class Schools extends Component {
                 id:2,
                 key:'Ajfdjskoekmlld23kke',
                 name:'Living School',
+                slug:'living-school',
                 logo:'/asset/img/logos/millwall.svg',
                 website:'www.lsomething.com',
                 date_created:'23/25/3029',
@@ -26,6 +28,9 @@ class Schools extends Component {
             }
         ]
     }
+
+
+    
 
     renderPage = ()=>{
         let template = this.state.schools.map((item,i)=>{

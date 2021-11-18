@@ -1,11 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SchoolItem = (props) => {
+    
     console.log(props);
     let school = props.school;
+    let navigate = useNavigate();
+    const handleNav = (slug) =>{
+        navigate(`/${slug}`)
+    }
     return (
-        <div className="listings" key={props.key}>
-            <ul className="listing__items">
+        <div className="listings">
+            <ul className="listing__items" onClick={()=>handleNav(school.slug)}>
                 <div className="left">
                     <div className="list__item--logo" style={{background:`url('${school.logo}') center center no-repeat`}}>
                         {/* <img src={school.logo} alt={"img"}/> */}
