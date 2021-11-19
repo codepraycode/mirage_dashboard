@@ -8,7 +8,7 @@ import CircleLoader from './widget/preloader/circle';
 // import Overview from './Components/Overview/overview';
 
 const Overview = React.lazy(() => import('./Components/Overview/overview'));
-const Access = React.lazy(() => import('./Components/Access/access'));
+const Staff = React.lazy(() => import('./Components/Staffs/staff'));
 const Settings = React.lazy(() => import('./Components/settings/settings'));
 // const Settings = React.lazy(() => import("./pages/Dashboard"));
 
@@ -31,7 +31,7 @@ const AppRoutes = () => {
                         <Route path=":slug/access" element={
                                 <Suspense fallback={<CircleLoader/>}>
                                     <NavLayout>
-                                        <Access/>
+                                        <Staff/>
                                     </NavLayout>
                                 </Suspense>
                             }/>

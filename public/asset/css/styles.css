@@ -757,6 +757,16 @@ copy-icon p {
   font-size: 14px;
   line-height: 12px;
 }
+.activities .no-activity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.activities .no-activity i {
+  font-size: 40px;
+  margin: 15px 0;
+}
 
 footer {
   position: relative;

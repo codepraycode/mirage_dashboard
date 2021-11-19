@@ -5,7 +5,7 @@ const NavBar = () => {
         <nav className="navbar sticky">
             <div className="nav__property">
                 <a href="/" className="logo">
-                    <span className="brand-logo" style={{background:`url('/asset/logo.svg') center center no-repeat`}}></span>
+                    {/* <span className="brand-logo" style={{background:`url('/asset/logo.svg') center center no-repeat`}}></span> */}
                     Mirage
                 </a>
                 

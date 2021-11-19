@@ -354,6 +354,16 @@
             }
         }
     }
+    .no-activity {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        i {
+            font-size: 40px;
+            margin: 15px 0;
+        }
+    }
 }
 
 footer {

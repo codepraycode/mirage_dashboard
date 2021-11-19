@@ -14,7 +14,7 @@ function TabNav() {
 
                 <li>
                     <NavLink end to={`/${params.slug}/access`}>
-                        Access
+                        Staffs
                     </NavLink>
                 </li>
 
