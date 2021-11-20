@@ -72,7 +72,7 @@ class SignUp extends Component {
 
 
                         <div className="right card">
-                            {/* Start your Code here */}
+                            {/* I've Gotten the Code */}
 
 
                             <button type="submit" className="btn btn-primary">Submit</button>
