@@ -6,7 +6,7 @@ import Dashboard from './Components/Dashboard/dashboard';
 import Page404 from './Components/Errors/404';
 import CircleLoader from './widget/preloader/circle';
 // import Overview from './Components/Overview/overview';
-
+const SignUp = React.lazy(()=>import('./Hoc/Auth/signup'));
 const Overview = React.lazy(() => import('./Components/Overview/overview'));
 const Staff = React.lazy(() => import('./Components/Staffs/staff'));
 const Settings = React.lazy(() => import('./Components/settings/settings'));
@@ -20,44 +20,41 @@ const AppRoutes = () => {
 
                     <Route path="/" element={<Layout><Dashboard/></Layout>}/>
 
-                        <Route path=":slug" element={
+                    <Route path="/signup" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                           <SignUp/>
+                        </Suspense>
+                    }/>
+
+                    <Route path=":slug" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <NavLayout>
+                                <Overview/>
+                            </NavLayout>
+                        </Suspense>
+                    }/>
+
+                    <Route path=":slug/access" element={
                             <Suspense fallback={<CircleLoader/>}>
                                 <NavLayout>
-                                    <Overview/>
+                                    <Staff/>
                                 </NavLayout>
                             </Suspense>
                         }/>
 
-                        <Route path=":slug/access" element={
-                                <Suspense fallback={<CircleLoader/>}>
-                                    <NavLayout>
-                                        <Staff/>
-                                    </NavLayout>
-                                </Suspense>
-                            }/>
+                    <Route path=":slug/settings" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <NavLayout>
+                                <Settings/>
+                            </NavLayout>
+                        </Suspense>
+                    }/>
 
-                        <Route path=":slug/settings" element={
-                            <Suspense fallback={<CircleLoader/>}>
-                                <NavLayout>
-                                    <Settings/>
-                                </NavLayout>
-                            </Suspense>
-                        }/>
-
-                        
-
-
-                        <Route path="*" element={
-                            <Layout>
-                            <Page404 />
-                            </Layout>
-                        } />
-
-                        
-
-                    
-                    
-                    
+                    <Route path="*" element={
+                        <Layout>
+                        <Page404 />
+                        </Layout>
+                    } />
 
                 </Routes>
             

@@ -164,6 +164,69 @@
     }
 }
 
+.input-group {
+    position: relative;
+    select {
+        padding: 6px 10px 6px 30px;
+        color: #556379bb;
+        border-radius: 5px;
+        border: 1px solid #e2e2e2;
+        outline: none;
+        // width: 300px;
+    }
+    i {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        margin: 0;
+        border-left: 1px solid #e2e2e2;
+        border-radius: 5px 0 0 5px;
+        // top: 10px;
+        // bottom: 10px;
+        font-size: 20px;
+        font-weight: 100;
+        color: #62738d;
+        background: #f7f7f7;
+    }
+}
+
+.toggle-switch {
+    display: flex;
+    width: 55px;
+    height: 25px;
+    border-radius: 25px;
+    background: #e7e7e7;
+    padding: 2px;
+    transition: all 0.3s ease;
+    input {
+        display: none;
+    }
+    &.active {
+        background: #79589f;
+        span::before {
+            left: 30px;
+        }
+    }
+    .ball {
+        display: inline-block;
+        transition: all 0.3s ease;
+        // height: 100%;
+        // width: 50%;
+        // border-radius: 50%;
+        // background: grey;
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0px;
+            height: 100%;
+            width: 25px;
+            background: #fff;
+            border-radius: 50%;
+        }
+    }
+}
+
 .listings {
     // max-height: 0px;
     // border-width: 1px 0 1px 0;
@@ -416,6 +479,105 @@ footer {
                 margin: 10px;
                 i {
                     margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+.auth-page {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #3A2778;
+    color: #fff;
+    overflow-y: auto;
+    .wrapper {
+        width: 60%;
+        margin: 20px auto;
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .logo p {
+                margin: 0;
+                font-size: 40px;
+            }
+            .cta {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                line-height: 8px;
+                font-size: 14px;
+                button {
+                    margin-left: 10px;
+                    background: #452f8bb7;
+                    border-radius: 3px;
+                }
+            }
+        }
+        .lead {
+            margin-top: 28px;
+            font-size: 30px;
+        }
+        .auth-card {
+            background: #eef1f6;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            // 
+            // align-items: center;
+            justify-content: space-between;
+            .left {
+                margin-right: 15px;
+                width: 40%;
+                p {
+                    margin: 0;
+                    font-size: 13px;
+                    color: #3A2778;
+                    font-weight: 300;
+                }
+                h4 {
+                    color: #79589f;
+                    font-weight: 500;
+                }
+            }
+            .right {
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+                // align-items: center;
+                justify-content: center;
+                padding: 15px;
+                .label-group {
+                    display: block;
+                    margin-bottom: 20px;
+                    label {
+                        position: relative;
+                        color: #79589f;
+                        font-weight: 500;
+                        font-size: 14px;
+                        display: block;
+                        width: fit-content;
+                    }
+                    input,
+                    textarea {
+                        display: block;
+                        width: 98%;
+                    }
+                    &.required {
+                        label::after {
+                            content: '*';
+                            position: absolute;
+                            font-size: 20px;
+                            color: #ee3636;
+                            right: -12px;
+                        }
+                    }
+                }
+                button {
+                    width: 40%;
+                    margin: 5px auto;
                 }
             }
         }

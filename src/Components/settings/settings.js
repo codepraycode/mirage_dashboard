@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import BreadCrumb from '../../widget/BreadCrumb/breadcrumb';
 import TabNav from '../../widget/Tab/navTab';
+import SchoolInfo from './school_info';
+
 class Settings extends Component {
     school = {
         name:'Homat'
@@ -24,28 +26,13 @@ class Settings extends Component {
                 </div>
             </BreadCrumb>
 
-                        <TabNav/>
+            <TabNav/>
 
             <div className="container">
-                <div className="row">
-                    <div className="col">
-                        
-                            <i>Settings panel</i>
-                        
-                    </div>
-
-                    <div className="col">
-                        <i>Activity</i>
-                    </div>
-                </div>
+                
+                <SchoolInfo/>
                 
             </div>
-
-            <div className="container no-padding">
-            </div>
-
-
-
             </>
         );
     }
