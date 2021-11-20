@@ -18,7 +18,7 @@ const AppRoutes = () => {
             
                 <Routes>
 
-                    <Route path="/" element={<Layout><Dashboard/></Layout>}/>
+                    <Route path="/" exact element={<Layout><Dashboard/></Layout>}/>
 
                     <Route path="/signup" element={
                         <Suspense fallback={<CircleLoader/>}>

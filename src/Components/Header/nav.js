@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
@@ -12,17 +13,17 @@ const NavBar = () => {
             </div>
 
             <div className="nav__user">
-                <a role="button" href="/" className="menu-bar">
+                <Link to="/signup" className="menu-bar">
                     <div className="icon-nav-toggle"></div>
-                </a>
+                </Link>
 
 
-                <a role="button" href="/" className="avatar__container">
+                <Link to="/signup" className="avatar__container">
                     <div className="user__avatar">
                         <img src="/asset/img/avatar.svg" alt="avatar"/>
                     </div>
                     <div className="notification"></div>
-                </a>
+                </Link>
             </div>
 
         </nav>
