@@ -597,6 +597,53 @@ footer {
                     width: 40%;
                     margin: 5px auto;
                 }
+
+
+                
+            }
+
+
+            // Evidence styling
+            form{
+                // border: 0;
+                // border-radius: 15px;
+                // background-color: #F0F8FF;
+                // padding: 25px 50px 20px 50px;
+                // position: absolute;
+                // top: 50%;
+                // left: 50%;
+                // transform: translate(-50%, -50%);
+                // width: 250px;
+                max-width: 100%;
+                padding:20px;
+                margin: 15px auto;
+                p{
+                    font-size: 15px;
+                    margin: 15px 0 15px 0;
+                    color: #000;
+                }
+                input{
+                    font-size: 15px;
+                    padding: 15px 10px;
+                    width: 250px;
+                    border: 1px solid #3A2778;
+                    border-radius: 10px;
+                    outline: #3A2778;
+                    &::placeholder{
+                        font-size: 15px;
+                        color: #696969;
+                    }
+                }
+                // button{
+                //     font-size: 12px;
+                //     margin: 20px 0;
+                //     padding: 10px 15px;
+                //     width: 30%;
+                //     border: 0;
+                //     border-radius: 5px;
+                //     background-color: #3A2778;
+                //     cursor: pointer;
+                // }
             }
         }
     }
