@@ -509,7 +509,12 @@ footer {
                 align-items: center;
                 line-height: 8px;
                 font-size: 14px;
-                button {
+                span {
+                    display: block;
+                }
+                button,
+                a {
+                    display: block;
                     margin-left: 10px;
                     background: #452f8bb7;
                     border-radius: 3px;
@@ -528,6 +533,11 @@ footer {
             // 
             // align-items: center;
             justify-content: space-between;
+            &.login {
+                width: 60%;
+                margin: 0 auto;
+                justify-content: center;
+            }
             .left {
                 margin-right: 15px;
                 width: 40%;
@@ -540,6 +550,14 @@ footer {
                 h4 {
                     color: #79589f;
                     font-weight: 500;
+                }
+            }
+            &.no-hype {
+                width: 90%;
+                margin: 0 auto;
+                justify-content: center;
+                .left {
+                    display: none;
                 }
             }
             .right {
@@ -614,6 +632,109 @@ footer {
                 margin: 0;
                 font-weight: 500;
                 font-size: 18px;
+            }
+        }
+    }
+    .auth-page {
+        .wrapper {
+            width: 100%;
+            // margin: 20px auto;
+            .header {
+                display: block;
+                text-align: center;
+                // align-items: center;
+                // justify-content: space-between;
+                .logo p {
+                    margin: 0;
+                    font-size: 40px;
+                }
+                .cta {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    line-height: 8px;
+                    font-size: 14px;
+                    span {
+                        display: block;
+                    }
+                    button,
+                    a {
+                        display: block;
+                        margin-left: 10px;
+                        background: #452f8bb7;
+                        border-radius: 3px;
+                    }
+                }
+            }
+            .lead {
+                margin-top: 28px;
+                font-size: 30px;
+            }
+            .auth-card {
+                background: #eef1f6;
+                padding: 10px;
+                border-radius: 10px;
+                display: flex;
+                // 
+                // align-items: center;
+                justify-content: space-between;
+                &.login {
+                    width: 90%;
+                    margin: 0 auto;
+                    justify-content: center;
+                }
+                .left {
+                    margin-right: 15px;
+                    width: 40%;
+                    p {
+                        margin: 0;
+                        font-size: 13px;
+                        color: #3A2778;
+                        font-weight: 300;
+                    }
+                    h4 {
+                        color: #79589f;
+                        font-weight: 500;
+                    }
+                }
+                .right {
+                    width: 60%;
+                    display: flex;
+                    flex-direction: column;
+                    // align-items: center;
+                    justify-content: center;
+                    padding: 15px;
+                    .label-group {
+                        display: block;
+                        margin-bottom: 20px;
+                        label {
+                            position: relative;
+                            color: #79589f;
+                            font-weight: 500;
+                            font-size: 14px;
+                            display: block;
+                            width: fit-content;
+                        }
+                        input,
+                        textarea {
+                            display: block;
+                            width: 98%;
+                        }
+                        &.required {
+                            label::after {
+                                content: '*';
+                                position: absolute;
+                                font-size: 20px;
+                                color: #ee3636;
+                                right: -12px;
+                            }
+                        }
+                    }
+                    button {
+                        width: 40%;
+                        margin: 5px auto;
+                    }
+                }
             }
         }
     }

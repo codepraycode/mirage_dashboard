@@ -1,25 +1,10 @@
 import React, { Component } from 'react'
-
+import AuthWrapper from './auth_wrapper';
 class SignUp extends Component {
     render() {
         return (
-            <div className="auth-page">
-                <div className="wrapper">
-                    <div className="header flex">
-                        <div className="logo">
-                            <p>Mirage</p>
-                        </div>
-                        <div className="cta">
-                            <span>Already have an account?</span>
-                            <button className="btn btn-primary">Sign in</button>
-                        </div>
-                    </div>
-
-
-                    <p className="text-center lead">Sign Up</p>
-
-
-                    <div className="auth-card">
+            <AuthWrapper signup={true}>
+                <div className="auth-card no-hype">
 
                         <div className="left">
                             <div className="fet">
@@ -78,8 +63,7 @@ class SignUp extends Component {
                             <button type="submit" className="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                </div>
-            </div>
+            </AuthWrapper>
         )
     }
 }

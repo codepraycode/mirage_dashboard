@@ -1,9 +1,15 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import { useNavigate } from 'react-router';
 
 const Page404 = () => {
+    let navigate = useNavigate();
+    
+    useEffect(()=>{
+        navigate('/signin');
+    })
     return (
         <div>
-            No Page Like Such
+            No Such Page
         </div>
     );
 };
