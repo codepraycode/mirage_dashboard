@@ -6,7 +6,14 @@ class Login extends Component {
             <AuthWrapper signup={false} extraClass={"login"}>
                 
                         <div className="card">
-                            {/* I've Gotten the Code */}
+                            {/* 
+                                Replace 
+                                
+                                <p className="text-muted text-center">Login</p> 
+
+                                with your code
+                                
+                             */}
                             <p className="text-muted text-center">Login</p>
 
                             <button type="submit" className="btn btn-primary">Submit</button>
