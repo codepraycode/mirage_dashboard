@@ -134,7 +134,7 @@ select {
     font-size: 13px;
     background: #fff;
     border: 1px solid #cfd7e6;
-    box-shadow: inset 0 1px 2px 0 rgb(207 215 230 / 40%);
+    // box-shadow: inset 0 1px 2px 0 rgb(207 215 230 / 40%);
     padding: 5px 5px 5px 10px;
     transition: all 0.4s linear;
     &::placeholder {
@@ -173,6 +173,20 @@ select {
                 display: none;
             }
         }
+    }
+}
+
+.required {
+    position: relative;
+    display: block;
+    width: fit-content;
+    &::after {
+        content: '*';
+        position: absolute;
+        font-size: 20px;
+        color: #ee3636;
+        right: -12px;
+        top:-5px;
     }
 }
 
@@ -505,10 +519,10 @@ hr {
     }
 }
 
-@media (width > 999px) {
-    .d-md-flex {
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
-    }
-}
+// @media (width > 999px) {
+//     .d-md-flex {
+//         display: flex !important;
+//         align-items: center;
+//         justify-content: space-between;
+//     }
+// }

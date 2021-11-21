@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 
 class AuthWrapper extends Component {
+
     render() {
         return (
             <div className="auth-page">
@@ -12,11 +13,11 @@ class AuthWrapper extends Component {
                         </div>
                         <div className="cta">
                             {
-                            this.props.signup === true ?
+                            this.props.signup ?
                             <>   
                                 <span className="mr-2">Already have an account?</span>
 
-                                <Link to="/signin" className="btn btn-primary">Sign Up</Link>
+                                <Link to="/signin" className="btn btn-primary">Login</Link>
                             </>
                             :
                             <>
@@ -33,7 +34,7 @@ class AuthWrapper extends Component {
 
                     <p className="text-center lead">
                         {
-                            this.props.signup === true ?
+                            this.props.signup ?
                             <>Sign Up</>
                             :
                             <>Login</>
