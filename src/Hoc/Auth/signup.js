@@ -21,7 +21,7 @@ class SignUp extends Component {
 
                     <div className="auth-card">
 
-                        <div className="left">
+                        {/* <div className="left">
                             <div className="fet">
                                 <h4>
                                 <i className="fa fa-user-circle" aria-hidden="true"></i>
@@ -68,14 +68,29 @@ class SignUp extends Component {
                                     Control,Monitor and manage school affairs.
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
 
 
                         <div className="right card">
-                            {/* I've Gotten the Code */}
+                            <div className="regForm">
+                            <form action="#" method="post">
+                                <p className="text-primary">First name</p>
+                                <input type="text" name="firstname" placeholder="First name"  minLength="1" maxLength="255"/>
+                                <p>Last name</p>
+                                <input type="text" name="lastname" placeholder="Last name" minLength="1" maxLength="255"/>
+                                <p>Email address</p>
+                                <input type="text" name="email" placeholder="Email address" minLength="1" maxLength="255"/>
+                                <p>Username</p>
+                                <input type="text" name="username" placeholder="Username" minLength="1" maxLength="255"/>
+                                <p>Password</p>
+                                <input type="password" name="password" placeholder="Password" minLength="6" maxLength="68"/>
+                            </form>
+                            </div>
 
 
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <a href="" className="but">Submit</a>
+                            <span>Forgot Password</span>
+                            Login
                         </div>
                     </div>
                 </div>
