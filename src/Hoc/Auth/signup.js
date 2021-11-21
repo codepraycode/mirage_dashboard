@@ -54,10 +54,11 @@ class SignUp extends Component {
                                 </p>
                             </div>
                         </div>
+                        
 
 
                         <div className="right card">
-                            {/* I've Gotten the Code */}
+                            {/* Add your code here */}
 
 
                             <button type="submit" className="btn btn-primary">Submit</button>
