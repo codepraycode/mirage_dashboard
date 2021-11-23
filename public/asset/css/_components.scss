@@ -16,24 +16,6 @@
     }
 }
 
-@keyframes Spin360 {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(90deg);
-    }
-    50% {
-        transform: rotate(180deg);
-    }
-    75% {
-        transform: rotate(270deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 .navbar {
     height: 70px;
     overflow-x: hidden;
@@ -597,14 +579,9 @@ footer {
                     width: 40%;
                     margin: 5px auto;
                 }
-
-
-                
             }
-
-
             // Evidence styling
-            form{
+            form {
                 // border: 0;
                 // border-radius: 15px;
                 // background-color: #F0F8FF;
@@ -615,24 +592,29 @@ footer {
                 // transform: translate(-50%, -50%);
                 // width: 250px;
                 max-width: 100%;
-                padding:20px;
+                padding: 12px 20px;
                 margin: 15px auto;
-                p{
+                p {
                     font-size: 15px;
                     margin: 15px 0 15px 0;
                     color: #000;
                 }
-                input{
+                input {
                     font-size: 15px;
                     padding: 15px 10px;
                     width: 250px;
                     border: 1px solid #3A2778;
                     border-radius: 10px;
                     outline: #3A2778;
-                    &::placeholder{
+                    &::placeholder {
                         font-size: 15px;
                         color: #696969;
                     }
+                }
+                .msg {
+                    display: block;
+                    font-size: 15px;
+                    margin: 5px 0 10px 0;
                 }
                 // button{
                 //     font-size: 12px;
