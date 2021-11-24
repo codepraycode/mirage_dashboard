@@ -8,7 +8,7 @@ const StaffList = (props) => {
                 <p className="mb-1">Staffs</p>
                 {
                     props.see ? 
-                    <Link to="access">
+                    <Link to="staffs">
                     see all
                 </Link>
                 :

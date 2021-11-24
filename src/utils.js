@@ -4,7 +4,8 @@ const LoginUrl = `${Baseurl}/account/login`;
 
 const CreateAccountUrl = `${Baseurl}/account/create`;
 
-const GetSchoolsUrl = `${Baseurl}/school/`;
+const GetSchoolsUrl = `${Baseurl}/school`;
+
 
 
 // Login

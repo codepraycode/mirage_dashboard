@@ -46,7 +46,7 @@ class Schools extends PureComponent {
             let options ={
                 method: 'GET',
                 headers: {
-                    'Authorization':`Bearer ${this.props.access_token}`
+                    'Authorization':`Bearer ${this.props.tokens.access_token}`
                 }
             }
             fetch(GetSchoolsUrl, options)
@@ -79,6 +79,7 @@ class Schools extends PureComponent {
                 //  Adding harcoded logos
                 let schools = Object.keys(res).map((item)=>{
                     res[item]['logo'] = '/asset/img/logos/millwall.svg';
+                    res[item]['slug'] = `${ res[item].name.replaceAll(' ','-')}`;
                     return res[item]
                 })
                 
@@ -115,7 +116,7 @@ class Schools extends PureComponent {
         if (this.state.tried && !this.state.fetched){
            template = <div className="text-center text-muted">
                <div className="no-record">
-                   <p> <i className="fas fa-exclamation-circle f-20 "></i> Your Session had Expired</p>
+                   <p> <i className="fas fa-exclamation-circle f-20 "></i> Something Not Right Occured</p>
                    <button className="btn btn-primary" onClick={()=>window.location.href="/login"}>
                        Login Again
                    </button>
@@ -157,7 +158,9 @@ class Schools extends PureComponent {
 
     render() {
         this.fetchSchools();
-        console.log(this.state);
+        // console.log(this.state);
+        // console.log(this.props);
+        // this.MakeREquest();
         return (
             <div className="listings__container">
             {this.renderPage()}

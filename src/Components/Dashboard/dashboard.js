@@ -5,40 +5,20 @@ import {Link} from 'react-router-dom'
 
 class Dashboard extends Component {
     state = {
-        tokens:{},
-        times:0,
+        
+        
         showMenu:false
     }
+    
     handleMenu = ()=>{
-
         this.setState({
             ...this.state,
             showMenu:!this.state.showMenu
         })
     }
-    componentDidMount(){
-        if (this.state.times <= 5){
-            this.FetchTokens();
-        }
-        
-    }
-    FetchTokens = ()=>{
-        let accessToken = localStorage.getItem('access');
-        let refreshToken = localStorage.getItem('refresh')
-        // console.log(accessToken,refreshToken);
-        let tokens ={
-            access_token:accessToken,
-            refresh_token:refreshToken
-        }
-        let times = 5
-        this.setState(
-            {
-                ...this.state,
-                times,
-                tokens
-            }
-        )
-    }
+
+    
+    
 
     handleMenu=()=>{
         this.setState({
@@ -48,7 +28,7 @@ class Dashboard extends Component {
     }
     
     render() {
-        // console.log(this.props);
+        
         
         return (
             <>
@@ -89,7 +69,7 @@ class Dashboard extends Component {
             </div>
 
             <div className="container no-padding">
-                <Schools {...this.props} {...this.state.tokens}/>
+                <Schools {...this.props}/>
             </div>
 
 

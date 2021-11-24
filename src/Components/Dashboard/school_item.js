@@ -7,12 +7,12 @@ const SchoolItem = (props) => {
     console.log(props);
     let school = props.school;
     let navigate = useNavigate();
-    const handleNav = (slug) =>{
-        navigate(`/${slug}`)
+    const handleNav = (key) =>{
+        navigate(`/school/${key}`)
     }
     return (
         <div className="listings">
-            <ul className="listing__items" onClick={()=>handleNav(school.slug)}>
+            <ul className="listing__items" onClick={()=>handleNav(school.key)}>
                 <div className="left">
                     <div className="list__item--logo" style={{background:`url('${school.logo}') center center no-repeat`}}>
                         {/* <img src={school.logo} alt={"img"}/> */}

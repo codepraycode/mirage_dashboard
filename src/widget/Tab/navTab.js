@@ -2,24 +2,26 @@ import React from 'react'
 import {NavLink, useParams} from 'react-router-dom';
 
 function TabNav() {
-    let params = useParams();
+    let {key} = useParams();
+    console.log(key);
+
     return (
         <div className="nav-panel">
             <ul className="">
                 <li>
-                    <NavLink end to={`/${params.slug}`}>
+                    <NavLink end to={`/school/${key}`}>
                         Overview
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink end to={`/${params.slug}/access`}>
+                    <NavLink end to={`/school/${key}/staffs`}>
                         Staffs
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink end to={`/${params.slug}/settings`}>
+                    <NavLink end to={`/school/${key}/settings`}>
                         Settings
                     </NavLink>
                 </li>

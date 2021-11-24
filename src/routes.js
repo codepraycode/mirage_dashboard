@@ -8,9 +8,9 @@ import CircleLoader from './widget/preloader/circle';
 // import Overview from './Components/Overview/overview';
 const SignUp = React.lazy(()=>import('./Hoc/Auth/signup'));
 const Login = React.lazy(()=>import('./Hoc/Auth/login'));
-// const Overview = React.lazy(() => import('./Components/Overview/overview'));
-// const Staff = React.lazy(() => import('./Components/Staffs/staff'));
-// const Settings = React.lazy(() => import('./Components/settings/settings'));
+const Overview = React.lazy(() => import('./Components/Overview/overview'));
+const Staff = React.lazy(() => import('./Components/Staffs/staff'));
+const Settings = React.lazy(() => import('./Components/settings/settings'));
 // const Settings = React.lazy(() => import("./pages/Dashboard"));
 
 const AppRoutes = () => {
@@ -32,6 +32,30 @@ const AppRoutes = () => {
                     <Route path="/login" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <Login/>
+                        </Suspense>
+                    }/>
+
+                    <Route path="/school/:key" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <Layout>
+                                <Overview/>
+                            </Layout>
+                        </Suspense>
+                    }/>
+
+                    <Route path="/school/:key/staffs" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <Layout>
+                                <Staff/>
+                            </Layout>
+                        </Suspense>
+                    }/>
+
+                    <Route path="/school/:key/settings" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <Layout>
+                                <Settings/>
+                            </Layout>
                         </Suspense>
                     }/>
 
