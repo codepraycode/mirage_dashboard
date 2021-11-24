@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import SchoolItem from './school_item';
 import { GetSchoolsUrl } from "../../utils";
 
-class Schools extends Component {
+class Schools extends PureComponent {
     /* 
     schools:[
             {
@@ -20,21 +20,23 @@ class Schools extends Component {
      */
     state = {
         schools:[],
-        loading:true,
+        loading:false,
         fetched:false,
-        tried:false
-    }
-
-    componentDidMount(){
-        this.fetchSchools();
     }
 
 
     fetchSchools = ()=>{
+        if(this.state.loading || this.state.fetched){ return}
+
+        this.MakeREquest();
+    }
+
+
+
+
+    MakeREquest = ()=>{
         console.log('Fetching school')
-        // console.log(this.props);
-        // console.log(`Bearer ${this.props.access_token}`)
-    
+        
 
          // let clone_state = this.state;
             let options ={
@@ -43,55 +45,53 @@ class Schools extends Component {
                     'Authorization':`Bearer ${this.props.access_token}`
                 }
             }
-            // console.log(options)
             fetch(GetSchoolsUrl, options)
             .then((response)=>{
                 console.log(response)
-                if (response.status === 200){
-                    this.props.authCallback(false);
+                if (response.ok){
+                    this.props.handleReAuth(false);
                     return response.json()
-
                 }
                 else{
-                    console.log("Error Ugly")
-                    this.props.authCallback(true);
-                    this.setState({
-                    ...this.state,
-                    tried:true
-                })
+                    this.props.handleReAuth(true);
+                    // this.setState({
+                    // ...this.state,
+                    // trying:true
+                    // })
                 }
                 // return response.json()
                 
                 
             })
             .then((res)=>{
-                // console.log(res);
-                // let schools = {
-                //     ...res,
-                //     logo:'/asset/img/logos/millwall.svg'
-                // }
+                
                 //  Adding harcoded logos
                 let schools = Object.keys(res).map((item)=>{
                     res[item]['logo'] = '/asset/img/logos/millwall.svg';
                     return res[item]
                 })
-                // console.log(schools)
+                
                 this.setState({
                     ...this.state,
                     loading:false,
                     fetched:true,
-                    tried:true,
                     schools
                 })
             })
             .catch((err)=>{
                 // console.error("Error",err);
-                console.log("Error Occured");
+                console.log("Bad Error Occured",err);
                 this.setState({
                     ...this.state,
-                    tried:true
+                    loading:false
                 })
             })
+
+
+            // this.setState({
+            //         ...this.state,
+            //         loading:true,
+            // })
     }
 
 
@@ -99,22 +99,22 @@ class Schools extends Component {
 
     renderPage = ()=>{
         let template = null;
-        if (!this.state.fetched && this.state.tried){
-            console.log("tried!")
-           template = <div className="text-center text-muted">
-               <p className="no-record">
-                   <i className="fas fa-exclamation-circle f-20 "></i>
-                   <button className="btn btn-primary" onClick={()=>this.fetchSchools()}>
-                       Try Again
-                   </button>
-               </p>
+        // if (!this.state.loading && !this.state.fetched && this.state.tried){
+        //     console.log("tried!")
+        //    template = <div className="text-center text-muted">
+        //        <p className="no-record">
+        //            <i className="fas fa-exclamation-circle f-20 "></i>
+        //            <button className="btn btn-primary" onClick={()=>this.fetchSchools()}>
+        //                Try Again
+        //            </button>
+        //        </p>
                 
-            </div>
+        //     </div>
             
-        }
+        // }
         
         
-        else if (this.state.loading){
+        if (this.state.loading){
             template = (
                     <div className="text-center text-muted">
                         <p className="spinner">
@@ -141,8 +141,10 @@ class Schools extends Component {
         return template;
     }
 
+    
+
     render() {
-        // this.fetchSchools();
+        this.fetchSchools();
         console.log(this.state);
         return (
             <div className="listings__container">

@@ -47,6 +47,7 @@ class QuickLogin extends Component {
 
     SetCookie = (data)=>{
         Object.keys(data).forEach((item)=>{
+            console.log("Token =>", item,data[item])
             localStorage.setItem(item,data[item])
         });
     }
@@ -66,7 +67,7 @@ class QuickLogin extends Component {
 
             this.SetCookie(tokens);
 
-            this.props.authCallback(authStatus.error)}
+            this.props.handleReAuth(authStatus.error)}
         }
         
     }

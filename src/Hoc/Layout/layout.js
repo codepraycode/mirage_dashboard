@@ -5,25 +5,24 @@ import QuickLogin from '../Auth/quick_login';
 
 class Layout  extends Component{
     state = {
-        ReAuth:false
+        reAuth:false
     }
     // let [ReAuth,,setReAuth] = useState(false);
 
-    handleReAuth = (ReAuth)=>{
-        console.log("Called by", ReAuth)
+    ReAuth = (reAuth)=>{
+        console.log("Called by", reAuth)
         
         this.setState({
-            ReAuth
+            reAuth
         })
 
     }
     render(){
-        console.log(this.state.ReAuth);
         return (
             <div>
-                {this.state.ReAuth ? <QuickLogin authCallback={this.handleReAuth} />: null}
+                {this.state.reAuth ? <QuickLogin handleReAuth={this.ReAuth} />: null}
                 <Header/>
-                    {React.cloneElement(this.props.children,{authCallback:(needAuth)=>this.handleReAuth(needAuth)})}
+                    {React.cloneElement(this.props.children,{handleReAuth:(needAuth)=>this.ReAuth(needAuth)})}
                 <Footer/>
             </div>
         )
