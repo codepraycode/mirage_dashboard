@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import BreadCrumb from '../../widget/BreadCrumb/breadcrumb';
 import Schools from './schools';
+import {Link} from 'react-router-dom'
 
 class Dashboard extends Component {
     state = {
         tokens:{},
-        times:0
+        times:0,
+        showMenu:false
+    }
+    handleMenu = ()=>{
+
+        this.setState({
+            ...this.state,
+            showMenu:!this.state.showMenu
+        })
     }
     componentDidMount(){
         if (this.state.times <= 5){
@@ -30,6 +39,13 @@ class Dashboard extends Component {
             }
         )
     }
+
+    handleMenu=()=>{
+        this.setState({
+            ...this.state,
+            showMenu:!this.state.showMenu
+        })
+    }
     
     render() {
         // console.log(this.props);
@@ -44,6 +60,22 @@ class Dashboard extends Component {
                     <button className="btn btn-primary btn-primary-outline">
                         New
                     </button>
+
+
+                    <button 
+                        className="btn btn-primary btn-primary-outline ml-2 "
+                        onClick={()=>this.handleMenu()}>
+                        Menu
+                    </button>
+                    
+                    <div className={`dropdown ${this.state.showMenu ? 'show':''}`}>
+                        <div className="dropdown-content">
+                            <div className="dropdown-item">
+                                <i className="fad fa-sign-out"></i>
+                                <Link to="/login">Logout</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </BreadCrumb>
 

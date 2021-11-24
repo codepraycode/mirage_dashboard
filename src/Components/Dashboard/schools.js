@@ -20,13 +20,17 @@ class Schools extends PureComponent {
      */
     state = {
         schools:[],
-        loading:false,
+        loading:true,
         fetched:false,
+        tried:false
     }
 
+    // componentDidMount(){
+    //     this.fetchSchools()
+    // }
 
     fetchSchools = ()=>{
-        if(this.state.loading || this.state.fetched){ return}
+        if(this.state.tried || this.state.fetched){ return}
 
         this.MakeREquest();
     }
@@ -49,16 +53,23 @@ class Schools extends PureComponent {
             .then((response)=>{
                 console.log(response)
                 if (response.ok){
-                    this.props.handleReAuth(false);
+                    // this.props.handleReAuth(false);
                     return response.json()
                 }
-                else{
-                    this.props.handleReAuth(true);
-                    // this.setState({
-                    // ...this.state,
-                    // trying:true
-                    // })
+                else if(response.status === 401){
+                    console.log("Response 401!!")
+                    // this.props.handleReAuth(true);
+                    // window.location.href = "/login";
+                    this.setState({
+                    ...this.state,
+                    loading:false,
+                    fetched:false,
+                    tried:true
+                    })
+
+                    return
                 }
+
                 // return response.json()
                 
                 
@@ -75,6 +86,7 @@ class Schools extends PureComponent {
                     ...this.state,
                     loading:false,
                     fetched:true,
+                    tried:true,
                     schools
                 })
             })
@@ -83,7 +95,8 @@ class Schools extends PureComponent {
                 console.log("Bad Error Occured",err);
                 this.setState({
                     ...this.state,
-                    loading:false
+                    loading:false,
+                    tried:true
                 })
             })
 
@@ -99,22 +112,21 @@ class Schools extends PureComponent {
 
     renderPage = ()=>{
         let template = null;
-        // if (!this.state.loading && !this.state.fetched && this.state.tried){
-        //     console.log("tried!")
-        //    template = <div className="text-center text-muted">
-        //        <p className="no-record">
-        //            <i className="fas fa-exclamation-circle f-20 "></i>
-        //            <button className="btn btn-primary" onClick={()=>this.fetchSchools()}>
-        //                Try Again
-        //            </button>
-        //        </p>
+        if (this.state.tried && !this.state.fetched){
+           template = <div className="text-center text-muted">
+               <div className="no-record">
+                   <p> <i className="fas fa-exclamation-circle f-20 "></i> Your Session had Expired</p>
+                   <button className="btn btn-primary" onClick={()=>window.location.href="/login"}>
+                       Login Again
+                   </button>
+               </div>
                 
-        //     </div>
+            </div>
             
-        // }
+        }
         
         
-        if (this.state.loading){
+        else if (this.state.loading){
             template = (
                     <div className="text-center text-muted">
                         <p className="spinner">

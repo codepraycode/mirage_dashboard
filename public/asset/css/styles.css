@@ -208,6 +208,21 @@ select:focus ~ i {
   display: none;
 }
 
+.no-record {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.no-record i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.f-20 {
+  font-size: 20px;
+}
+
 .required {
   position: relative;
   display: block;
@@ -640,7 +655,7 @@ hr {
 .navbar .nav__property .logo {
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 40px;
 }
 .navbar .nav__property .logo .brand-logo {
   display: inline-block;
@@ -670,6 +685,29 @@ hr {
 .navbar .nav__user .avatar__container .user__avatar img {
   width: 100%;
   height: 100%;
+}
+
+.dropdown {
+  background: #f3f2f2;
+  color: #79589f;
+  padding: 20px 10px;
+  position: absolute;
+  border-radius: 5px;
+  bottom: -45px;
+  right: 5%;
+  z-index: 9999;
+  display: none;
+}
+.dropdown .dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dropdown .dropdown-item i {
+  margin-right: 12px;
+}
+.dropdown.show {
+  display: block;
 }
 
 .nav-panel {
@@ -726,6 +764,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 .breadcrumb .left_crumb {
   font-size: 20px;

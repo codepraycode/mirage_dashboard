@@ -211,8 +211,11 @@ select {
 .no-record {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     i {
-        font-size: 50px;
+        font-size: 20px;
+        margin-right: 5px;
     }
 }
 
