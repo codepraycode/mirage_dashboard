@@ -1,9 +1,36 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+const AuthWrapper = (props)=>{
+    let navigate = useNavigate();
 
-class AuthWrapper extends Component {
+    const proceed = ()=>{
+        console.log(props)
+        if (props.authData && props.authData !== null){
+            // Set the tokens to cookie
+            let tokens = ParseToJsonString(props.authData.tokens)
+            tokens = JSON.parse(tokens);
+            
 
-    render() {
+            SetCookie(tokens);
+
+            navigate(`/`)
+        }
+        
+    }
+
+
+    const SetCookie = (data)=>{
+        Object.keys(data).forEach((item)=>{
+            localStorage.setItem(item,data[item])
+        });
+    }
+
+    function ParseToJsonString(wrongString){
+        if(typeof(wrongString) ==='string') return wrongString.replaceAll(`'`,`"`)
+    }
+    useEffect(proceed);
+
         return (
             <div className="auth-page">
                 <div className="wrapper">
@@ -13,18 +40,22 @@ class AuthWrapper extends Component {
                         </div>
                         <div className="cta">
                             {
-                            this.props.signup ?
+                            props.signup ?
                             <>   
                                 <span className="mr-2">Already have an account?</span>
 
-                                <Link to="/signin" className="btn btn-primary">Login</Link>
+                                <Link to="/login" className="btn btn-primary">
+                                    Login
+                                </Link>
                             </>
                             :
                             <>
                                <span>Dont have an account?</span>
 
 
-                                <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+                                <Link to="/signup" className="btn btn-primary">
+                                    Sign Up
+                                </Link>
                             </>
                         }
                          
@@ -34,7 +65,7 @@ class AuthWrapper extends Component {
 
                     <p className="text-center lead">
                         {
-                            this.props.signup ?
+                            props.signup ?
                             <>Sign Up</>
                             :
                             <>Login</>
@@ -43,15 +74,15 @@ class AuthWrapper extends Component {
                     </p>
 
 
-                    <div className={`auth-card ${this.props.extraClass}`}>
-                        {this.props.children}
+                    <div className={`auth-card ${props.extraClass}`}>
+                        {props.children}
 
                     </div>
 
                 </div>
             </div>
         )
-    }
+    
 }
 
 

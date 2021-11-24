@@ -2,7 +2,7 @@ import React,{Suspense} from 'react';
 import {Routes , Route} from 'react-router-dom';
 import Layout from './Hoc/Layout/layout';
 // import NavLayout from './Hoc/Layout/navLayout';
-// import Dashboard from './Components/Dashboard/dashboard';
+import Dashboard from './Components/Dashboard/dashboard';
 import Page404 from './Components/Errors/404';
 import CircleLoader from './widget/preloader/circle';
 // import Overview from './Components/Overview/overview';
@@ -19,13 +19,17 @@ const AppRoutes = () => {
             
                 <Routes>
 
-                    {/* <Route path="/" exact element={<Layout><Dashboard/></Layout>}/> */}
+                    <Route path="/" exact element={
+                        <Suspense fallback={<CircleLoader/>}>
+                        <Layout><Dashboard/></Layout>
+                        </Suspense>
+                    }/>
                     <Route path="/signup" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <SignUp/>
                         </Suspense>
                     }/>
-                    <Route path="/signin" element={
+                    <Route path="/login" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <Login/>
                         </Suspense>
