@@ -19,13 +19,17 @@ const AppRoutes = () => {
             
                 <Routes>
 
-                    <Route path="/" exact element={<Layout><Dashboard/></Layout>}/>
+                    <Route path="/" exact element={
+                        <Suspense fallback={<CircleLoader/>}>
+                        <Layout><Dashboard/></Layout>
+                        </Suspense>
+                    }/>
                     <Route path="/signup" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <SignUp/>
                         </Suspense>
                     }/>
-                    <Route path="/signin" element={
+                    <Route path="/login" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <Login/>
                         </Suspense>

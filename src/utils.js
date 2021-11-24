@@ -1,4 +1,10 @@
-const url = 'http://127.0.0.1:8000';
+const Baseurl = 'http://127.0.0.1:8000';
+
+const LoginUrl = `${Baseurl}/account/login`;
+
+const CreateAccountUrl = `${Baseurl}/account/create`;
+
+const GetSchoolsUrl = `${Baseurl}/school/`;
 
 
 // Login
@@ -19,7 +25,7 @@ const AccountLogin = (data, callback) => {
     }
 
 
-    fetch(`${url}/account/login`, requestOptions)
+    fetch(LoginUrl, requestOptions)
         .then((response) => {
             // request_status = response.status_code;
             // console.log(response);
@@ -51,7 +57,7 @@ const CreateAccount = (data) => {
         body: JSON.stringify(data)
     }
 
-    fetch(`${url}/account/create`, requestOptions)
+    fetch(CreateAccountUrl, requestOptions)
         .then((response) => {
 
             return response.json()
@@ -73,8 +79,10 @@ const CreateAccount = (data) => {
 
 
 
-
 module.exports = {
+    LoginUrl,
+    CreateAccountUrl,
+    GetSchoolsUrl,
     CreateAccount,
     AccountLogin
 }

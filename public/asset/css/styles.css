@@ -50,10 +50,7 @@ a {
 }
 
 .spinner {
-  display: block;
-  color: #79589F;
   font-size: 18px;
-  text-align: right;
   margin: 0;
 }
 .spinner i {
@@ -231,6 +228,10 @@ select:focus ~ i {
   color: #11cc11;
 }
 
+.text-primary {
+  color: #79589F;
+}
+
 .text-danger {
   color: #df4444;
 }
@@ -358,6 +359,14 @@ select:focus ~ i {
 
 .mr-3 {
   margin-right: 30px !important;
+}
+
+.ml-1 {
+  margin-left: 10px;
+}
+
+.ml-2 {
+  margin-left: 20px;
 }
 
 hr {
@@ -1160,6 +1169,72 @@ footer .footer__content .footer_right li i {
 .auth-page .wrapper .auth-card form .msg {
   display: block;
   font-size: 15px;
+  margin: 5px 0 10px 0;
+}
+
+.quickLogin-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #aaa9ad9f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+.quickLogin-card .wrapper {
+  margin: 20px auto;
+}
+.quickLogin-card .wrapper .lead {
+  margin-top: 28px;
+  margin-bottom: 0;
+  font-size: 30px;
+  color: #3A2778;
+  font-weight: 500;
+}
+.quickLogin-card .wrapper .auth-card {
+  background: #eef1f6;
+  padding: 10px 30px;
+  border-radius: 10px;
+}
+.quickLogin-card .wrapper .auth-card.login {
+  margin: 0 auto;
+  justify-content: center;
+}
+.quickLogin-card .wrapper .auth-card form {
+  width: 100%;
+  padding: 8px 0;
+  margin: 8px auto 0 auto;
+}
+.quickLogin-card .wrapper .auth-card form p {
+  font-size: 15px;
+  margin: 15px 0 15px 0;
+  color: #000;
+}
+.quickLogin-card .wrapper .auth-card form input {
+  font-size: 15px;
+  padding: 15px 10px;
+  border: 1px solid #3A2778;
+  border-radius: 10px;
+  outline: #3A2778;
+}
+.quickLogin-card .wrapper .auth-card form input::-moz-placeholder {
+  font-size: 15px;
+  color: #696969;
+}
+.quickLogin-card .wrapper .auth-card form input:-ms-input-placeholder {
+  font-size: 15px;
+  color: #696969;
+}
+.quickLogin-card .wrapper .auth-card form input::placeholder {
+  font-size: 15px;
+  color: #696969;
+}
+.quickLogin-card .wrapper .auth-card form .msg {
+  display: block;
+  font-size: 12px;
   margin: 5px 0 10px 0;
 }
 

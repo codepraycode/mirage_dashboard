@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AuthWrapper from './auth_wrapper';
-import {AccountLogin} from './auth_utils';
+import {AccountLogin} from '../../utils';
 class Login extends Component {
     state = {
         formData:{
@@ -125,9 +125,9 @@ class Login extends Component {
                         <div className="card">
                             {
                                 this.state.loading ? 
-                                <span className="spinner">
+                                <p className="spinner text-right text-primary">
                                     <i className="fad fa-spinner-third"></i>
-                                </span>
+                                </p>
                                 :
                                 null
                             }

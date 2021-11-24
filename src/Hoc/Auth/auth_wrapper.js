@@ -5,12 +5,30 @@ const AuthWrapper = (props)=>{
     let navigate = useNavigate();
 
     const proceed = ()=>{
-        if (props.authData !== null){
+        console.log(props)
+        if (props.authData && props.authData !== null){
+            // Set the tokens to cookie
+            let tokens = ParseToJsonString(props.authData.tokens)
+            tokens = JSON.parse(tokens);
+            
+
+            SetCookie(tokens);
+
             navigate(`/`)
         }
         
     }
 
+
+    const SetCookie = (data)=>{
+        Object.keys(data).forEach((item)=>{
+            localStorage.setItem(item,data[item])
+        });
+    }
+
+    function ParseToJsonString(wrongString){
+        if(typeof(wrongString) ==='string') return wrongString.replaceAll(`'`,`"`)
+    }
     useEffect(proceed);
 
         return (
@@ -26,14 +44,18 @@ const AuthWrapper = (props)=>{
                             <>   
                                 <span className="mr-2">Already have an account?</span>
 
-                                <Link to="/signin" className="btn btn-primary">Login</Link>
+                                <Link to="/login" className="btn btn-primary">
+                                    Login
+                                </Link>
                             </>
                             :
                             <>
                                <span>Dont have an account?</span>
 
 
-                                <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+                                <Link to="/signup" className="btn btn-primary">
+                                    Sign Up
+                                </Link>
                             </>
                         }
                          

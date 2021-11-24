@@ -64,10 +64,9 @@ a {
 //     }
 // }
 .spinner {
-    display: block;
-    color: #79589F;
+    // display: block;
+    // color: #79589F;
     font-size: 18px;
-    text-align: right;
     margin: 0;
     i {
         animation: Spin360 linear 0.9s infinite;
@@ -209,6 +208,18 @@ select {
     }
 }
 
+.no-record {
+    display: flex;
+    flex-direction: column;
+    i {
+        font-size: 50px;
+    }
+}
+
+.f-20 {
+    font-size: 20px;
+}
+
 .required {
     position: relative;
     display: block;
@@ -225,6 +236,10 @@ select {
 
 .text-success {
     color: #11cc11;
+}
+
+.text-primary {
+    color: #79589F;
 }
 
 .text-danger {
@@ -355,6 +370,14 @@ select {
 
 .mr-3 {
     margin-right: 30px !important;
+}
+
+.ml-1 {
+    margin-left: 10px;
+}
+
+.ml-2 {
+    margin-left: 20px;
 }
 
 hr {

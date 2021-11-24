@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Moment from 'react-moment';
 
 const SchoolItem = (props) => {
     
@@ -19,8 +20,14 @@ const SchoolItem = (props) => {
                     <div className="list__item--property">
                         <h3 className="item-lead">{school.name}</h3>
                         <div className="item-meta d-xs-none text-muted">
-                            <span><i>created:{school.date_created},</i></span>
-                            <span><i>last synced:{school.last_sync}</i></span>
+                            <span>
+                                <i>
+                                    created:<Moment format={"YYYY-MM-DDTHH:mm:ss.SSSZ"} fromNow>{school.date_created}</Moment>,
+                                </i>
+                            </span>
+                            <span className="ml-2">
+                                <i>last synced:{school.last_sync}</i>
+                            </span>
                         </div>
                     </div>
                 </div>
