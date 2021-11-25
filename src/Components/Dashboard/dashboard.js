@@ -37,9 +37,9 @@ class Dashboard extends Component {
                     <span>Dashboard</span>
                 </div>
                 <div className="right_crumb">
-                    <button className="btn btn-primary btn-primary-outline">
+                    <Link to='/school/new' className="btn btn-primary btn-primary-outline">
                         New
-                    </button>
+                    </Link>
 
 
                     <button 

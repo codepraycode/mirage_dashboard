@@ -5,6 +5,7 @@ body {
     height: 100%;
     font-family: 'Signika Negative', sans-serif;
     // overflow-x: hidden;
+    color: #5a3f79;
 }
 
 a {
@@ -46,6 +47,10 @@ a {
     &:disabled {
         background: #6d5e7e;
     }
+}
+
+.shadow-primary {
+    box-shadow: rgb(121, 88, 159, 0.6) 0px 4px 12px !important;
 }
 
 // .spin {
@@ -126,6 +131,9 @@ li {
     }
     &.justify-center {
         justify-content: center;
+    }
+    &.flex-wrap {
+        flex-wrap: wrap;
     }
     &.justify-between {
         justify-content: space-between;
@@ -582,16 +590,9 @@ hr {
         .panel-content {
             width: 70%;
         }
-        // border-width: 1px 0;
-        // border-style: solid;
-        // border-color: #efefef;
-        // display: flex;
-        // flex-wrap: wrap;
-        // justify-content: space-between;
-        // .panel-description {
-        //     font-weight: 500;
-        //     font-size: 25px;
-        // }
+    }
+    .flex {
+        flex-direction: column;
     }
 }
 
