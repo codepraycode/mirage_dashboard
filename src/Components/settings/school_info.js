@@ -2,7 +2,7 @@ import React from 'react';
 
 const SchoolInfo = () => {
     return (
-        <div className="container">
+        <div className="container fade-opacity">
         <section className="panel">
             <div className="panel-description">
                 <p>School Information</p>

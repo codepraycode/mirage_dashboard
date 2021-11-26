@@ -13,13 +13,13 @@ function Footer() {
                             </a>
                         </span>
                         <span className="item">
-                            <a href="/" className="btn btn-primary">Download App</a>
+                            <a href="/" className="btn btn-primary disabled">Download App</a>
                         </span>
                     </div>
                 </div>
                 
                 <div className="footer_right">
-                    <ul className="flex align-center justify-evenly">
+                    <ul>
                         <li>
                         <a href="/">Term Of Service</a>
                     </li>

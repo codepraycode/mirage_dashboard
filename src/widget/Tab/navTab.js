@@ -3,7 +3,7 @@ import {NavLink, useParams} from 'react-router-dom';
 
 function TabNav() {
     let {key} = useParams();
-    console.log(key);
+    // console.log(key);
 
     return (
         <div className="nav-panel">

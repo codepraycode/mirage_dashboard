@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import SchoolItem from './school_item';
-import { GetSchoolsUrl } from "../../utils";
-
+import { SchoolsUrl } from "../../utils";
+import axios from 'axios';
+import {placeholderLogo} from '../../utils';
+import Loading from '../../widget/preloader/loading';
 class Schools extends PureComponent {
     /* 
     schools:[
@@ -39,48 +41,27 @@ class Schools extends PureComponent {
 
 
     MakeREquest = ()=>{
-        console.log('Fetching school')
+        // console.log('Fetching school')
         
 
          // let clone_state = this.state;
-            let options ={
-                method: 'GET',
+            let config ={
                 headers: {
                     'Authorization':`Bearer ${this.props.tokens.access_token}`
                 }
             }
-            fetch(GetSchoolsUrl, options)
-            .then((response)=>{
-                console.log(response)
-                if (response.ok){
-                    // this.props.handleReAuth(false);
-                    return response.json()
-                }
-                else if(response.status === 401){
-                    console.log("Response 401!!")
-                    // this.props.handleReAuth(true);
-                    // window.location.href = "/login";
-                    this.setState({
-                    ...this.state,
-                    loading:false,
-                    fetched:false,
-                    tried:true
-                    })
-
-                    return
-                }
-
-                // return response.json()
-                
-                
-            })
+            // console.log(SchoolsUrl)
+            axios.get(SchoolsUrl,config)
             .then((res)=>{
-                
-                //  Adding harcoded logos
-                let schools = Object.keys(res).map((item)=>{
-                    res[item]['logo'] = '/asset/img/logos/millwall.svg';
-                    res[item]['slug'] = `${ res[item].name.replaceAll(' ','-')}`;
-                    return res[item]
+                // console.log(res.data)
+                let data = res.data;
+
+                let schools = data.map((item)=>{
+                    if (!item.logo){
+                        item.logo = placeholderLogo;
+                    }
+                    item.slug = `${item.name.replaceAll(' ','-')}`;
+                    return item
                 })
                 
                 this.setState({
@@ -92,20 +73,10 @@ class Schools extends PureComponent {
                 })
             })
             .catch((err)=>{
-                // console.error("Error",err);
-                console.log("Bad Error Occured",err);
-                this.setState({
-                    ...this.state,
-                    loading:false,
-                    tried:true
-                })
+                // console.log(err)
+                this.props.handleReAuth();
             })
-
-
-            // this.setState({
-            //         ...this.state,
-            //         loading:true,
-            // })
+            
     }
 
 
@@ -129,12 +100,7 @@ class Schools extends PureComponent {
         
         else if (this.state.loading){
             template = (
-                    <div className="text-center text-muted">
-                        <p className="spinner">
-                            Loading Schools
-                            <i className="ml-1 fad fa-spinner-third"></i>
-                        </p>
-                    </div>
+                    <Loading/>
             )
         }
         else if (this.state.schools.length === 0){

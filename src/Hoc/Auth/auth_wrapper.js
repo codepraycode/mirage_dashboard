@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import {SetCookie} from '../../utils';
+
 const AuthWrapper = (props)=>{
     let navigate = useNavigate();
 
     const proceed = ()=>{
-        console.log(props)
+        // console.log(props)
         if (props.authData && props.authData !== null){
             // Set the tokens to cookie
             let tokens = ParseToJsonString(props.authData.tokens)
@@ -20,11 +22,7 @@ const AuthWrapper = (props)=>{
     }
 
 
-    const SetCookie = (data)=>{
-        Object.keys(data).forEach((item)=>{
-            localStorage.setItem(item,data[item])
-        });
-    }
+    
 
     function ParseToJsonString(wrongString){
         if(typeof(wrongString) ==='string') return wrongString.replaceAll(`'`,`"`)

@@ -1,116 +1,24 @@
-import React, { useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import {useParams} from 'react-router-dom';
-import BreadCrumb from '../../widget/BreadCrumb/breadcrumb';
-import TabNav from '../../widget/Tab/navTab';
+import React,{useState} from 'react';
 import Activities from './activities';
 import StaffList from '../Staffs/staff_list';
-import {GetSchoolsUrl} from '../../utils';
 import copy from 'copy-to-clipboard';
+
+
+
+
 const Overview =(props)=> {
 
-    let [school,setSchool] = useState({
-        gotten:false,
-        copiedKey:false
-
-    })
-    const {key} = useParams();
-
-    // console.log(props)
-
-    const GetSchoolDetails=()=>{
-        if (!school.gotten){
-        let options ={
-                method: 'GET',
-                headers: {
-                    'Authorization':`Bearer ${props.tokens.access_token}`
-                }
-        }
-            
-        fetch(`${GetSchoolsUrl}/${key}`, options)
-        .then((response)=>{
-            console.log(response)
-            if (response.ok){
-                // this.props.handleReAuth(false);
-                return response.json()
-            }
-            else if(response.status === 401){
-                console.log("Response 401!!")
-                // this.props.handleReAuth(true);
-                // window.location.href = "/login";
-                // this.setState({
-                // ...this.state,
-                // loading:false,
-                // fetched:false,
-                // tried:true
-                // })
-
-                return
-            }
-
-            // return response.json()
-            
-            
-        })
-        .then((data)=>{
-            
-            //  Adding harcoded logos
-            // let schools = Object.keys(data).map((each)=>{
-            //     let theschool = data[each];
-            //     console.log(theschool)
-            //     // school['logo'] = '/asset/img/logos/millwall.svg';
-            //     // school['slug'] = `${ school.name.replaceAll(' ','-')}`;
-            //     return school;
-            //     }
-            // )
-            // console.log(data)
-            data['logo'] = '/asset/img/logos/millwall.svg';
-            // console.log(data)
-            setSchool({...data,gotten:true});
-            
-        })
-        .catch((err)=>{
-            // console.error("Error",err);
-            console.log("Bad Error Occured",err);
-            // this.setState({
-            //     ...this.state,
-            //     loading:false,
-            //     tried:true
-            // })
-        })
-    }
-    }
-
+    let [copier,setCopier] = useState(false)
 
     const copyKey = ()=>{
-        copy(school.key)
-        setSchool({
-            ...school,
-            copiedKey:true
-        })
+        copy(props.school.key)
+        setCopier(true)
     }
-
-    useEffect(GetSchoolDetails)
-    // console.log(typeof(setSchool))
+    // console.log(props)
 
     return (
         <>
-        <BreadCrumb>
-            <div className="left_crumb">
-                <span>
-                    <Link to="/">Dashboard</Link>
-                </span>
-                <i className="fad fa-chevron-right mx-1"></i>
-                {school.name}
-            </div>
-            <div className="right_crumb">
-                <button className="btn btn-success btn-success-outline">
-                    Approved
-                </button>
-            </div>
-        </BreadCrumb>
-
-        <TabNav/>
+        
 
         <div className="container">
             <div className="row">
@@ -128,8 +36,8 @@ const Overview =(props)=> {
                             </div>
 
                             <p className="w-60 text-right">
-                                    <span>{school.key}</span>
-                                    <i className={`fas fa-copy mx-2 copy-icon ${school.copiedKey ? 'text-success':'text-primary'}`} onClick={()=>copyKey()}></i>
+                                    <span>{props.school.key}</span>
+                                    <i className={`fas fa-copy mx-2 copy-icon ${copier ? 'text-success':'text-primary'}`} onClick={()=>copyKey()}></i>
                             </p>
                         </div>
                     </div>
@@ -155,7 +63,7 @@ const Overview =(props)=> {
                                         </div>
 
                                         <div className="right">
-                                            <p>{school.name}</p>
+                                            <p>{props.school.name}</p>
                                         </div>
 
                                     </div>
@@ -171,7 +79,7 @@ const Overview =(props)=> {
                                         </div>
 
                                         <div className="right">
-                                            <p>{school.about}</p>
+                                            <p>{props.school.description}</p>
                                         </div>
 
                                     </div>
@@ -188,7 +96,7 @@ const Overview =(props)=> {
                                         </div>
 
                                         <div className="right">
-                                            <p>{school.contacts}</p>
+                                            <p>{props.school.contacts}</p>
                                         </div>
 
                                     </div>
@@ -204,7 +112,7 @@ const Overview =(props)=> {
                                         </div>
 
                                         <div className="right">
-                                            <p>{school.date_created}</p>
+                                            <p>{props.school.date_created}</p>
                                         </div>
 
                                     </div>
@@ -220,7 +128,7 @@ const Overview =(props)=> {
                                         </div>
 
                                         <div className="right">
-                                            <p>{school.active ? 'Approved':'Not Approved'}</p>
+                                            <p>{props.school.active ? 'Approved':'Not Approved'}</p>
                                         </div>
 
                                     </div>

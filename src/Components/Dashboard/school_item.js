@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 
 const SchoolItem = (props) => {
     
-    console.log(props);
+    // console.log(props);
     let school = props.school;
     let navigate = useNavigate();
     const handleNav = (key) =>{
