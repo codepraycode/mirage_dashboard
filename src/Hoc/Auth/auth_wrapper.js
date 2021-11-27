@@ -73,7 +73,8 @@ const AuthWrapper = (props)=>{
     }
 
     useEffect(clearCookie);
-    console.log(props)
+    // console.log(props)
+    // console.log(process.env.REACT_APP_DEV);
         return (
             <div className="auth-page">
                 <div className="wrapper">

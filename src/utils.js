@@ -1,6 +1,8 @@
 const axios = require('axios');
+// require('dotenv').config();
 
-const Baseurl = 'http://127.0.0.1:8000';
+
+const Baseurl = process.env.REACT_APP_DEV ? 'http://127.0.0.1:8000' : 'http://mirageapi.herokuapp.com/';
 
 const LoginUrl = `${Baseurl}/account/login`;
 
