@@ -198,21 +198,6 @@ class NewSchool extends Component{
         
     }
 
-    handleInputChange = (e, blur)=>{
-        let id = e.target.name;
-        let state_clone = this.state;
-        state_clone.formData[id]['config']['value'] = e.target.value;
-        if (blur){
-            let validated = this.validate(state_clone.formData[id]);
-            state_clone.formData[id] = validated
-        }
-
-        this.setState({
-            ...this.state,
-            ...state_clone
-        });
-    }
-
     handleRequest = (form_data,config)=>{
         
         axios.post(`${SchoolsUrl}/`,form_data,config)
@@ -320,7 +305,7 @@ class NewSchool extends Component{
                                 onBlur={(e)=>this.handleInputChange(e,true)}
                                 onChange={(e)=>this.handleInputChange(e,false)}
                             />
-                        </div>
+                    </div>
 
 
                     <div className="label-group">
@@ -406,30 +391,21 @@ class NewSchool extends Component{
                             onChange={(e)=>this.handleInputChange(e,false)}
                         />
                     </div>
-{/* 
-                    <div className="flex flex-wrap justify-between">
-                        <div className="label-group">
-                            <label htmlFor="name">Contact 1</label>
-                            <input
-                                {...this.state.formData.contact.config}
-                                onBlur={(e)=>this.handleInputChange(e,true)}
-                                onChange={(e)=>this.handleInputChange(e,false)}
-                            />
-                        </div>
-                        <div className="label-group">
-                            <label htmlFor="name">Contact 2</label>
-                            <input
-                                {...this.state.formData.contact1.config}
-                                onBlur={(e)=>this.handleInputChange(e,true)}
-                                onChange={(e)=>this.handleInputChange(e,false)}
-                            />
-                        </div>
-                    </div> */}
 
+                    {
+                        this.state.loading ? 
+                        <button className='btn btn-primary'>
+                            Submit
+                        </button>
+                        :
+                        <button className='btn btn-primary disabled' disabled={this.state.loading}>
+                            Loading...
+                        </button>
+                        
+                    }
 
-                    <button className="btn btn-primary">
-                        Submit
-                    </button>
+                    
+                    
                 </form>
                 </div>
             </div>

@@ -59,6 +59,7 @@ class Login extends Component {
     }
 
     handleRequest = (auth_data)=>{
+        // console.log(auth_data);
         let clone_state = this.state;
         clone_state.authStatus = {
             attempted:true,
@@ -118,58 +119,60 @@ class Login extends Component {
     }
 
 
-
     render() {
         return (
             <AuthWrapper signup={false} extraClass={"login"} authData={this.state.authStatus.attempted && !this.state.authStatus.error ? this.state.authStatus.data: null}>
-                        <div className="card">
-                            {
-                                this.state.loading ? 
-                                <p className="spinner text-right text-primary">
-                                    <i className="fad fa-spinner-third"></i>
-                                </p>
-                                :
-                                null
-                            }
-                        <form onSubmit={this.handleSubmit}>
-                            <span className="msg text-danger">{!this.state.loading ? this.state.authStatus.data.detail:null}</span>
-                            <div>
-                                <p className="required">Email</p>
-                                <input 
-                                    placeholder="Enter Email" 
-                                    {...this.state.formData.email.config}
-                                    onBlur={(e)=>this.handleInputChange(e,true)}
-                                    onChange={(e)=>this.handleInputChange(e,false)}
-                                />
-                                <span className="msg text-danger">{this.state.formData.email.validations.msg}</span>
-                            </div>
-
-                            <div>
-                                <p className="required">Password</p>
-                                <input 
-                                    placeholder="Password" 
-                                    {...this.state.formData.password.config}
-                                    onBlur={(e)=>this.handleInputChange(e,true)}
-                                    onChange={(e)=>this.handleInputChange(e,false)}
-                                />
-
-                                <span className="msg text-danger">{this.state.formData.password.validations.msg}</span>
-                            </div>
-
-                            <br/>
-                            
-                            <div className="text-center mv-1">
-                            <button type="submit" className="spin btn btn-primary">
-                                Login
-                                {/* <i className="fas fa-spinner    "></i> */}
-                            </button>
-                           </div>  
-                        </form>
-
-
-                            
+                <div className="card">
+                    {
+                        this.state.loading ? 
+                        <p className="spinner text-right text-primary">
+                            <i className="fad fa-spinner-third"></i>
+                        </p>
+                        :
+                        null
+                    }
+                    
+                    <form onSubmit={this.handleSubmit}>
+                        <span className="msg text-danger">
+                            {!this.state.loading ? this.state.authStatus.data.detail:null}
+                        </span>
+                        
+                        <div>
+                            <p className="required">Email</p>
+                            <input 
+                                placeholder="Enter Email" 
+                                {...this.state.formData.email.config}
+                                onBlur={(e)=>this.handleInputChange(e,true)}
+                                onChange={(e)=>this.handleInputChange(e,false)}
+                            />
+                            <span className="msg text-danger">{this.state.formData.email.validations.msg}</span>
                         </div>
-                
+
+                        <div>
+                            <p className="required">Password</p>
+                            <input 
+                                placeholder="Password" 
+                                {...this.state.formData.password.config}
+                                onBlur={(e)=>this.handleInputChange(e,true)}
+                                onChange={(e)=>this.handleInputChange(e,false)}
+                            />
+
+                            <span className="msg text-danger">{this.state.formData.password.validations.msg}</span>
+                        </div>
+
+                        <br/>
+                        
+                        <div className="text-center mv-1">
+                        <button type="submit" className="spin btn btn-primary">
+                            Login
+                            {/* <i className="fas fa-spinner    "></i> */}
+                        </button>
+                        </div>  
+                    </form>
+
+
+                    
+                </div>
             </AuthWrapper>
         )
     }

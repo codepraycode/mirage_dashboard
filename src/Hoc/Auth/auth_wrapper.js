@@ -1,34 +1,79 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import {SetCookie} from '../../utils';
+// import {SetCookie} from '../../utils';
+import { useCookies } from "react-cookie";
 
 const AuthWrapper = (props)=>{
     let navigate = useNavigate();
 
-    const proceed = ()=>{
+    let [accessCookie,setAccessCookie,removeAccessCookie] = useCookies(['access']);
+    let [refreshCookie,setRefreshCookie,removeRefreshCookie] = useCookies(['refresh']);
+
+
+    const handleSetCookie = (raw_tokens)=>{
         // console.log(props)
-        if (props.authData && props.authData !== null){
-            // Set the tokens to cookie
-            let tokens = ParseToJsonString(props.authData.tokens)
-            tokens = JSON.parse(tokens);
-            
+        // if (tokens && tokens !== null){
+        //     // Set the tokens to cookie
+        
+        // }
 
-            SetCookie(tokens);
+        let tokens = ParseToJsonString(raw_tokens)
+        tokens = JSON.parse(tokens);
+        
 
-            navigate(`/`)
-        }
+        // SetCookie(tokens);
+        // console.log(tokens)
+        handleCookie(tokens)
+        // console.log(tokens)
+
+        navigate(`/`)
         
     }
 
+    const handleCookie = (data) => {
+
+    // Object.keys(data).forEach((item) => {
+    //     localStorage.setItem(item, data[item])
+    setRefreshCookie("refresh", data.refresh, {
+        path: "/"
+    });
+
+    setAccessCookie("access", data.access, {
+        path: "/"
+    });
+
+
+    console.log(accessCookie,refreshCookie);
+        
+    // });
+    }
+
+    const clearCookie = ()=>{
+        if (props.authData && props.authData !== null){
+            // console.log(props.authData)
+            handleSetCookie(props.authData.tokens)
+        }
+        else{
+            removeRefreshCookie("refresh", {
+            path: "/"
+        });
+
+        removeAccessCookie("access",  {
+            path: "/"
+        });
+        }
+        
+    }
 
     
 
     function ParseToJsonString(wrongString){
         if(typeof(wrongString) ==='string') return wrongString.replaceAll(`'`,`"`)
     }
-    useEffect(proceed);
 
+    useEffect(clearCookie);
+    console.log(props)
         return (
             <div className="auth-page">
                 <div className="wrapper">

@@ -599,9 +599,24 @@ footer {
             // align-items: center;
             justify-content: space-between;
             &.login {
-                width: 60%;
+                width: 70%;
                 margin: 0 auto;
+                display: flex;
                 justify-content: center;
+                align-items: center;
+                color: #3A2778;
+                .card {
+                    width: 60%;
+                }
+                // form {
+                //     width: 100%;
+                //     padding: 12px 0px;
+                //     margin: 15px auto;
+                //     p {
+                //         font-size: 15px;
+                //         margin: 15px 0 15px 0;
+                //     }
+                // }
             }
             .left {
                 margin-right: 15px;
@@ -630,8 +645,8 @@ footer {
                 display: flex;
                 flex-direction: column;
                 // align-items: center;
-                justify-content: center;
-                padding: 15px;
+                // justify-content: center;
+                padding: 5px;
                 .label-group {
                     display: block;
                     margin-bottom: 20px;
@@ -658,24 +673,30 @@ footer {
                         }
                     }
                 }
-                button {
-                    width: 40%;
-                    margin: 5px auto;
+                .img-group {
+                    // text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    input[type=file] {
+                        width: fit-content;
+                        color: #62738d;
+                    }
+                    margin-bottom: 20px;
+                    .img-preview {
+                        width: 50%;
+                        height: 100px;
+                        position: relative;
+                        top: -30px;
+                        background-size: contain !important;
+                    }
                 }
             }
             // Evidence styling
             form {
-                // border: 0;
-                // border-radius: 15px;
-                // background-color: #F0F8FF;
-                // padding: 25px 50px 20px 50px;
-                // position: absolute;
-                // top: 50%;
-                // left: 50%;
-                // transform: translate(-50%, -50%);
-                // width: 250px;
-                max-width: 100%;
-                padding: 12px 20px;
+                width: 80%;
+                padding: 12px 0px;
                 margin: 15px auto;
                 p {
                     font-size: 15px;
@@ -685,7 +706,7 @@ footer {
                 input {
                     font-size: 15px;
                     padding: 15px 10px;
-                    width: 250px;
+                    width: 90% !important;
                     border: 1px solid #3A2778;
                     border-radius: 10px;
                     outline: #3A2778;
@@ -699,16 +720,10 @@ footer {
                     font-size: 15px;
                     margin: 5px 0 10px 0;
                 }
-                // button{
-                //     font-size: 12px;
-                //     margin: 20px 0;
-                //     padding: 10px 15px;
-                //     width: 30%;
-                //     border: 0;
-                //     border-radius: 5px;
-                //     background-color: #3A2778;
-                //     cursor: pointer;
-                // }
+                button {
+                    width: 40%;
+                    margin: 5px auto;
+                }
             }
         }
     }
@@ -854,12 +869,9 @@ footer {
     .auth-page {
         .wrapper {
             width: 100%;
-            // margin: 20px auto;
             .header {
                 display: block;
                 text-align: center;
-                // align-items: center;
-                // justify-content: space-between;
                 .logo p {
                     margin: 0;
                     font-size: 40px;
@@ -887,17 +899,22 @@ footer {
                 font-size: 30px;
             }
             .auth-card {
+                display: block !important;
                 background: #eef1f6;
                 padding: 10px;
                 border-radius: 10px;
                 display: flex;
-                // 
-                // align-items: center;
                 justify-content: space-between;
                 &.login {
                     width: 90%;
-                    margin: 0 auto;
+                    margin: 10px;
+                    // align-items: center;
                     justify-content: center;
+                    padding: 10px;
+                    .card {
+                        width: 90%;
+                        margin: 10px;
+                    }
                 }
                 .left {
                     margin-right: 15px;
@@ -914,40 +931,21 @@ footer {
                     }
                 }
                 .right {
-                    width: 60%;
-                    display: flex;
-                    flex-direction: column;
-                    // align-items: center;
-                    justify-content: center;
-                    padding: 15px;
+                    width: 90%;
+                    padding: 10px;
                     .label-group {
-                        display: block;
-                        margin-bottom: 20px;
-                        label {
-                            position: relative;
-                            color: #79589f;
-                            font-weight: 500;
-                            font-size: 14px;
-                            display: block;
-                            width: fit-content;
-                        }
                         input,
                         textarea {
                             display: block;
-                            width: 98%;
-                        }
-                        &.required {
-                            label::after {
-                                content: '*';
-                                position: absolute;
-                                font-size: 20px;
-                                color: #ee3636;
-                                right: -12px;
-                            }
+                            width: 90%;
                         }
                     }
+                    // Evidence styling
+                }
+                form {
+                    width: 100%;
                     button {
-                        width: 40%;
+                        width: 80%;
                         margin: 5px auto;
                     }
                 }

@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const Baseurl = 'http://127.0.0.1:8000';
 
 const LoginUrl = `${Baseurl}/account/login`;
@@ -9,6 +11,7 @@ const SchoolsUrl = `${Baseurl}/school`;
 const TokenRefreshUrl = `${Baseurl}/account/token/refresh`;
 
 const placeholderLogo = '/asset/img/logos/placeholder.svg';
+const placeholderDP = '/asset/img/avatar.svg';
 
 const SetCookie = (data) => {
     Object.keys(data).forEach((item) => {
@@ -899,11 +902,10 @@ const SetCookie = (data) => {
 const AccountLogin = (data, callback) => {
     // console.log(data);
     const requestOptions = {
-        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        // body: JSON.stringify(data)
     }
 
 
@@ -913,54 +915,47 @@ const AccountLogin = (data, callback) => {
     }
 
 
-    fetch(LoginUrl, requestOptions)
+    axios.post(LoginUrl, data, requestOptions)
         .then((response) => {
             // request_status = response.status_code;
             // console.log(response);
-            authStatus.error = !response.ok;
-            return response.json()
+            authStatus.error = false;
+            authStatus.data = response.data;
+            callback(authStatus)
         })
-        .then(
-            (res) => {
-                // console.log(res, request_status);
-
-                authStatus.data = res;
-
-                callback(authStatus)
-            }
-        )
         .catch((err) => {
-            console.error("error", err, err.data);
+            console.error("error", err);
         })
 
 }
 
 // Create Account
-const CreateAccount = (data) => {
-    const requestOptions = {
-        method: 'POST',
+const CreateAccount = (form_data, callback) => {
+    const config = {
         headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+            "Content-Type": 'multipart/form-data'
+        }
     }
 
-    fetch(CreateAccountUrl, requestOptions)
-        .then((response) => {
+    axios.post(`${CreateAccountUrl}`, form_data, config)
+        .then((res) => {
 
-            return response.json()
+            // console.log(res.data);
+            // window.location.href = "/"
+            callback({ ok: true })
+
+
         })
-        .then(
-            (res) => {
-                // request_data = res.data;
-
-                // console.log(res);
-            }
-
-        )
         .catch((err) => {
-            console.error(err, err.data);
-        })
+            // this.props.handleReAuth();
+            // this.setState({
+            //     ...this.state,
+            //     tryAgain:true,
+            // })
+            console.log(err);
+            callback({ ok: false })
+                // setTimeout(this.handleRequest(form_data,config),3000)
+        });
 
 }
 
@@ -973,6 +968,7 @@ module.exports = {
     SchoolsUrl,
     TokenRefreshUrl,
     placeholderLogo,
+    placeholderDP,
     SetCookie,
     CreateAccount,
     AccountLogin
