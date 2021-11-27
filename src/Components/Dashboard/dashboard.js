@@ -1,38 +1,34 @@
 import React, { Component } from 'react';
 import BreadCrumb from '../../widget/BreadCrumb/breadcrumb';
 import Schools from './schools';
+import {Link} from 'react-router-dom'
 
 class Dashboard extends Component {
     state = {
-        tokens:{},
-        times:0
-    }
-    componentDidMount(){
-        if (this.state.times <= 5){
-            this.FetchTokens();
-        }
         
+        
+        showMenu:false
     }
-    FetchTokens = ()=>{
-        let accessToken = localStorage.getItem('access');
-        let refreshToken = localStorage.getItem('refresh')
-        // console.log(accessToken,refreshToken);
-        let tokens ={
-            access_token:accessToken,
-            refresh_token:refreshToken
-        }
-        let times = 5
-        this.setState(
-            {
-                ...this.state,
-                times,
-                tokens
-            }
-        )
+    
+    handleMenu = ()=>{
+        this.setState({
+            ...this.state,
+            showMenu:!this.state.showMenu
+        })
+    }
+
+    
+    
+
+    handleMenu=()=>{
+        this.setState({
+            ...this.state,
+            showMenu:!this.state.showMenu
+        })
     }
     
     render() {
-        // console.log(this.props);
+        
         
         return (
             <>
@@ -41,9 +37,25 @@ class Dashboard extends Component {
                     <span>Dashboard</span>
                 </div>
                 <div className="right_crumb">
-                    <button className="btn btn-primary btn-primary-outline">
+                    <Link to='/school/new' className="btn btn-primary btn-primary-outline">
                         New
+                    </Link>
+
+
+                    <button 
+                        className="btn btn-primary btn-primary-outline ml-2 "
+                        onClick={()=>this.handleMenu()}>
+                        Menu
                     </button>
+                    
+                    <div className={`dropdown ${this.state.showMenu ? 'show':''}`}>
+                        <div className="dropdown-content">
+                            <div className="dropdown-item">
+                                <i className="fad fa-sign-out"></i>
+                                <Link to="/login">Logout</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </BreadCrumb>
 
@@ -57,7 +69,7 @@ class Dashboard extends Component {
             </div>
 
             <div className="container no-padding">
-                <Schools {...this.props} {...this.state.tokens}/>
+                <Schools {...this.props}/>
             </div>
 
 

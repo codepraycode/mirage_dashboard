@@ -1,36 +1,17 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Link } from 'react-router-dom';
+import {placeholderLogo} from '../../utils';
 
 const StaffList = (props) => {
-    return (
-       <div className="groupings">
-            <div className="group-lead flex align-center justify-between">
-                <p className="mb-1">Staffs</p>
-                {
-                    props.see ? 
-                    <Link to="access">
-                    see all
-                </Link>
-                :
-null
-                }
-                
+    const [staffs,setStaffs] = useState([])
 
-                {
-                    props.add ? 
-                    <button className="btn btn-primary">
-                    Add Staff
-                </button>
-                :
-                null
-                }
-
-            </div>
-
-            <div className="group__items">
+    const renderStaffs = ()=>{
+        let template = null;
+        if (!staffs.length === 0){
+            template = (<div className="group__items">
                 
                 <div className="left">
-                    <div className="list__item--logo" style={{background:`url('/asset/img/logos/millwall.svg') center center no-repeat`}}>
+                    <div className="list__item--logo" style={{background:`url('${placeholderLogo}') center center no-repeat`}}>
                         {/* <img src={school.logo} alt={"img"}/> */}
                     </div>
                     <div className="list__item--property">
@@ -52,7 +33,84 @@ null
                             <i className="fas fa-star"></i>
                     </span>
                 </div>
+            </div>)
+        }
+        else{
+            template =( 
+                <>
+                {
+                    props.add ? 
+                    <div className="text-center text-muted">
+                        <p>No Staffs Record</p>
+                    </div>
+                    :
+                    null
+                }
+                </>
+                
+            )
+        }
+
+        return template;
+    }
+
+    const renderHeader = ()=>{
+        let template = null;
+        const AddStaff = (<button className="btn btn-primary disabled">
+                        Add Staff
+                    </button>)
+        const seeAll = (
+            <Link to="staffs">
+                        see all
+            </Link>
+        )
+        if(staffs.length ===0){
+            if(props.add){
+                template = (
+                    <>
+                    <p className="mb-1">Staffs</p>
+                    {AddStaff}
+                    </>
+                )
+            }
+        }else{
+            template = (
+            <>
+            <p className="mb-1">Staffs</p>
+             {
+                    props.see ? 
+                   seeAll
+                :
+                    null
+                }
+                
+
+                {
+                    props.add ? 
+                    AddStaff
+                :
+                    null
+                }
+            </>
+            )
+        }
+        return(
+            template
+            
+        )
+    }
+
+    return (
+       <div className="groupings">
+            <div className="group-lead flex align-center justify-between">
+                
+                {renderHeader()}
+               
+
             </div>
+
+            {renderStaffs()}
+            
         </div>
     );
 };

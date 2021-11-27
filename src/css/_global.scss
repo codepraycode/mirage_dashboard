@@ -5,6 +5,7 @@ body {
     height: 100%;
     font-family: 'Signika Negative', sans-serif;
     // overflow-x: hidden;
+    color: #5a3f79;
 }
 
 a {
@@ -33,8 +34,12 @@ a {
     border: 0;
     border-radius: 4px;
     transition: all 0.3s ease-in-out;
-    &:disabled {
+    &.disabled {
         outline: none;
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    .running {
         cursor: progress;
     }
 }
@@ -46,6 +51,10 @@ a {
     &:disabled {
         background: #6d5e7e;
     }
+}
+
+.shadow-primary {
+    box-shadow: rgb(121, 88, 159, 0.6) 0px 4px 12px !important;
 }
 
 // .spin {
@@ -106,6 +115,33 @@ a {
     }
 }
 
+.btn-success-hover:hover {
+    color: #2cff2c94;
+}
+
+.btn-danger {
+    background-color: #df4444;
+    color: #fdfdfd;
+}
+
+.btn-danger-outline {
+    color: #df4444;
+    background-color: #fdfdfd;
+    border: 1px solid #df4444;
+    &:hover {
+        background-color: #fa6565;
+        color: #fdfdfd;
+    }
+}
+
+.btn-danger-hover:hover {
+    color: #fa6565;
+}
+
+.btn-danger-hover:hover {
+    color: #fa6565;
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -127,6 +163,9 @@ li {
     &.justify-center {
         justify-content: center;
     }
+    &.flex-wrap {
+        flex-wrap: wrap;
+    }
     &.justify-between {
         justify-content: space-between;
     }
@@ -142,6 +181,10 @@ li {
     &.flex-row {
         flex-direction: row;
     }
+}
+
+.fade-opacity {
+    opacity: 0.2;
 }
 
 .container {
@@ -211,8 +254,11 @@ select {
 .no-record {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     i {
-        font-size: 50px;
+        font-size: 20px;
+        margin-right: 5px;
     }
 }
 
@@ -506,7 +552,6 @@ hr {
 
 .copy-icon {
     font-size: 15px;
-    color: #757474;
     cursor: copy;
 }
 
@@ -580,16 +625,9 @@ hr {
         .panel-content {
             width: 70%;
         }
-        // border-width: 1px 0;
-        // border-style: solid;
-        // border-color: #efefef;
-        // display: flex;
-        // flex-wrap: wrap;
-        // justify-content: space-between;
-        // .panel-description {
-        //     font-weight: 500;
-        //     font-size: 25px;
-        // }
+    }
+    .flex-md {
+        flex-direction: column;
     }
 }
 

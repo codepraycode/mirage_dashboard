@@ -1,17 +1,18 @@
 import React,{Suspense} from 'react';
 import {Routes , Route} from 'react-router-dom';
 import Layout from './Hoc/Layout/layout';
-// import NavLayout from './Hoc/Layout/navLayout';
+import NavLayout from './Hoc/Layout/navLayout';
 import Dashboard from './Components/Dashboard/dashboard';
 import Page404 from './Components/Errors/404';
 import CircleLoader from './widget/preloader/circle';
+
 // import Overview from './Components/Overview/overview';
 const SignUp = React.lazy(()=>import('./Hoc/Auth/signup'));
 const Login = React.lazy(()=>import('./Hoc/Auth/login'));
-// const Overview = React.lazy(() => import('./Components/Overview/overview'));
-// const Staff = React.lazy(() => import('./Components/Staffs/staff'));
-// const Settings = React.lazy(() => import('./Components/settings/settings'));
-// const Settings = React.lazy(() => import("./pages/Dashboard"));
+const Overview = React.lazy(() => import('./Components/Overview/overview'));
+const Staff = React.lazy(() => import('./Components/Staffs/staff'));
+const Settings = React.lazy(() => import('./Components/settings/settings'));
+const NewSchool = React.lazy(() => import('./Components/Dashboard/new_school'));
 
 const AppRoutes = () => {
     return (
@@ -29,47 +30,51 @@ const AppRoutes = () => {
                            <SignUp/>
                         </Suspense>
                     }/>
+
+                    
                     <Route path="/login" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <Login/>
                         </Suspense>
                     }/>
-
-                    {/* <Route path="/signup" element={
+                    <Route path="/school/new" element={
                         <Suspense fallback={<CircleLoader/>}>
-                           <SignUp/>
+                           <Layout>
+                                <NewSchool/>
+                            </Layout>
                         </Suspense>
                     }/>
-
-                    <Route path=":slug" element={
+                    <Route path="/school/:key" element={
                         <Suspense fallback={<CircleLoader/>}>
-                            <NavLayout>
-                                <Overview/>
-                            </NavLayout>
-                        </Suspense>
-                    }/>
-
-                    <Route path=":slug/access" element={
-                            <Suspense fallback={<CircleLoader/>}>
+                            <Layout>
                                 <NavLayout>
-                                    <Staff/>
+                                    <Overview/>
                                 </NavLayout>
-                            </Suspense>
-                        }/>
-
-                    <Route path=":slug/settings" element={
-                        <Suspense fallback={<CircleLoader/>}>
-                            <NavLayout>
-                                <Settings/>
-                            </NavLayout>
+                            </Layout>
                         </Suspense>
-                    }/> */}
+                    }/>
 
-                    {/* <Route path="*" element={
-                        <Layout>
-                        <Page404 />
-                        </Layout>
-                    } /> */}
+                    <Route path="/school/:key/staffs" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <Layout>
+                                <NavLayout>
+                                <Staff/>
+                                </NavLayout>
+                            </Layout>
+                        </Suspense>
+                    }/>
+
+                    <Route path="/school/:key/settings" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <Layout>
+                                <NavLayout>
+                                <Settings/>
+                                </NavLayout>
+                            </Layout>
+                        </Suspense>
+                    }/>
+
+                    
 
                     <Route path="*" element={
                         <Layout>

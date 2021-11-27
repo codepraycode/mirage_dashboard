@@ -5,7 +5,7 @@ class Activities extends Component {
   renderNoActivity = ()=>{
     return (
       <div className="no-activity text-center">
-        <i class="fad fa-clipboard-list"></i>
+        <i className="fad fa-clipboard-list"></i>
         <p className="text-muted">
           No Activity Records
         </p>

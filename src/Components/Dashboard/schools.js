@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import SchoolItem from './school_item';
-import { GetSchoolsUrl } from "../../utils";
-
-class Schools extends Component {
+import { SchoolsUrl } from "../../utils";
+import axios from 'axios';
+import {placeholderLogo} from '../../utils';
+import Loading from '../../widget/preloader/loading';
+class Schools extends PureComponent {
     /* 
     schools:[
             {
@@ -25,57 +27,43 @@ class Schools extends Component {
         tried:false
     }
 
-    componentDidMount(){
-        this.fetchSchools();
+    // componentDidMount(){
+    //     this.fetchSchools()
+    // }
+
+    fetchSchools = ()=>{
+        if(this.state.tried || this.state.fetched){ return}
+
+        this.MakeREquest();
     }
 
 
-    fetchSchools = ()=>{
-        console.log('Fetching school')
-        // console.log(this.props);
-        // console.log(`Bearer ${this.props.access_token}`)
-    
+
+
+    MakeREquest = ()=>{
+        // console.log('Fetching school')
+        
 
          // let clone_state = this.state;
-            let options ={
-                method: 'GET',
+            let config ={
                 headers: {
-                    'Authorization':`Bearer ${this.props.access_token}`
+                    'Authorization':`Bearer ${this.props.tokens.access_token}`
                 }
             }
-            // console.log(options)
-            fetch(GetSchoolsUrl, options)
-            .then((response)=>{
-                console.log(response)
-                if (response.status === 200){
-                    this.props.authCallback(false);
-                    return response.json()
-
-                }
-                else{
-                    console.log("Error Ugly")
-                    this.props.authCallback(true);
-                    this.setState({
-                    ...this.state,
-                    tried:true
-                })
-                }
-                // return response.json()
-                
-                
-            })
+            // console.log(SchoolsUrl)
+            axios.get(SchoolsUrl,config)
             .then((res)=>{
-                // console.log(res);
-                // let schools = {
-                //     ...res,
-                //     logo:'/asset/img/logos/millwall.svg'
-                // }
-                //  Adding harcoded logos
-                let schools = Object.keys(res).map((item)=>{
-                    res[item]['logo'] = '/asset/img/logos/millwall.svg';
-                    return res[item]
+                // console.log(res.data)
+                let data = res.data;
+
+                let schools = data.map((item)=>{
+                    if (!item.logo){
+                        item.logo = placeholderLogo;
+                    }
+                    item.slug = `${item.name.replaceAll(' ','-')}`;
+                    return item
                 })
-                // console.log(schools)
+                
                 this.setState({
                     ...this.state,
                     loading:false,
@@ -85,13 +73,10 @@ class Schools extends Component {
                 })
             })
             .catch((err)=>{
-                // console.error("Error",err);
-                console.log("Error Occured");
-                this.setState({
-                    ...this.state,
-                    tried:true
-                })
+                // console.log(err)
+                this.props.handleReAuth();
             })
+            
     }
 
 
@@ -99,15 +84,14 @@ class Schools extends Component {
 
     renderPage = ()=>{
         let template = null;
-        if (!this.state.fetched && this.state.tried){
-            console.log("tried!")
+        if (this.state.tried && !this.state.fetched){
            template = <div className="text-center text-muted">
-               <p className="no-record">
-                   <i className="fas fa-exclamation-circle f-20 "></i>
-                   <button className="btn btn-primary" onClick={()=>this.fetchSchools()}>
-                       Try Again
+               <div className="no-record">
+                   <p> <i className="fas fa-exclamation-circle f-20 "></i> Something Not Right Occured</p>
+                   <button className="btn btn-primary" onClick={()=>window.location.href="/login"}>
+                       Login Again
                    </button>
-               </p>
+               </div>
                 
             </div>
             
@@ -116,12 +100,7 @@ class Schools extends Component {
         
         else if (this.state.loading){
             template = (
-                    <div className="text-center text-muted">
-                        <p className="spinner">
-                            Loading Schools
-                            <i className="ml-1 fad fa-spinner-third"></i>
-                        </p>
-                    </div>
+                    <Loading/>
             )
         }
         else if (this.state.schools.length === 0){
@@ -141,9 +120,13 @@ class Schools extends Component {
         return template;
     }
 
+    
+
     render() {
-        // this.fetchSchools();
-        console.log(this.state);
+        this.fetchSchools();
+        // console.log(this.state);
+        // console.log(this.props);
+        // this.MakeREquest();
         return (
             <div className="listings__container">
             {this.renderPage()}
