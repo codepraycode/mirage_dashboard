@@ -1,12 +1,14 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {Link } from 'react-router-dom';
 import {placeholderLogo} from '../../utils';
 
 const StaffList = (props) => {
-    const [staffs,setStaffs] = useState([])
+    // const [staffs,setStaffs] = useState([])
+    const staffs = [];
 
     const renderStaffs = ()=>{
         let template = null;
+        
         if (!staffs.length === 0){
             template = (<div className="group__items">
                 
@@ -54,6 +56,8 @@ const StaffList = (props) => {
         return template;
     }
 
+    
+
     const renderHeader = ()=>{
         let template = null;
         const AddStaff = (<button className="btn btn-primary disabled">
@@ -99,6 +103,8 @@ const StaffList = (props) => {
             
         )
     }
+    
+    
 
     return (
        <div className="groupings">
