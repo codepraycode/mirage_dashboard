@@ -106,8 +106,14 @@ class SignUp extends Component {
             }
         },
         formError:{
-            thersError:false,
-            msg:'Password Does not Match'
+            password:{
+                error:false,
+                msg:'Password Does not Match'
+            },
+            auth:{
+                error:false,
+                msg:''
+            }
         },
         loading:false
     }
@@ -148,25 +154,40 @@ class SignUp extends Component {
         
     }
 
-    handleInputChange = (e, blur)=>{
-        let id = e.target.name;
-        let state_clone = this.state;
-        state_clone.formData[id]['config']['value'] = e.target.value;
-        if (blur){
-            let validated = this.validate(state_clone.formData[id]);
-            state_clone.formData[id] = validated
-        }
+    // handleInputChange = (e, blur)=>{
+    //     let id = e.target.name;
+    //     let state_clone = this.state;
+    //     state_clone.formData[id]['config']['value'] = e.target.value;
+    //     if (blur){
+    //         let validated = this.validate(state_clone.formData[id]);
+    //         state_clone.formData[id] = validated
+    //     }
 
-        this.setState({
-            ...this.state,
-            ...state_clone
-        });
-    }
+    //     this.setState({
+    //         ...this.state,
+    //         ...state_clone
+    //     });
+    // }
 
     harnessRequest = (response)=>{
         console.log(response)
         if (response.ok){
-            window.location.href = "/"
+            window.location.href = "/login"
+        }else{
+            let clone_state = this.state;
+
+            let auth = {
+                error:true,
+                msg:response.data //.detail
+            }
+            clone_state.formError.auth = auth
+            clone_state.loading = false
+
+            this.setState({
+                ...this.state,
+                ...clone_state
+            });
+
         }
         
     }
@@ -178,11 +199,11 @@ class SignUp extends Component {
         let formdata = state_clone.formData;
         console.log(formdata);
         if(!(formdata.password.config.value === formdata.confirmPassword.config.value)){
-            state_clone.formError.thersError = true;
+            state_clone.formError.password.error = true;
             console.log(formdata);
             
         }else{
-            state_clone.formError.thersError = false;
+            state_clone.formError.password.error = false;
             let form_data = new FormData();
             // let myHeaders = new Headers();
             
@@ -297,9 +318,12 @@ class SignUp extends Component {
                         </div>
 
                         <div className="right card">
-
+                            <span className="msg text-danger text-center mb-2">
+                                    {!this.state.loading && this.state.formError.auth.error ? this.state.formError.auth.msg:null}
+                                </span>
                             <form onSubmit={this.handleSubmit}>
-                                
+                                {/* <span className="msg text-danger">{this.state.formError.auth.error ? this.state.formError.auth.msg:null}</span> */}
+
                                 <div className="img-group">
                                     <div className="img-preview" style={{background:`url('${this.state.formData.avatar.config.url}') center center no-repeat`}}></div>
                                     <input type="file" accept='image/*' onChange={this.handlePreview}/>
@@ -334,7 +358,7 @@ class SignUp extends Component {
                                 </div>
 
                                 <hr/>
-                                <span className="msg text-danger">{this.state.formError.thersError ? this.state.formError.msg:null}</span>
+                                <span className="msg text-danger">{this.state.formError.password.error ? this.state.formError.password.msg:null}</span>
                                 <div className="label-group">
                                     
                                     <label className="required">Username</label>
@@ -350,6 +374,7 @@ class SignUp extends Component {
                                     <label className="required">Password</label>
                                     <input
                                         {...this.state.formData.password.config}
+                                        minLength={6}
                                         onBlur={(e)=>this.handleInputChange(e,true)}
                                         onChange={(e)=>this.handleInputChange(e,false)}
                                     />
@@ -365,10 +390,25 @@ class SignUp extends Component {
                                     />
                                 </div>
 
-
                                 <div className="text-center mv-1">
-                                    <button type="submit" className="btn btn-primary text-center">SUBMIT</button>
+
+                                {
+                                    this.state.loading ? 
+                                    
+                                    <button type="submit" className="btn btn-primary text-center disabled" disabled={true}>
+                                        Loading...
+                                    </button>
+                                    
+                                    :
+                                    
+                                    <button type="submit" className="btn btn-primary text-center">
+                                        SUBMIT
+                                    </button>
+                                    
+                                }
                                 </div>
+
+                                
 
                             </form>
 

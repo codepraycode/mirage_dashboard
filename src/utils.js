@@ -2,7 +2,7 @@ const axios = require('axios');
 // require('dotenv').config();
 
 
-const Baseurl = process.env.REACT_APP_DEV ? 'http://127.0.0.1:8000' : 'http://mirageapi.herokuapp.com/';
+const Baseurl = process.env.REACT_APP_DEV ? 'http://127.0.0.1:8000' : 'https://api.schoolmirage.com';
 
 const LoginUrl = `${Baseurl}/account/login`;
 
@@ -926,7 +926,10 @@ const AccountLogin = (data, callback) => {
             callback(authStatus)
         })
         .catch((err) => {
+            authStatus.data = err.response.data;
+            authStatus.error = true;
             console.error("error", err);
+            callback(authStatus);
         })
 
 }
@@ -955,7 +958,7 @@ const CreateAccount = (form_data, callback) => {
             //     tryAgain:true,
             // })
             console.log(err);
-            callback({ ok: false })
+            callback({ ok: false, data: Object.values(err.response.data.errors)[0] })
                 // setTimeout(this.handleRequest(form_data,config),3000)
         });
 

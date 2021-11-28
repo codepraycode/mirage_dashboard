@@ -16,6 +16,13 @@ const Overview =(props)=> {
     }
     // console.log(props)
 
+    function Elipsy(text, maxText=60){
+        if(text.length > maxText){
+            return text.slice(0,maxText) + '...'
+        }
+        return text;
+    }
+
     return (
         <>
         
@@ -79,7 +86,7 @@ const Overview =(props)=> {
                                         </div>
 
                                         <div className="right">
-                                            <p>{props.school.description}</p>
+                                            <p className="text-right">{Elipsy(props.school.description)}</p>
                                         </div>
 
                                     </div>
