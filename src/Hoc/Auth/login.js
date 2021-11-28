@@ -134,7 +134,7 @@ class Login extends Component {
                     
                     <form onSubmit={this.handleSubmit}>
                         <span className="msg text-danger">
-                            {!this.state.loading ? this.state.authStatus.data.detail:null}
+                            {!this.state.loading && this.state.authStatus.error ? this.state.authStatus.data.detail:null}
                         </span>
                         
                         <div>

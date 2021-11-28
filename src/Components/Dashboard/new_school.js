@@ -394,13 +394,14 @@ class NewSchool extends Component{
 
                     {
                         this.state.loading ? 
+                         <button className='btn btn-primary disabled' disabled={true}>
+                            Loading...
+                        </button>
+                        :
                         <button className='btn btn-primary'>
                             Submit
                         </button>
-                        :
-                        <button className='btn btn-primary disabled' disabled={this.state.loading}>
-                            Loading...
-                        </button>
+                       
                         
                     }
 
