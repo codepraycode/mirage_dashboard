@@ -12,7 +12,7 @@ const SchoolsUrl = `${Baseurl}/school`;
 
 const TokenRefreshUrl = `${Baseurl}/account/token/refresh`;
 
-const placeholderLogo = '/asset/img/logos/placeholder.svg';
+const placeholderLogo = '/asset/img/img_placeholder.png'; //logos/placeholder.svg';
 const placeholderDP = '/asset/img/avatar.svg';
 
 const SetCookie = (data) => {
