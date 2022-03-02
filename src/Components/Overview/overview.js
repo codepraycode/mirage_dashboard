@@ -17,6 +17,9 @@ const Overview =(props)=> {
     // console.log(props)
 
     function Elipsy(text, maxText=60){
+        if(text.length === 0){
+            return '----'
+        }
         if(text.length > maxText){
             return text.slice(0,maxText) + '...'
         }
@@ -42,9 +45,36 @@ const Overview =(props)=> {
                                 <span> School Key</span>
                             </div>
 
-                            <p className="w-60 text-right">
-                                    <span>{props.school.key}</span>
-                                    <i className={`fas fa-copy mx-2 copy-icon ${copier ? 'text-success':'text-primary'}`} onClick={()=>copyKey()}></i>
+                            <p 
+                                className="w-60 text-right" 
+                                onClick={
+                                    ()=>{
+                                        // console.log(props.school)
+                                        if(!props.school.active) return
+                                        copyKey();
+                                    }
+                                }
+                                style={{cursor:`${props.school.active ? 'pointer':'not-allowed'}`}}
+                            >
+                                <span>{
+                                    props.school.active ? 
+                                        props.school.key
+                                        :
+                                        "".padStart(props.school.key.length,'*')
+                                    }
+                                </span>
+                                <i 
+                                    className={
+                                        props.school.active ? 
+                                        `fas fa-copy mx-2 copy-icon 
+                                        ${copier ? 'text-success':'text-primary'}`
+                                        :
+                                        `fas fa-copy mx-2 copy-icon text-muted`
+                                    }
+                                ></i>
+
+
+                                
                             </p>
                         </div>
                     </div>
@@ -119,7 +149,7 @@ const Overview =(props)=> {
                                         </div>
 
                                         <div className="right">
-                                            <p>{props.school.date_created}</p>
+                                            <p>{new Date(props.school.date_created).toLocaleDateString()}</p>
                                         </div>
 
                                     </div>
