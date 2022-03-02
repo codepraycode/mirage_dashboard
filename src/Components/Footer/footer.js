@@ -13,7 +13,13 @@ function Footer() {
                             </a>
                         </span>
                         <span className="item">
-                            <a href="/" className="btn btn-primary disabled">Download App</a>
+                            <a 
+                                href="/release/mirage_setup.exe" 
+                                className="btn btn-primary disabled"
+                                download={"Mirage Setup"}
+                            >
+                                Download App
+                            </a>
                         </span>
                     </div>
                 </div>
