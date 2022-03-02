@@ -184,7 +184,7 @@ class SignUp extends Component {
             clone_state.loading = false
 
             this.setState({
-                ...this.state,
+                // ...this.state,
                 ...clone_state
             });
 
@@ -228,6 +228,7 @@ class SignUp extends Component {
                 ...this.state,
                 ...state_clone
             });
+            return
             
         }
 

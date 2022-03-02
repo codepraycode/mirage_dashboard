@@ -23,7 +23,17 @@ function Header() {
 
                 <span className="avatar__container">
                     <div className="user__avatar">
-                        <img src="/asset/img/avatar.svg" alt="avatar"/>
+                        <img 
+                            src="/asset/img/avatar.svg" 
+                            // src={parseFileUrl(item.passport)}//{profile.logo}
+                            // onError={
+                            //     ({ currentTarget }) => {
+                            //         currentTarget.onerror = null; // prevents looping
+                            //         currentTarget.src="./assets/images/fake_passport.png";
+                            //     }
+                            // }
+                            alt="avatar"
+                        />
                     </div>
 
                 </span>

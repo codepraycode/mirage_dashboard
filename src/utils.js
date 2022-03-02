@@ -12,7 +12,7 @@ const SchoolsUrl = `${Baseurl}/school`;
 
 const TokenRefreshUrl = `${Baseurl}/account/token/refresh`;
 
-const placeholderLogo = '/asset/img/logos/placeholder.svg';
+const placeholderLogo = '/asset/img/img_placeholder.png'; //logos/placeholder.svg';
 const placeholderDP = '/asset/img/avatar.svg';
 
 const SetCookie = (data) => {
@@ -926,7 +926,15 @@ const AccountLogin = (data, callback) => {
             callback(authStatus)
         })
         .catch((err) => {
-            authStatus.data = err.response.data;
+            // console.log(err);
+            if (err.response) {
+                authStatus.data = err.response.data;
+            } else {
+                // authStatus.error = true
+                authStatus.data.detail = 'Unable to login, try again'
+            }
+
+
             authStatus.error = true;
             console.error("error", err);
             callback(authStatus);
@@ -957,8 +965,16 @@ const CreateAccount = (form_data, callback) => {
             //     ...this.state,
             //     tryAgain:true,
             // })
+            let data = 'Unable to create account, try again';
+            if (err.response) {
+                data = Object.values(err.response.data.errors)[0]
+            }
+            // else {
+            //     // authStatus.error = true
+            //     data = 'Unable to login, try again'
+            // }
             console.log(err);
-            callback({ ok: false, data: Object.values(err.response.data.errors)[0] })
+            callback({ ok: false, data })
                 // setTimeout(this.handleRequest(form_data,config),3000)
         });
 
