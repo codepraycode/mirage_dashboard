@@ -68,7 +68,7 @@ class Login extends Component {
         clone_state.loading = false;
 
         this.setState({
-            ...this.state,
+            // ...this.state,
             ...clone_state
         })
     }
@@ -163,10 +163,17 @@ class Login extends Component {
                         <br/>
                         
                         <div className="text-center mv-1">
-                        <button type="submit" className="spin btn btn-primary">
-                            Login
-                            {/* <i className="fas fa-spinner    "></i> */}
-                        </button>
+                            {
+                                this.state.loading ?
+                                    <button type="submit" className="spin btn btn-primary disabled" disabled={true}>
+                                        Login
+                                    </button>
+                                :
+                                    <button type="submit" className="spin btn btn-primary">
+                                        Login
+                                    </button>
+                            }
+                            
                         </div>  
                     </form>
 
