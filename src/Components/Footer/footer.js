@@ -15,7 +15,7 @@ function Footer() {
                         <span className="item">
                             <a 
                                 href="/release/mirage_setup.exe" 
-                                className="btn btn-primary disabled"
+                                className="btn btn-primary"
                                 download={"Mirage Setup"}
                             >
                                 Download App
