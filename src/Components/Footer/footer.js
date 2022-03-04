@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {latest_app} from '../../release_config';
 
 function Footer() {
     return (
@@ -14,7 +15,7 @@ function Footer() {
                         </span>
                         <span className="item">
                             <a 
-                                href="/release/mirage_setup.exe" 
+                                href={`/release/${latest_app}`}
                                 className="btn btn-primary"
                                 download={"Mirage Setup"}
                             >
