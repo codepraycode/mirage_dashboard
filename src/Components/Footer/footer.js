@@ -15,7 +15,7 @@ function Footer() {
                         </span>
                         <span className="item">
                             <a 
-                                href={`/release/${latest_app}`}
+                                href={`${latest_app}`}
                                 className="btn btn-primary"
                                 download={"Mirage Setup"}
                             >
