@@ -1,1 +1,1 @@
-export const latest_app = 'Mirage School Software Setup 0.0.6.exe'
+export const latest_app = 'https://github.com/codepraycode/mirage_school_software/releases/download/v0.0.7/Mirage-School-Software-Setup-0.0.7.exe' //'Mirage School Software Setup 0.0.6.exe'
