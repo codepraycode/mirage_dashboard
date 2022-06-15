@@ -22,7 +22,7 @@ const SignUp = ()=> {
                 <div className="row">
 
                     <div className="col">
-                        <FileUpload/>
+                        <FileUpload type="image"/>
 
                         <Input label="First Name"/>
 

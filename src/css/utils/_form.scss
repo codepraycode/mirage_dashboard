@@ -31,6 +31,50 @@ input {
     }
 }
 
+.file-group {
+    margin-bottom: 10px;
+}
+
+.image-group {
+    position: relative;
+    .preview {
+        height: 100px;
+        width: 100px;
+        margin: 0 auto;
+        padding: 5px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: transparent;
+        border: 3px solid $accent;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    span {
+        position: absolute;
+        display: block;
+        background: $accent;
+        color: $white;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 15px;
+        bottom: 0px;
+        right: 110px;
+        cursor: pointer;
+        &:hover {
+            background: $primary;
+        }
+    }
+    input {
+        display: none;
+    }
+}
+
 .required {
     position: relative;
     display: block;
