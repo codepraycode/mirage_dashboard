@@ -7,25 +7,41 @@ import Page404 from './Components/Errors/404';
 import CircleLoader from './widget/preloader/circle';
 
 // import Overview from './Components/Overview/overview';
-const SignUp = React.lazy(()=>import('./Hoc/Auth/signup'));
-const Login = React.lazy(()=>import('./Hoc/Auth/login'));
+// const SignUp = React.lazy(()=>import('./Hoc/Auth/signup'));
+// const Login = React.lazy(()=>import('./Hoc/Auth/login'));
 const Overview = React.lazy(() => import('./Components/Overview/overview'));
 const Staff = React.lazy(() => import('./Components/Staffs/staff'));
 const Settings = React.lazy(() => import('./Components/settings/settings'));
 const NewSchool = React.lazy(() => import('./Components/Dashboard/new_school'));
+
+
+const Auth = React.lazy(()=>import('./pages/auth'));
 
 const AppRoutes = () => {
     return (
         
             
                 <Routes>
+                                        
+                    <Route path="/signin" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                           <Auth/>
+                        </Suspense>
+                    }/>
+
+                    <Route path="/signup" element={
+                        <Suspense fallback={<CircleLoader/>}>
+                           <Auth/>
+                        </Suspense>
+                    }/>
+
 
                     <Route path="/" exact element={
                         <Suspense fallback={<CircleLoader/>}>
                         <Layout><Dashboard/></Layout>
                         </Suspense>
                     }/>
-                    <Route path="/signup" element={
+                    {/* <Route path="/signup" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <SignUp/>
                         </Suspense>
@@ -36,7 +52,7 @@ const AppRoutes = () => {
                         <Suspense fallback={<CircleLoader/>}>
                            <Login/>
                         </Suspense>
-                    }/>
+                    }/> */}
                     <Route path="/school/new" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <Layout>
