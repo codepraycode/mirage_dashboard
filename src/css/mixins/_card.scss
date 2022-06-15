@@ -1,0 +1,79 @@
+@import '../constants';
+@mixin card {
+    background: $gray;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    .card-header {
+        text-align: left;
+        padding-left: 10px;
+    }
+    .card-body {
+        .listings {
+            transition: all 0.2s ease-in;
+            cursor: default;
+            &:hover {
+                background: #f7f7f7;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                width: 100%;
+                background: #e2e2e2;
+                height: 1px;
+            }
+            .listing__items {
+                display: flex;
+                align-items: center;
+                // justify-content: space-between;
+                padding: 2px 15px;
+                // color: #757474;
+                b {
+                    font-weight: 400;
+                    line-height: 10px;
+                }
+                span {
+                    font-size: 13px;
+                    font-weight: 300;
+                    margin-right: 3px;
+                }
+                h3 {
+                    margin: 0;
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+                .left {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 20px;
+                    .list__item--logo {
+                        height: 50px;
+                        width: 50px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .list__item--property {
+                        margin-left: 10px;
+                    }
+                }
+                .right {
+                    text-align: center;
+                    span {
+                        font-weight: 300;
+                    }
+                    i {
+                        margin-left: 10px;
+                        font-size: 15px;
+                        background: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.card {
+    @include card;
+}

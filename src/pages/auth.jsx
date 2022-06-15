@@ -1,5 +1,5 @@
 import React from 'react'
-import {useLocation, Link} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import { Login, Register } from '../Components/Auth';
 
 
@@ -16,50 +16,15 @@ const Auth = () => {
   let template = isSignup ? <Register/> : <Login/>;
 
   return (
-    <div className="auth-page">
-        <div className="wrapper">
+    <div className="auth_page">
+        <div className="auth_page__wrapper">
 
-          <div className="header flex">
-            <div className="logo">
+          <div className="brand">
                 <p>Mirage</p>
-            </div>
-
-            <div className="cta">
-                {
-                    isSignup ?
-                    <>   
-                        <span className="mr-2">Already have an account?</span>
-
-                        <Link to="/signin" className="btn btn-primary">
-                            Login
-                        </Link>
-                    </>
-                :
-                <>
-                    <span>Dont have an account?</span>
-
-
-                    <Link to="/signup" className="btn btn-primary">
-                        Sign Up
-                    </Link>
-                </>
-            }
-                
-            </div>
           </div>
 
 
-          <p className="text-center lead">
-            {
-                isSignup ?
-                <>Sign Up</>
-                :
-                <>Login</>
-            }  
-          </p>
-
-
-          <div className={`auth_content`}>
+          <div className={`auth_page__wrapper--content ${isSignup ? '':'login'}`}>
             {template}
 
           </div>

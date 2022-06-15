@@ -1,0 +1,91 @@
+// Styles relating to anything button
+@import '../constants';
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    line-height: 22px;
+    height: 32px;
+    -webkit-font-smoothing: antialiased!important;
+    text-align: center;
+    padding: 5px 25px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    box-sizing: border-box;
+    background-clip: border-box!important;
+    background-origin: border-box!important;
+    border: 0;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    &.disabled {
+        outline: none;
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    .running {
+        cursor: progress;
+    }
+}
+
+.btn-primary,
+.bg-primary {
+    background-color: $accent;
+    color: $gray;
+    &:disabled {
+        background: $primary-light
+    }
+}
+
+.btn-primary-outline {
+    color: #79589f;
+    background-color: #fdfdfd;
+    border: 1px solid #79589f;
+    &:hover {
+        background-color: #f1efef;
+    }
+}
+
+.btn-success {
+    background-color: #11cc11;
+    color: #fdfdfd;
+}
+
+.btn-success-outline {
+    color: #11cc11;
+    background-color: #fdfdfd;
+    border: 1px solid #11cc11;
+    &:hover {
+        background-color: #11cc1194;
+        color: #fdfdfd;
+    }
+}
+
+.btn-success-hover:hover {
+    color: #2cff2c94;
+}
+
+.btn-danger {
+    background-color: #df4444;
+    color: #fdfdfd;
+}
+
+.btn-danger-outline {
+    color: #df4444;
+    background-color: #fdfdfd;
+    border: 1px solid #df4444;
+    &:hover {
+        background-color: #fa6565;
+        color: #fdfdfd;
+    }
+}
+
+.btn-danger-hover:hover {
+    color: #fa6565;
+}
+
+.btn-danger-hover:hover {
+    color: #fa6565;
+}

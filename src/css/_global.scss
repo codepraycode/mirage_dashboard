@@ -1,85 +1,21 @@
+@import './constants';
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     font-family: 'Signika Negative', sans-serif;
-    // overflow-x: hidden;
-    color: #5a3f79;
+    color: $primary;
 }
 
 a {
     background-color: transparent;
-    color: #79589F;
+    color: $accent;
     text-decoration: none;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    line-height: 22px;
-    height: 32px;
-    -webkit-font-smoothing: antialiased!important;
-    text-align: center;
-    padding: 5px 25px;
-    font-weight: 600;
-    white-space: nowrap;
-    cursor: pointer;
-    text-decoration: none;
-    box-sizing: border-box;
-    background-clip: border-box!important;
-    background-origin: border-box!important;
-    border: 0;
-    border-radius: 4px;
-    transition: all 0.3s ease-in-out;
-    &.disabled {
-        outline: none;
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-    .running {
-        cursor: progress;
-    }
-}
-
-.btn-primary,
-.bg-primary {
-    background-color: #79589f;
-    color: #fdfdfd;
-    &:disabled {
-        background: #6d5e7e;
-    }
 }
 
 .shadow-primary {
     box-shadow: rgb(121, 88, 159, 0.6) 0px 4px 12px !important;
-}
-
-// .spin {
-//     position: relative;
-//     &:focus,
-//     &:disabled {
-//         outline: none;
-//         background: #6d5e7e;
-//     }
-//     &::after {
-//         position: absolute;
-//         content: "\f3f4";
-//         font-family: FontAwesome;
-//         font-size: 25px;
-//         right: -5px;
-//     }
-// }
-.spinner {
-    // display: block;
-    // color: #79589F;
-    font-size: 18px;
-    margin: 0;
-    i {
-        animation: Spin360 linear 0.9s infinite;
-    }
 }
 
 .bg-default {
@@ -89,57 +25,6 @@ a {
 .bg-white {
     height: 100%;
     background: #fff;
-}
-
-.btn-primary-outline {
-    color: #79589f;
-    background-color: #fdfdfd;
-    border: 1px solid #79589f;
-    &:hover {
-        background-color: #f1efef;
-    }
-}
-
-.btn-success {
-    background-color: #11cc11;
-    color: #fdfdfd;
-}
-
-.btn-success-outline {
-    color: #11cc11;
-    background-color: #fdfdfd;
-    border: 1px solid #11cc11;
-    &:hover {
-        background-color: #11cc1194;
-        color: #fdfdfd;
-    }
-}
-
-.btn-success-hover:hover {
-    color: #2cff2c94;
-}
-
-.btn-danger {
-    background-color: #df4444;
-    color: #fdfdfd;
-}
-
-.btn-danger-outline {
-    color: #df4444;
-    background-color: #fdfdfd;
-    border: 1px solid #df4444;
-    &:hover {
-        background-color: #fa6565;
-        color: #fdfdfd;
-    }
-}
-
-.btn-danger-hover:hover {
-    color: #fa6565;
-}
-
-.btn-danger-hover:hover {
-    color: #fa6565;
 }
 
 ul {
@@ -200,31 +85,6 @@ li {
     padding: 0 70px;
 }
 
-input,
-textarea,
-select {
-    line-height: 20px;
-    outline: 0;
-    border-radius: 4px;
-    font-size: 13px;
-    background: #fff;
-    border: 1px solid #cfd7e6;
-    // box-shadow: inset 0 1px 2px 0 rgb(207 215 230 / 40%);
-    padding: 5px 5px 5px 10px;
-    transition: all 0.4s linear;
-    &::placeholder {
-        color: #e6e7e7;
-        font-size: 12px;
-    }
-    &:focus {
-        outline: 2px solid #ad81e0;
-        &~i {
-            color: #79589F;
-            font-weight: 600;
-        }
-    }
-}
-
 .span-dots {
     display: flex;
     align-items: center;
@@ -264,20 +124,6 @@ select {
 
 .f-20 {
     font-size: 20px;
-}
-
-.required {
-    position: relative;
-    display: block;
-    width: fit-content;
-    &::after {
-        content: '*';
-        position: absolute;
-        font-size: 20px;
-        color: #ee3636;
-        right: -12px;
-        top: -5px;
-    }
 }
 
 .text-success {
@@ -340,16 +186,6 @@ select {
     }
     .col-5 {
         width: 50%;
-    }
-}
-
-.form-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 50px 5px 5px;
-    input {
-        justify-self: start;
     }
 }
 
@@ -458,82 +294,6 @@ hr {
     margin-bottom: 30px;
 }
 
-.card {
-    background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    border-radius: 20px;
-    padding: 10px;
-    position: relative;
-    // width: max-content;
-    .card-header {
-        text-align: left;
-        padding-left: 10px;
-    }
-    .card-body {
-        .listings {
-            transition: all 0.2s ease-in;
-            cursor: default;
-            &:hover {
-                background: #f7f7f7;
-            }
-            &::after {
-                content: "";
-                position: absolute;
-                width: 100%;
-                background: #e2e2e2;
-                height: 1px;
-            }
-            .listing__items {
-                display: flex;
-                align-items: center;
-                // justify-content: space-between;
-                padding: 2px 15px;
-                // color: #757474;
-                b {
-                    font-weight: 400;
-                    line-height: 10px;
-                }
-                span {
-                    font-size: 13px;
-                    font-weight: 300;
-                    margin-right: 3px;
-                }
-                h3 {
-                    margin: 0;
-                    font-weight: 500;
-                    font-size: 18px;
-                }
-                .left {
-                    display: flex;
-                    align-items: center;
-                    margin-right: 20px;
-                    .list__item--logo {
-                        height: 50px;
-                        width: 50px;
-                        img {
-                            width: 100%;
-                        }
-                    }
-                    .list__item--property {
-                        margin-left: 10px;
-                    }
-                }
-                .right {
-                    text-align: center;
-                    span {
-                        font-weight: 300;
-                    }
-                    i {
-                        margin-left: 10px;
-                        font-size: 15px;
-                        background: transparent;
-                    }
-                }
-            }
-        }
-    }
-}
-
 .p-0 {
     padding: 0;
 }
@@ -569,24 +329,16 @@ hr {
     margin-bottom: 20px;
 }
 
-@keyframes Spin360 {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(90deg);
-    }
-    50% {
-        transform: rotate(180deg);
-    }
-    75% {
-        transform: rotate(270deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.brand {
+    font-size: 50px;
+    font-weight: bold;
+    color: $primary;
 }
 
+@import './utils/button';
+@import './mixins/card';
+@import './utils/form';
+@import './utils/loaders';
 @media (max-width: 687px) {
     .container {
         padding: 5px 10px;
