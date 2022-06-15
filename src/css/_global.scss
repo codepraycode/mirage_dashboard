@@ -23,12 +23,16 @@ a {
 }
 
 .bg-default {
-    background: #f7f7f7;
+    background: $gray;
 }
 
 .bg-white {
     height: 100%;
-    background: #fff;
+    background: $white;
+}
+
+.bg-primary {
+    background-color: $primary;
 }
 
 ul {

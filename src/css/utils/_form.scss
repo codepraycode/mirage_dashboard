@@ -25,9 +25,9 @@ input {
     display: flex;
     flex-direction: column;
     width: fit-content;
-    margin: 10px auto;
+    margin: 0 auto 10px auto;
     label {
-        margin: 10px 0;
+        margin: 10px 0 10px 10px;
     }
 }
 

@@ -14,26 +14,38 @@ const SignUp = ()=> {
         <Card>  
 
             <p className="text-center lead">
-                Sign In
+                Sign up for a new account
             </p>
                 
             <Form onSubmit={()=>{}}>
-                <FileUpload/>
 
-                <Input label="First Name"/>
+                <div className="row">
 
-                <Input label="Last Name"/>
+                    <div className="col">
+                        <FileUpload/>
 
-                <Input label="Email"/>
+                        <Input label="First Name"/>
 
-                <hr/>
+                        <Input label="Last Name"/>
 
-                <Input label="Username"/>
-                <Input label="Password"/>
-                <Input label="Confirm Password"/>
+                        <Input label="Email"/>    
+                    </div>
+
+
+
+                    <div className="col">
+                        <Input label="Username"/>
+                        
+                        <Input label="Password"/>
+                        
+                        <Input label="Confirm Password"/>
+                    </div>
+                </div>
+
+                
                 
                 <div className="text-center mv-1">
-                    <Button text="ReGISTER"/>
+                    <Button text="Register"/>
                 </div>
             </Form>
 
@@ -42,7 +54,7 @@ const SignUp = ()=> {
                 <span>Already have an account?</span>
 
 
-                <Link to="/signin" className="btn btn-primary">
+                <Link to="/signin">
                     Sign In
                 </Link>
 

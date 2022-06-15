@@ -30,14 +30,6 @@
     }
 }
 
-.bg-primary {
-    background-color: $accent;
-    color: $gray;
-    &:disabled {
-        background: $primary-light
-    }
-}
-
 .btn-primary {
     background-color: $secondary;
     color: $white;

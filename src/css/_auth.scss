@@ -1,10 +1,11 @@
 // Auth Screen Components Styles
 @import './constants';
 .auth_page {
-    position: fixed;
+    // position: fixed;
     width: 100%;
-    height: 100%;
-    background: $primary;
+    // height: 1200px;
+    // max-height: 100%;
+    // background: $primary;
     color: $secondary;
     overflow-y: auto; // incase it extends the screen
     // Align center
@@ -15,32 +16,39 @@
     .auth_page__wrapper {
         width: max-content;
         max-width: 90%;
+        margin-bottom: 50px;
         .brand {
             margin: 10px auto;
             text-align: center;
             color: $white;
         }
         &--content {
-            width: 450px;
+            width: max-content;
             max-width: 100%;
-        }
-        .cta {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            line-height: 8px;
-            font-size: 14px;
-            a {
-                margin-left: 10px;
+            &.login {
+                width: 450px;
             }
-        }
-        .lead {
-            margin: 18px 0;
-            font-size: 30px;
-        }
-        .card {
-            background: $white;
+            &:not(.login) {
+                margin-top: -30px;
+            }
+            .cta {
+                margin: 20px 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                line-height: 8px;
+                font-size: 14px;
+                a {
+                    margin-left: 10px;
+                }
+            }
+            .lead {
+                margin: 18px 0;
+                font-size: 30px;
+            }
+            .card {
+                background: $white;
+            }
         }
     }
 }
