@@ -25,20 +25,14 @@
             max-width: 100%;
         }
         .cta {
+            margin: 20px 0;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
             line-height: 8px;
             font-size: 14px;
-            span {
-                display: block;
-            }
-            button,
             a {
-                display: block;
                 margin-left: 10px;
-                background: $secondary;
-                border-radius: 3px;
             }
         }
         .lead {

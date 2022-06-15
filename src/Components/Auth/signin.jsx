@@ -29,7 +29,7 @@ const Login = () => {
                 <span>Dont have an account?</span>
 
 
-                <Link to="/signup" className="btn btn-primary">
+                <Link to="/signup">
                     Sign Up
                 </Link>
 

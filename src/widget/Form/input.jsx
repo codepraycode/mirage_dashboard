@@ -6,7 +6,7 @@ const Input = ({label, name,err}) => {
             <label className="required">{label || name}</label>
             <input
                 
-                // placeholder="Password" 
+                placeholder={label}
                 // {...this.state.formData.password.config}
                 // onBlur={(e)=>this.handleInputChange(e,true)}
                 // onChange={(e)=>this.handleInputChange(e,false)}

@@ -9,9 +9,13 @@ body {
 }
 
 a {
-    background-color: transparent;
     color: $accent;
     text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    &:hover {
+        color: $primary;
+    }
 }
 
 .shadow-primary {

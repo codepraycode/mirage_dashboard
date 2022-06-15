@@ -4,12 +4,12 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 15px;
     line-height: 22px;
-    height: 32px;
+    // height: 32px;
     -webkit-font-smoothing: antialiased!important;
     text-align: center;
-    padding: 5px 25px;
+    padding: 10px 25px;
     font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
@@ -25,12 +25,11 @@
         opacity: 0.6;
         cursor: not-allowed;
     }
-    .running {
+    .loading {
         cursor: progress;
     }
 }
 
-.btn-primary,
 .bg-primary {
     background-color: $accent;
     color: $gray;
@@ -39,53 +38,52 @@
     }
 }
 
-.btn-primary-outline {
-    color: #79589f;
-    background-color: #fdfdfd;
-    border: 1px solid #79589f;
+.btn-primary {
+    background-color: $secondary;
+    color: $white;
+    &:disabled {
+        opacity: 0.6;
+    }
     &:hover {
-        background-color: #f1efef;
+        opacity: 0.8;
+    }
+    &-outline {
+        color: $secondary;
+        background-color: $white;
+        border: 1px solid $secondary;
+        &:hover {
+            background-color: $gray;
+        }
     }
 }
 
 .btn-success {
-    background-color: #11cc11;
-    color: #fdfdfd;
-}
-
-.btn-success-outline {
-    color: #11cc11;
-    background-color: #fdfdfd;
-    border: 1px solid #11cc11;
+    background-color: $green;
+    color: $white;
     &:hover {
-        background-color: #11cc1194;
-        color: #fdfdfd;
+        opacity: 0.6;
     }
-}
-
-.btn-success-hover:hover {
-    color: #2cff2c94;
+    &-outline {
+        color: $green;
+        background-color: $white;
+        border: 1px solid $green;
+        &:hover {
+            background-color: $green;
+            color: $white;
+        }
+    }
 }
 
 .btn-danger {
-    background-color: #df4444;
-    color: #fdfdfd;
-}
-
-.btn-danger-outline {
-    color: #df4444;
-    background-color: #fdfdfd;
-    border: 1px solid #df4444;
-    &:hover {
-        background-color: #fa6565;
-        color: #fdfdfd;
+    background-color: $red;
+    color: $white;
+    &-outline {
+        color: $red;
+        background-color: $white;
+        border: 1px solid $red;
+        &:hover {
+            opacity: 0.6;
+            color: $white;
+        }
     }
-}
-
-.btn-danger-hover:hover {
-    color: #fa6565;
-}
-
-.btn-danger-hover:hover {
-    color: #fa6565;
 }
