@@ -105,6 +105,7 @@ const Login = () => {
                     updateForm = {updateFormData}
                     getIssue = {checkIssue}
                     clearIssue = {clearIssue}
+                    disable={loading}
                 />
 
                 <Input 
@@ -112,13 +113,14 @@ const Login = () => {
                     updateForm = {updateFormData}
                     getIssue = {checkIssue}
                     clearIssue = {clearIssue}
+                    disable={loading}
 
                 />
 
                 <br/>
                 
                 <div className="text-center mv-1">
-                    <Button text="Login" type="submit"/>
+                    <Button text={`${loading ? "Loging in..." :"Login"}`} type="submit" className={`${loading ? 'disabled':''}`}/>
                 </div>
             </Form>
 

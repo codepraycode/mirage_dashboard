@@ -76,4 +76,10 @@
 
 .card {
     @include card;
+    position: relative;
+    .loading_indicator {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
 }

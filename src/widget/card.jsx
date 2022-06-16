@@ -1,18 +1,20 @@
 import React from 'react'
 
-const Card = ({children}) => {
+const Card = ({children, loading}) => {
+
   return (
     <div className="card">
-        {/*  {
-                        this.state.loading ? 
-                        <p className="spinner text-right text-primary">
-                            <i className="fad fa-spinner-third"></i>
-                        </p>
-                        :
-                        null
-                    }
-         */}
-        {children}
+      {
+        loading ? 
+        
+        <span className="spinner loading_indicator text-right text-primary">
+          <i className="fad fa-spinner-third"></i>
+        </span>
+        :
+        null
+      }
+        
+      {children}
     </div>
   )
 }

@@ -111,6 +111,7 @@ const SignUp = ()=> {
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
+                            disable={loading}
                         />
 
                         <Input 
@@ -118,6 +119,7 @@ const SignUp = ()=> {
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
+                            disable={loading}
                         />
 
                         <Input
@@ -125,6 +127,7 @@ const SignUp = ()=> {
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
+                            disable={loading}
                         />
 
                         <Input
@@ -132,6 +135,7 @@ const SignUp = ()=> {
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
+                            disable={loading}
                         />    
                     </div>
 
@@ -143,6 +147,7 @@ const SignUp = ()=> {
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
+                            disable={loading}
                         />
                         
                         <Input 
@@ -150,6 +155,7 @@ const SignUp = ()=> {
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
+                            disable={loading}
                         />
                         
                         <Input
@@ -157,6 +163,7 @@ const SignUp = ()=> {
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
+                            disable={loading}
                         />
                     </div>
                 </div>
@@ -164,7 +171,7 @@ const SignUp = ()=> {
                 
                 
                 <div className="text-center mv-1">
-                    <Button text="Register" type="submit"/>
+                    <Button text={`${loading ? "Registring..." :"Register"}`} type="submit" className={`${loading ? 'disabled':''}`}/>
                 </div>
             </Form>
 

@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 
-const Input = ({label, name,type,required, placeholder, updateForm,getIssue,clearIssue:resolveIssue}) => {
+const Input = ({label, name,type,required, placeholder, disable,updateForm,getIssue,clearIssue:resolveIssue}) => {
     
     const [value, setValue] = useState('');
     const [validation, setValidation] = useState({
@@ -84,6 +84,7 @@ const Input = ({label, name,type,required, placeholder, updateForm,getIssue,clea
                 onChange = {handleInputChange}
                 required={required}
                 value = {value}
+                readOnly = {disable}
                 // onBlur={(e)=>this.handleInputChange(e,true)}
                 // onChange={(e)=>this.handleInputChange(e,false)}
             />

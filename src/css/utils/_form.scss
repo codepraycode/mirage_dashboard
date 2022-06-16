@@ -19,6 +19,10 @@ input {
         color: $deepgray;
         font-size: 13px;
     }
+    &:read-only {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
 }
 
 .label-group {
