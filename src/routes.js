@@ -6,9 +6,6 @@ import Dashboard from './Components/Dashboard/dashboard';
 import Page404 from './Components/Errors/404';
 import CircleLoader from './widget/preloader/circle';
 
-// import Overview from './Components/Overview/overview';
-// const SignUp = React.lazy(()=>import('./Hoc/Auth/signup'));
-// const Login = React.lazy(()=>import('./Hoc/Auth/login'));
 const Overview = React.lazy(() => import('./Components/Overview/overview'));
 const Staff = React.lazy(() => import('./Components/Staffs/staff'));
 const Settings = React.lazy(() => import('./Components/settings/settings'));
@@ -19,8 +16,6 @@ const Auth = React.lazy(()=>import('./pages/auth'));
 
 const AppRoutes = () => {
     return (
-        
-            
                 <Routes>
                                         
                     <Route path="/signin" element={
@@ -41,6 +36,7 @@ const AppRoutes = () => {
                         <Layout><Dashboard/></Layout>
                         </Suspense>
                     }/>
+                    
                     {/* <Route path="/signup" element={
                         <Suspense fallback={<CircleLoader/>}>
                            <SignUp/>
