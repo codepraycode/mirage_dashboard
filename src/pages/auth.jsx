@@ -17,10 +17,11 @@ const Auth = () => {
 
 
   useEffect(()=>{
+    // Change the background color of body
     let test = document.getElementsByTagName("body");
     test[0].classList.add("bg-primary");
-    // console.log(test, test[0].classList);
     return ()=>{
+      // revert the change of body background color
       test[0].classList.remove("bg-primary");
     }
   })

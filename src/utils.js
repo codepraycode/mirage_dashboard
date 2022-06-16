@@ -927,6 +927,13 @@ const AccountLogin = (data, callback) => {
         })
         .catch((err) => {
             console.error("error", err);
+
+            authStatus.error = true;
+            authStatus.data = {
+                message: "Network Error, check your internet connection",
+            }
+
+            callback(authStatus);
         })
 
 }
