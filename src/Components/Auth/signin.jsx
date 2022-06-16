@@ -20,6 +20,7 @@ const Login = () => {
     }
 
     // States
+    // eslint-disable-next-line
     const [formConfig, setFormConfig] = useState(UserLoginFormConfig);
     const [formData, setFormData] = useState({});
     
@@ -94,9 +95,7 @@ const Login = () => {
     return (
         <Card loading={loading}>
             <p className="text-center lead">
-                Sign In
-
-                
+                Sign In                
             </p>
                 
             <Form onSubmit={handleSubmit} err={issues.message}>

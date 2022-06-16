@@ -946,24 +946,30 @@ const CreateAccount = (form_data, callback) => {
         }
     }
 
+
+    let authStatus = {
+        ok: true,
+        data: {},
+    }
+
     axios.post(`${CreateAccountUrl}`, form_data, config)
         .then((res) => {
 
             // console.log(res.data);
             // window.location.href = "/"
-            callback({ ok: true })
-
+            callback(authStatus)
 
         })
         .catch((err) => {
-            // this.props.handleReAuth();
-            // this.setState({
-            //     ...this.state,
-            //     tryAgain:true,
-            // })
+
             console.log(err);
-            callback({ ok: false })
-                // setTimeout(this.handleRequest(form_data,config),3000)
+            authStatus.ok = false;
+            authStatus.data = {
+                message: "Network Error, check your internet connection"
+            };
+
+            callback(authStatus);
+
         });
 
 }
