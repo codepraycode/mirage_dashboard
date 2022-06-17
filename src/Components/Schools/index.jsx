@@ -7,7 +7,9 @@ import SchoolItem from './school_item';
 import {Loading} from '../../widget/Preloaders';
 
 const Schools = ()=>{
+    // eslint-disable-next-line
     const [schools, setSchools] = useState([1]);
+    // eslint-disable-next-line
     const [loading, setLoading] = useState(false);
 
 

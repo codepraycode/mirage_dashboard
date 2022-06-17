@@ -255,6 +255,7 @@ footer {
                     margin-right: 20px;
                     img {
                         width: 100%;
+                        height: auto;
                     }
                 }
             }
@@ -262,8 +263,9 @@ footer {
         .meta {
             display: flex;
             align-items: center;
-            justify-content: space-around;
-            margin-top: 4px;
+            // justify-content: flex-start;
+            margin: 4px 0 0 0;
+            text-align: start;
             span,
             i {
                 font-size: 14px;
@@ -391,6 +393,57 @@ footer {
             &::after {
                 top: 0px;
                 right: -8px;
+            }
+        }
+    }
+    /*---------------------*/
+    /*      Listings       */
+    /*---------------------*/
+    .listings__container {
+        .listings {
+            margin: 10px 0;
+            &:last-of-type {
+                margin-bottom: 40px;
+            }
+            &__items {
+                padding: 10px;
+                h3 {
+                    font-size: 18px;
+                }
+                i {
+                    font-size: 13px;
+                }
+                &--item {
+                    display: flex;
+                    align-items: center;
+                    .logo {
+                        height: 50px;
+                        width: 50px;
+                        margin-right: 12px;
+                    }
+                }
+                .status_n_link {
+                    b {
+                        display: none;
+                    }
+                    &.span-dots {
+                        .item {
+                            &::after {
+                                content: '•';
+                                display: inline-block;
+                                position: relative;
+                                top: 1px;
+                                right: -13px;
+                                color: $deepgray;
+                            }
+                            &:last-of-type {
+                                &::after {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

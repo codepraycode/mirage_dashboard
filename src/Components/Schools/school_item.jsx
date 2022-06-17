@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Moment from 'react-moment';
+
 
 const SchoolItem = () => {
     return (
         <div className="listings">
             <ul className="listings__items" onClick={()=>{}}>
                 <div className="listings__items--item">
-                    <div className="logo" style={{background:`url('/asset/img/avatar.svg') center center no-repeat`}}>
+                    <div className="logo" style={{background:`url('/asset/img/logos/placeholder.svg') center center no-repeat`}}>
                         {/* <img src={school.logo} alt={"img"}/> */}
                     </div>
                     <div>
@@ -13,20 +15,25 @@ const SchoolItem = () => {
                         <div className="text-muted meta">
                             <span>
                                 <i>
-                                    created: YYYY-MM-DD
+                                    created: <Moment format={"YYYY-MM-DD"} fromNow>{"2002-12-01T23:00:00.000Z"}</Moment>
                                 </i>
-                            </span>,
+                            </span>
+                            {/* ,
                             <span className="">
                                 <i>last synced: -----</i>
-                            </span>
+                            </span> */}
                         </div>
                     </div>
                 </div>
 
-                <div className="listings__items--item span-dots">
-                    <span className="item text-grey">
-                        <a href="/" target="_blank" rel="noreferrer">www.sample.com</a>
+                <div className="listings__items--item status_n_link span-dots">
+                    <span className="item link text-grey">
+                        <b>
+                            <a href="/" target="_blank" rel="noreferrer">www.sample.com</a>
+                        </b>
+                        <i className="fas fa-star"></i>
                     </span>
+
                     <span className="item text-success">
                             <b>
                                 Approved
