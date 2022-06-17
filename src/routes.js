@@ -3,6 +3,7 @@ import {Routes , Route} from 'react-router-dom';
 import Layout from './Hoc/Layout/layout';
 // High Order Component
 import Layout2 from './Hoc/Layout/layout2';
+import SchoolLayout from './Hoc/Layout/school';
 
 import NavLayout from './Hoc/Layout/navLayout';
 // import Dashboard from './Components/Dashboard/dashboard';
@@ -46,6 +47,19 @@ const AppRoutes = () => {
                     </Suspense>}
                 />
             </Route>
+
+
+            
+            <Route path="/school" exact element={<SchoolLayout/>}>
+                <Route path=":id" index element={
+                    <Suspense fallback={<CircleLoader/>}>
+                        <Dashboard/>
+                    </Suspense>}
+                />
+            </Route>
+
+
+            
             
             {/* <Route path="/signup" element={
                 <Suspense fallback={<CircleLoader/>}>

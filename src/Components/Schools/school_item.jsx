@@ -1,11 +1,14 @@
 import React from 'react';
 import Moment from 'react-moment';
-
+import { useNavigate } from 'react-router-dom';
 
 const SchoolItem = () => {
+    const navigate = useNavigate();
+
+
     return (
         <div className="listings">
-            <ul className="listings__items" onClick={()=>{}}>
+            <ul className="listings__items" onClick={()=>navigate('/school/123')}>
                 <div className="listings__items--item">
                     <div className="logo" style={{background:`url('/asset/img/logos/placeholder.svg') center center no-repeat`}}>
                         {/* <img src={school.logo} alt={"img"}/> */}
