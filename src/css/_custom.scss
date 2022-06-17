@@ -127,6 +127,70 @@ footer {
     }
 }
 
+
+/*---------------------*/
+
+
+/*      Span Dots      */
+
+
+/*---------------------*/
+
+.span-dots {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    .item {
+        display: inline-block;
+        width: fit-content;
+        margin-right: 20px !important;
+        position: relative;
+        &::after {
+            content: '•';
+            display: inline-block;
+            position: relative;
+            top: 0px;
+            right: -10px;
+            color: $deepgray;
+        }
+        &:last-of-type {
+            margin-right: 0px !important;
+            &::after {
+                display: none;
+            }
+        }
+    }
+}
+
+
+/*---------------------*/
+
+
+/*      Breadcrum      */
+
+
+/*---------------------*/
+
+.breadcrumb {
+    margin: 0;
+    padding: 15px 70px;
+    background: $light-gray2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    .left_crumb {
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 12px;
+        color: $accent;
+        text-overflow: ellipsis;
+    }
+    // .right_crumb {
+    // }
+}
+
 .panel {
     padding: 15px;
     border-width: 1px 0;
@@ -161,41 +225,6 @@ footer {
     // min-height: 50px;
     p {
         font-size: 14px;
-    }
-}
-
-
-/*---------------------*/
-
-
-/*      Span Dots      */
-
-
-/*---------------------*/
-
-.span-dots {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    .item {
-        display: inline-block;
-        width: fit-content;
-        margin-right: 20px !important;
-        position: relative;
-        &::after {
-            content: '•';
-            display: inline-block;
-            position: relative;
-            top: 0px;
-            right: -10px;
-            color: $deepgray;
-        }
-        &:last-of-type {
-            margin-right: 0px !important;
-            &::after {
-                display: none;
-            }
-        }
     }
 }
 
@@ -252,10 +281,10 @@ footer {
     footer {
         .content {
             flex-direction: column;
-            .btn {
-                padding: 8px 15px;
-                font-size: 14px;
-            }
+            // .btn {
+            //     padding: 8px 15px;
+            //     font-size: 14px;
+            // }
             .right {
                 margin-top: 10px;
                 ul {

@@ -51,11 +51,13 @@ const Layout = () => {
     
 
     return (
-        <div>
+        <>
             <Header/>
-            <Outlet test="testing props"/>
+            <main>
+                <Outlet test="testing props"/>
+            </main>
             <Footer/>
-        </div>
+        </>
     )
 }
 

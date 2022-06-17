@@ -44,9 +44,10 @@
     &-outline {
         color: $secondary;
         background-color: $white;
-        border: 1px solid $secondary;
+        border: 1px solid $gray;
         &:hover {
-            background-color: $gray;
+            background-color: $primary;
+            color: $white;
         }
     }
 }
@@ -79,5 +80,12 @@
             opacity: 0.6;
             color: $white;
         }
+    }
+}
+
+@media (max-width:760px) {
+    .btn {
+        padding: 8px 15px;
+        font-size: 14px;
     }
 }

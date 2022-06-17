@@ -9,7 +9,7 @@ import NavLayout from './Hoc/Layout/navLayout';
 import Page404 from './Components/Errors/404';
 import CircleLoader from './widget/preloader/circle';
 
-// const Overview = React.lazy(() => import('./Components/Overview/overview'));
+const Overview = React.lazy(() => import('./Components/Overview/overview'));
 
 const Staff = React.lazy(() => import('./Components/Staffs/staff'));
 const Settings = React.lazy(() => import('./Components/settings/settings'));
@@ -20,7 +20,7 @@ const NewSchool = React.lazy(() => import('./Components/Dashboard/new_school'));
 
 // Lazy Loaded components
 const Auth = React.lazy(()=>import('./pages/auth'));
-const Overview = React.lazy(()=>import('./pages/overview'));
+const Dashboard = React.lazy(()=>import('./pages/dashboard'));
 
 const AppRoutes = () => {
     return (
@@ -42,7 +42,7 @@ const AppRoutes = () => {
             <Route path="/" exact element={<Layout2/>}>
                 <Route path="" index element={
                     <Suspense fallback={<CircleLoader/>}>
-                        <Overview/>
+                        <Dashboard/>
                     </Suspense>}
                 />
             </Route>
