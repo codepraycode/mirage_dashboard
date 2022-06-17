@@ -47,16 +47,17 @@ const SchoolLayout = () => {
   return (
     <>
         <Header/>
-            <main>
+            <main className='school_page'>
                 <BreadCrumb>
                     <div className="left_crumb">
-                        <span> A School Name</span>
+                        <span className='school_name'> A School Name</span>
                     </div>
 
-                    <div className="right_crumb">
-                        <span className="text-success">
+                    <div className="right_crumb school_status active">
+                        <span>
                             Approved
                         </span>
+                        {/* <i className="fas fa-star"></i> */}
                         
                     </div>
                 </BreadCrumb>

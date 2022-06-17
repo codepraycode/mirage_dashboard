@@ -1,1 +1,31 @@
 // All Styles Pertaining to School Page
+@import './constants';
+.school_page {
+    .breadcrumb {
+        padding: 23px 50px;
+        align-items: center;
+        span {
+            margin: 0;
+        }
+        .school_status {
+            font-weight: bold;
+            &.active {
+                color: $green;
+            }
+            &.not-active {
+                color: $red;
+            }
+            &.suspended {
+                color: $orange;
+            }
+        }
+    }
+}
+
+@media (max-width:760px) {
+    .school_page {
+        .breadcrumb {
+            padding: 20px 10px;
+        }
+    }
+}
