@@ -1,9 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+// Components
+import Schools from '../Components/Schools';
+
 // Widgets
 import BreadCrumb from '../widget/breadcrumb';
 import Search from '../widget/search';
+
 
 const Dashboard = ()=>{
     
@@ -40,6 +44,8 @@ const Dashboard = ()=>{
 
             <div className="container">
                 <Search/>
+
+                <Schools/>
             </div>
 
 
