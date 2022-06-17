@@ -1,17 +1,20 @@
 import React,{useState} from 'react';
 
+// Components
+import SchoolItem from './school_item';
+
 // Widgets
 import {Loading} from '../../widget/Preloaders';
 
 const Schools = ()=>{
-    const [schools, setSchools] = useState([]);
+    const [schools, setSchools] = useState([1]);
     const [loading, setLoading] = useState(false);
 
 
     let template;
 
     if(loading){
-        template = <Loading/>
+        template = <Loading/>;
     }else if(schools.length === 0){
         template = (
             <div className="text-center text-muted">
@@ -21,7 +24,10 @@ const Schools = ()=>{
     }
     else{
         template = (
-            <p>Coming soon</p>
+            <>
+                <SchoolItem/>
+                
+            </>
         )
     }
 
