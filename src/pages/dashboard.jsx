@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 // Widgets
 import BreadCrumb from '../widget/breadcrumb';
+import Search from '../widget/search';
 
 const Dashboard = ()=>{
     
@@ -36,6 +37,10 @@ const Dashboard = ()=>{
                     </div> */}
                 </div>
             </BreadCrumb>
+
+            <div className="container">
+                <Search/>
+            </div>
 
 
         </>
