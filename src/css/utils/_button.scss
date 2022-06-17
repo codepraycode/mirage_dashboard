@@ -33,8 +33,10 @@
 .btn-primary {
     background-color: $secondary;
     color: $white;
+    &.disabled,
     &:disabled {
         opacity: 0.6;
+        color: $white;
     }
     &:hover {
         opacity: 0.8;

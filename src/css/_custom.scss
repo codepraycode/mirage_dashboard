@@ -82,6 +82,51 @@
     }
 }
 
+
+/*---------------------*/
+
+
+/*      FOOTER         */
+
+
+/*---------------------*/
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100% !important;
+    overflow-x: hidden;
+    padding: 10px 0px;
+    border: 1px solid $light-gray;
+    // border-color: #eef1f6;
+    background: $white;
+    font-size: 14px;
+    font-weight: 300;
+    .content {
+        width: 95% !important;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        color: $gray;
+        .right {
+            ul {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                li {
+                    margin: 10px;
+                    i {
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .panel {
     padding: 15px;
     border-width: 1px 0;
@@ -119,6 +164,15 @@
     }
 }
 
+
+/*---------------------*/
+
+
+/*      Span Dots      */
+
+
+/*---------------------*/
+
 .span-dots {
     display: flex;
     align-items: center;
@@ -134,7 +188,7 @@
             position: relative;
             top: 0px;
             right: -10px;
-            color: #b4b3b3;
+            color: $deepgray;
         }
         &:last-of-type {
             margin-right: 0px !important;
@@ -189,6 +243,44 @@
                     width: 40px;
                     height: 40px;
                 }
+            }
+        }
+    }
+    /*---------------------*/
+    /*      FOOTER         */
+    /*---------------------*/
+    footer {
+        .content {
+            flex-direction: column;
+            .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            .right {
+                margin-top: 10px;
+                ul {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    li {
+                        margin: 5px;
+                        i {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*---------------------*/
+    /*      Span Dots      */
+    /*---------------------*/
+    .span-dots {
+        .item {
+            margin-right: 15px !important;
+            &::after {
+                top: 0px;
+                right: -8px;
             }
         }
     }

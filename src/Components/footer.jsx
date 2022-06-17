@@ -3,10 +3,13 @@ import React from 'react'
 function Footer() {
     return (
         <footer>
-            <div className="footer__content d-md-flex">
+            <div className="content">
                 <div className="footer_left">
                     <div className="span-dots">
-                        <span className="item">mirage school</span>
+                        <span className="item brand-sm">
+                            Mirage Education
+                        </span>
+
                         <span className="item">
                             <a href="/">
                                 About
@@ -18,24 +21,25 @@ function Footer() {
                     </div>
                 </div>
                 
-                <div className="footer_right">
+                <div className="right">
                     <ul>
                         <li>
-                        <a href="/">Term Of Service</a>
-                    </li>
+                            <a href="/">Terms Of Service</a>
+                        </li>
 
-                    <li>
-                        <a href="/">Privacy</a>
-                    </li>
+                        <li>
+                            <a href="/">Privacy</a>
+                        </li>
 
-                    <li>
-                        &copy;
-                        2021 codepraycode
-                    </li>
+                        <li>
+                            &copy;
+                            2021 codepraycode
+                        </li>
                     </ul>
                     
                 </div>
             </div>
+
 
         </footer>
     )
