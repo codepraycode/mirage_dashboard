@@ -1,10 +1,11 @@
-@import './global';
-@import './auth';
-@import './custom';
 // Utils
 @import './utils/button';
 @import './mixins/card';
 @import './utils/form';
 @import './utils/loaders';
+// components
+@import './global';
+@import './auth';
+@import './custom';
 // Deprecated!
 @import 'components';
