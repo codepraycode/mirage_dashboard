@@ -8,15 +8,12 @@ import SchoolLayout from './Hoc/Layout/school';
 import Page404 from './Components/Errors/404';
 import {CircleLoader} from './widget/Preloaders';
 
-const NewSchool = React.lazy(() => import('./Components/Dashboard/new_school'));
-
-
-
 
 // Lazy Loaded components
 const Auth = React.lazy(()=>import('./pages/auth'));
 const Dashboard = React.lazy(()=>import('./pages/dashboard'));
 const SchoolOverview = React.lazy(()=>import('./pages/school_overview'));
+const CreateSchool = React.lazy(()=>import('./pages/new_school'));
 const SchoolUsers = React.lazy(()=>import('./pages/school_users'));
 const SchoolSettings = React.lazy(()=>import('./pages/school_settings'));
 
@@ -46,6 +43,12 @@ const AppRoutes = () => {
                     </Suspense>}
                 />
 
+                <Route path="/school/new" exact element={
+                    <Suspense fallback={<CircleLoader/>}>
+                        <CreateSchool/>
+                    </Suspense>
+                }/>
+
                 <Route path="/school/:id" exact element={<SchoolLayout/>}>
                     <Route path="" index element={
                         <Suspense fallback={<CircleLoader/>}>
@@ -74,13 +77,7 @@ const AppRoutes = () => {
             </Route>
 
 
-            <Route path="/school/new" element={
-                <Suspense fallback={<CircleLoader/>}>
-                    <Layout>
-                        <NewSchool/>
-                    </Layout>
-                </Suspense>
-            }/>
+            
             
 
             

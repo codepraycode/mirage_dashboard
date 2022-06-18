@@ -74,7 +74,104 @@ const UserRegisterFormConfig = {
 };
 
 
+const SchoolRegistrationFormConfig = {
+    logo: {
+        type: "image",
+        name: "logo",
+        required: true,
+    },
+    name: {
+        required: true,
+        type: "text",
+        name: "name",
+        label: "School Name",
+        placeholder: "Enter school name",
+    },
+
+    description: {
+        required: true,
+        type: "long-text",
+        name: "description",
+        label: "About School",
+        placeholder: "Enter a short description about your school",
+
+    },
+
+    motto: {
+        required: true,
+        type: "text",
+        name: "motto",
+        label: "Enter your school's motto",
+    },
+
+    website: {
+        required: false,
+        type: "text",
+        name: "website",
+        label: "school's website",
+    },
+
+    email: {
+        required: false,
+        type: "email",
+        name: "email",
+        label: "school's official email",
+    },
+
+    address: {
+        required: true,
+        type: "long-text",
+        name: "address",
+        label: "School Address",
+        placeholder: "Enter school address",
+    },
+
+
+    town: {
+        required: true,
+        type: "text",
+        name: "town",
+        label: "Enter school's town",
+    },
+
+    city: {
+        required: true,
+        type: "text",
+        name: "city",
+        label: "Enter school's city",
+    },
+
+
+    country: {
+        required: true,
+        type: "text",
+        name: "country",
+        label: "Enter school's country",
+    },
+
+
+    zipcode: {
+        required: false,
+        type: "text",
+        name: "zipcode",
+        label: "school's zipcode",
+    },
+
+
+    contact: {
+        required: true,
+        type: "tel",
+        name: "contacts",
+        label: "school's contact",
+    },
+
+
+
+};
+
+
 export {
     UserLoginFormConfig,
-    UserRegisterFormConfig
+    UserRegisterFormConfig,
+    SchoolRegistrationFormConfig
 }

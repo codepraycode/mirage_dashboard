@@ -7,7 +7,7 @@ import {Loading} from '../widget/Preloaders';
 
 
 // Variables
-import { img_plaholder } from '../constants';
+import { img_placeholder } from '../constants/filepaths';
 
 const SchoolItem = () => {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ const SchoolItem = () => {
         <div className="listings mb-5">
             <ul className="listings__items" onClick={()=>navigate('/school/123')}>
                 <div className="listings__items--item">
-                    <div className="logo" style={{background:`url('${img_plaholder}') center center no-repeat`}}>
+                    <div className="logo" style={{background:`url('${img_placeholder}') center center no-repeat`}}>
                         {/* <img src={school.logo} alt={"img"}/> */}
                     </div>
                     <div>

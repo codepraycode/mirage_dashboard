@@ -90,7 +90,7 @@ const SignUp = ()=> {
 
         CreateAccount(formData, handleRequest);
 
-        setLoading(()=>false);
+        setLoading(()=>true);
     }
     
     return (

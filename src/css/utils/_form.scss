@@ -35,9 +35,9 @@ input {
     display: flex;
     flex-direction: column;
     width: fit-content;
-    margin: 0 auto 10px auto;
+    margin: 30px auto 10px auto;
     label {
-        margin: 10px 0 10px 10px;
+        margin: 0px 0 10px 10px;
     }
 }
 
@@ -86,19 +86,24 @@ input {
 }
 
 .image-group {
-    position: relative;
+    $width: 120px;
+    $height: 120px;
     .preview {
-        height: 100px;
-        width: 100px;
+        position: relative;
         margin: 0 auto;
-        padding: 5px;
-        border-radius: 50%;
-        overflow: hidden;
+        width: $width;
+        height: $height;
         background: transparent;
-        border: 3px solid $accent;
-        img {
-            width: 100%;
-            height: auto;
+        .image {
+            overflow: hidden;
+            border: 3px solid $primary-light;
+            border-radius: 50%;
+            padding: 5px;
+            z-index: 0;
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
     }
     span {
@@ -114,7 +119,7 @@ input {
         border-radius: 50%;
         font-size: 15px;
         bottom: 0px;
-        right: 110px;
+        right: 0px;
         cursor: pointer;
         &:hover {
             background: $primary;

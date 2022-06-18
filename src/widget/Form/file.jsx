@@ -1,14 +1,17 @@
 import React from 'react'
 
-const ImageUpload = ()=>{
+const ImageUpload = ({placeholder})=>{
     return (
         <div className="image-group">
             <div className="preview">
-                <img src="/asset/img/avatar.svg" alt="Upload"/>
+                <div className='image'>
+                    <img src={placeholder} alt="Upload"/>
+                </div>
+                <span>
+                    <i className="fa fa-pencil" aria-hidden="true"></i>
+                </span>
             </div>
-            <span>
-                <i className="fa fa-pencil" aria-hidden="true"></i>
-            </span>
+            
             <input type="file" accept='image/*'/>
         </div>
     )
@@ -24,11 +27,11 @@ const File = ()=>{
     )
 }
 
-const FileUpload = ({type}) => {
+const FileUpload = ({type, placeholder}) => {
     let template;
 
     if(type === 'image'){
-        template = <ImageUpload/>;
+        template = <ImageUpload placeholder={placeholder}/>;
     }
     else{
         template = <File/>

@@ -1,6 +1,6 @@
 import React from 'react'
 // Variables
-import { avatar_placeholder } from '../constants';
+import { avatar_placeholder } from '../constants/filepaths';
 
 function Header() {
 
