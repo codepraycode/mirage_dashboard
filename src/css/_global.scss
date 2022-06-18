@@ -123,6 +123,11 @@ ul {
 .lead {
     font-size: 15px;
     font-weight: bold;
+    &-lg {
+        font-size: 23px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
 }
 
 // .text .text-grey {

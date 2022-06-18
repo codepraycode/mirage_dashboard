@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Card = ({children, loading}) => {
-
+const Card = ({children, loading, variant}) => {
+  let cardT = variant || '';
+  
   return (
-    <div className="card">
+    <div className={`card ${cardT}`}>
       {
         loading ? 
         

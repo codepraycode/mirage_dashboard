@@ -22,6 +22,10 @@
         right: 10px;
         top: 5px;
     }
+    // Variants
+    &.primary {
+        border-top: 5px solid $primary;
+    }
 }
 
 

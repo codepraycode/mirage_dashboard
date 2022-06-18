@@ -69,9 +69,9 @@ const CreateSchool = () => {
 
     return (
         <div className="new_school">
-            <Card loading={loading}>
+            <Card loading={loading} variant="primary">
 
-                <p className="text-center lead">
+                <p className="text-center lead-lg">
                     Create new school
                 </p>
                     
