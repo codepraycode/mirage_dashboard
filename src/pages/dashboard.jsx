@@ -20,7 +20,7 @@ const Dashboard = ()=>{
                 </div>
                 
                 <div className="right_crumb">
-                    <Link to='#' className="btn btn-primary btn-primary-outline">
+                    <Link to='/school/new' className="btn btn-primary btn-primary-outline">
                         New School
                     </Link>
 
