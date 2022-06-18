@@ -16,6 +16,7 @@
             margin: 10px auto;
             text-align: center;
             color: $white;
+            font-size: 50px;
         }
         &--content {
             width: max-content;
@@ -47,6 +48,13 @@
         }
         .btn {
             line-height: 22px;
+            padding: 15px 20px;
+        }
+        input {
+            line-height: 20px;
+            padding: 15px 10px 15px 25px;
+            width: 300px;
+            max-width: 80%;
         }
     }
 }
