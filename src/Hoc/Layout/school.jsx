@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 
 // COMPONENTS
 import Header from '../../Components/header';
@@ -15,27 +15,33 @@ import BreadCrumb from '../../widget/breadcrumb';
 
 function TabNav() {
     let {id} = useParams();
+    const location = useLocation();
     // console.log(key);
 
+    // console.log(location);
+    let {hash} = location;
+
+    // console.log(hash,hash === "overview")
+
     return (
-        <div className="nav-panel">
+        <div className="tabnav">
             <ul className="">
                 <li>
-                    <NavLink end to={`/school/${id}/#overview`}>
+                    <Link to={`/school/${id}/#overview`} className={`${hash === "#overview" || hash === '' ? "active":''}`}>
                         Overview
-                    </NavLink>
+                    </Link>
                 </li>
 
                 <li>
-                    <NavLink end to={`/school/${id}/users`}>
+                    <Link to={`/school/${id}/#users`} className={`${hash === "#users" ? "active":''}`}>
                         Users
-                    </NavLink>
+                    </Link>
                 </li>
 
                 <li>
-                    <NavLink end to={`/school/${id}/settings`}>
+                    <Link to={`/school/${id}/#settings`} className={`${hash === "#settings" ? "active":''}`}>
                         Settings
-                    </NavLink>
+                    </Link>
                 </li>
             </ul>
         </div>
@@ -57,7 +63,7 @@ const SchoolLayout = () => {
                         <span>
                             Approved
                         </span>
-                        {/* <i className="fas fa-star"></i> */}
+                        <i className="fas fa-star"></i>
                         
                     </div>
                 </BreadCrumb>

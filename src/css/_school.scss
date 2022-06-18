@@ -1,5 +1,6 @@
 // All Styles Pertaining to School Page
 @import './constants';
+@import './mixins/animations';
 .school_page {
     .breadcrumb {
         padding: 23px 50px;
@@ -9,6 +10,9 @@
         }
         .school_status {
             font-weight: bold;
+            i {
+                display: none;
+            }
             &.active {
                 color: $green;
             }
@@ -20,12 +24,54 @@
             }
         }
     }
+    .tabnav {
+        padding: 0 70px;
+        border-bottom: 2px solid $light-gray;
+        ul {
+            display: flex;
+            li {
+                text-align: center;
+                padding: 20px;
+                position: relative;
+                cursor: pointer;
+                a {
+                    &.active::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 2px;
+                        background: $primary-light;
+                        width: 100%;
+                        @include fadeAnimation;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width:760px) {
     .school_page {
         .breadcrumb {
             padding: 20px 10px;
+            .school_status {
+                span {
+                    display: none;
+                }
+                i {
+                    display: block;
+                    font-size: 23px;
+                }
+            }
+        }
+        .tabnav {
+            padding: 0;
+            ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
 }
