@@ -101,22 +101,36 @@ const SchoolRegistrationFormConfig = {
         required: true,
         type: "text",
         name: "motto",
-        label: "Enter your school's motto",
+        label: "School motto",
+        placeholder: "Enter your school's motto",
     },
+
+    email: {
+        required: true,
+        type: "email",
+        name: "email",
+        label: "School email",
+        placeholder: "Enter school's official email",
+    },
+
+    contact: {
+        required: true,
+        type: "tel",
+        name: "contacts",
+        label: "School contact",
+        placeholder: "Enter school's reachable contact"
+    },
+
 
     website: {
         required: false,
         type: "text",
         name: "website",
-        label: "school's website",
+        label: "School website",
+        placeholder: "Enter school's official website",
     },
 
-    email: {
-        required: false,
-        type: "email",
-        name: "email",
-        label: "school's official email",
-    },
+
 
     address: {
         required: true,
@@ -131,14 +145,16 @@ const SchoolRegistrationFormConfig = {
         required: true,
         type: "text",
         name: "town",
-        label: "Enter school's town",
+        label: "School town",
+        placeholder: "Enter school's town",
     },
 
     city: {
         required: true,
         type: "text",
         name: "city",
-        label: "Enter school's city",
+        label: "School city",
+        placeholder: "Enter school's city",
     },
 
 
@@ -146,7 +162,8 @@ const SchoolRegistrationFormConfig = {
         required: true,
         type: "text",
         name: "country",
-        label: "Enter school's country",
+        label: "School country",
+        placeholder: "Enter school's country",
     },
 
 
@@ -154,16 +171,10 @@ const SchoolRegistrationFormConfig = {
         required: false,
         type: "text",
         name: "zipcode",
-        label: "school's zipcode",
+        label: "School zipcode",
+        placeholder: "Enter school's zipcode",
     },
 
-
-    contact: {
-        required: true,
-        type: "tel",
-        name: "contacts",
-        label: "school's contact",
-    },
 
 
 

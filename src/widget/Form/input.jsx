@@ -77,7 +77,7 @@ const Input = ({label, name,type,required, placeholder, disable,updateForm,getIs
 
     return (
         <div className={`label-group ${anyIssue ? 'error':''}`}>
-            <label className="required">{label || name}</label>
+            <label className={required ? 'required':''}>{label || name}</label>
             <input
                 type={type}
                 placeholder={placeholder||label}
