@@ -40,17 +40,17 @@ a {
     box-shadow: rgb(121, 88, 159, 0.6) 0px 4px 12px !important;
 }
 
-.bg {
-    &-default {
-        background: $gray;
-    }
-    &-white {
-        height: 100%;
-        background: $white;
-    }
-    &-primary {
-        background-color: $primary;
-    }
+.bg-default {
+    background: $light-gray;
+}
+
+.bg-white {
+    height: 100%;
+    background: $white;
+}
+
+.bg-primary {
+    background-color: $primary;
 }
 
 
