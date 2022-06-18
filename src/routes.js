@@ -10,7 +10,7 @@ import NavLayout from './Hoc/Layout/navLayout';
 import Page404 from './Components/Errors/404';
 import CircleLoader from './widget/preloader/circle';
 
-const Overview = React.lazy(() => import('./Components/Overview/overview'));
+// const Overview = React.lazy(() => import('./Components/Overview/overview'));
 
 const Staff = React.lazy(() => import('./Components/Staffs/staff'));
 const Settings = React.lazy(() => import('./Components/settings/settings'));
@@ -22,6 +22,7 @@ const NewSchool = React.lazy(() => import('./Components/Dashboard/new_school'));
 // Lazy Loaded components
 const Auth = React.lazy(()=>import('./pages/auth'));
 const Dashboard = React.lazy(()=>import('./pages/dashboard'));
+const Overview = React.lazy(()=>import('./pages/school'));
 
 const AppRoutes = () => {
     return (
@@ -39,24 +40,30 @@ const AppRoutes = () => {
                 </Suspense>
             }/>
 
+            
 
             <Route path="/" exact element={<Layout2/>}>
+                
                 <Route path="" index element={
                     <Suspense fallback={<CircleLoader/>}>
                         <Dashboard/>
                     </Suspense>}
                 />
+
+                <Route path="/school" exact element={<SchoolLayout/>}>
+                    
+                    <Route path=":id" index element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <Overview/>
+                        </Suspense>}
+                    />
+                    
+                </Route>
             </Route>
 
 
             
-            <Route path="/school" exact element={<SchoolLayout/>}>
-                <Route path=":id" index element={
-                    <Suspense fallback={<CircleLoader/>}>
-                        <Dashboard/>
-                    </Suspense>}
-                />
-            </Route>
+            
 
 
             
@@ -80,7 +87,7 @@ const AppRoutes = () => {
                     </Layout>
                 </Suspense>
             }/>
-            <Route path="/school/:key" element={
+            {/* <Route path="/school/:key" element={
                 <Suspense fallback={<CircleLoader/>}>
                     <Layout>
                         <NavLayout>
@@ -88,7 +95,7 @@ const AppRoutes = () => {
                         </NavLayout>
                     </Layout>
                 </Suspense>
-            }/>
+            }/> */}
 
             <Route path="/school/:key/staffs" element={
                 <Suspense fallback={<CircleLoader/>}>

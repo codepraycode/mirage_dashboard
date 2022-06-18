@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useParams, useLocation, Outlet } from 'react-router-dom';
 
 // COMPONENTS
 import Header from '../../Components/header';
@@ -52,28 +52,28 @@ const SchoolLayout = () => {
 
   return (
     <>
-        <Header/>
-            <main className='school_page'>
-                <BreadCrumb>
-                    <div className="left_crumb">
-                        <span className='school_name'> A School Name</span>
-                    </div>
+        
+        <div className='school_page'>
+            <BreadCrumb>
+                <div className="left_crumb">
+                    <span className='school_name'> A School Name</span>
+                </div>
 
-                    <div className="right_crumb school_status active">
-                        <span>
-                            Approved
-                        </span>
-                        <i className="fas fa-star"></i>
-                        
-                    </div>
-                </BreadCrumb>
+                <div className="right_crumb school_status active">
+                    <span>
+                        Approved
+                    </span>
+                    <i className="fas fa-star"></i>
+                    
+                </div>
+            </BreadCrumb>
 
 
-                <TabNav/>
+            <TabNav/>
 
-                <div>School</div>
-            </main>
-        <Footer/>
+            <Outlet/>
+        </div>
+        
     </>
   )
 }
