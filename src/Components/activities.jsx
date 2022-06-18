@@ -3,9 +3,9 @@ import React from 'react';
 
 const NoActivity = ()=>{
     return(
-        <div className="no-activity text-center">
+        <div className="no-activity text-center text-muted">
             <i className="fad fa-clipboard-list"></i>
-            <p className="text-muted">
+            <p>
             No Activity Records
             </p>
         </div>

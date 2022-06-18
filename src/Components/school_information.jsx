@@ -5,7 +5,7 @@ import Card from '../widget/card';
 const SchoolInformation = () => {
     const state = {
         name:"A Sample School",
-        about:"A Sample school for test while developing",
+        about:"A Sample school for test while...",
         contacts: "+234 800000",
         created:"YYYY-MM-DD"
     }
