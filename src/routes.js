@@ -6,7 +6,7 @@ import Layout from './Hoc/Layout/layout';
 import SchoolLayout from './Hoc/Layout/school';
 
 import Page404 from './Components/Errors/404';
-import CircleLoader from './widget/preloader/circle';
+import {CircleLoader} from './widget/Preloaders';
 
 const NewSchool = React.lazy(() => import('./Components/Dashboard/new_school'));
 
