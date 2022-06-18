@@ -218,14 +218,22 @@ footer {
             // background: $light-gray;
             background: $light-gray2;
         }
-        &:last-of-type {
-            margin-bottom: 50px;
-        }
         &__items {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 10px 50px 10px 20px;
+            &--sm {
+                padding: 10px;
+                font-size: 15px;
+                p,
+                .lead {
+                    margin: 0;
+                }
+                .lead {
+                    font-weight: bold;
+                }
+            }
             b {
                 font-weight: bold;
                 line-height: 10px;

@@ -10,7 +10,7 @@ const SchoolItem = () => {
 
 
     return (
-        <div className="listings">
+        <div className="listings mb-5">
             <ul className="listings__items" onClick={()=>navigate('/school/123')}>
                 <div className="listings__items--item">
                     <div className="logo" style={{background:`url('/asset/img/logos/placeholder.svg') center center no-repeat`}}>

@@ -1,16 +1,32 @@
 @import '../constants';
 @mixin card {
-    background: $gray;
+    background: $white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px 10px;
     position: relative;
     .card-header {
         text-align: left;
         padding-left: 10px;
+        margin: 0;
+        font-size: 20px;
     }
-    .card-body {
-        .listings {
+    // .card-body {}
+}
+
+.card {
+    @include card;
+    position: relative;
+    .loading_indicator {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
+}
+
+
+/* 
+.listings {
             transition: all 0.2s ease-in;
             cursor: default;
             &:hover {
@@ -71,15 +87,4 @@
                 }
             }
         }
-    }
-}
-
-.card {
-    @include card;
-    position: relative;
-    .loading_indicator {
-        position: absolute;
-        right: 10px;
-        top: 5px;
-    }
-}
+ */
