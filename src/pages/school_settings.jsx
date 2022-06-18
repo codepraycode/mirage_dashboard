@@ -9,7 +9,7 @@ const SchoolSettings = () => {
     <>
 
     <SchoolInfo/>
-
+    <hr/>
     <div className="mb-10">
        <SoftwareSettings/>
        </div>
