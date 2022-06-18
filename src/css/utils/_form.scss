@@ -35,6 +35,23 @@ input {
     }
 }
 
+.editable_content {
+    position: relative;
+    width: 300px;
+    margin: 0;
+    .cta {
+        position: absolute;
+        right: -180px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        button {
+            font-size: 12px;
+        }
+    }
+}
+
 .icon-group {
     position: relative;
     color: $gray;
@@ -137,5 +154,15 @@ form {
     padding: 5px 50px 5px 5px;
     input {
         justify-self: start;
+    }
+}
+
+@media (max-width:760px) {
+    .editable_content {
+        .cta {
+            position: static;
+            margin-top: 10px;
+            justify-content: center;
+        }
     }
 }

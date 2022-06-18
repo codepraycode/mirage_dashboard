@@ -283,20 +283,22 @@ footer {
 }
 
 .panel {
-    padding: 15px;
-    border-width: 1px 0;
-    border-style: solid;
-    border-color: #efefef;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    .panel-description {
-        font-weight: 500;
-        font-size: 25px;
-        width: 20%;
+    &_header {
+        font-weight: bold;
+        font-size: 18px;
     }
-    .panel-content {
-        width: 50%;
+    .panel_content {
+        // 
+        &--item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 100px;
+            margin: 15px 0;
+            p {
+                margin: 0;
+            }
+        }
     }
 }
 
@@ -432,6 +434,21 @@ footer {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+    .panel {
+        .panel_content {
+            // 
+            &--item {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                flex-direction: column;
+                .lead {
+                    align-self: start;
+                    margin-left: 20px;
                 }
             }
         }
