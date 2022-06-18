@@ -1,9 +1,20 @@
 import React from 'react'
 
+// COMPONENTS
+import { SchoolInfo,SoftwareSettings } from '../Components/settings';
+
 // Main Page for School (with school id)
 const SchoolSettings = () => {
   return (
-    <div>School Settings</div>
+    <>
+
+    <SchoolInfo/>
+
+    <div className="mb-10">
+       <SoftwareSettings/>
+       </div>
+
+    </>
   )
 }
 

@@ -66,7 +66,10 @@ const SchoolLayout = () => {
 
             <TabNav/>
 
-            <Outlet/>
+            <div className="container">
+                <Outlet/>
+            </div>
+            
         </div>
         
     </>

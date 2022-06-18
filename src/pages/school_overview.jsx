@@ -9,7 +9,7 @@ import SchoolInformation from '../Components/school_information';
 const SchoolOverView = () => {
   return (
     <>
-      <div className="container">
+      
         <div className="row">
           
           <div className="col">
@@ -31,7 +31,7 @@ const SchoolOverView = () => {
             <Activities/>
           </div>
         </div>
-      </div>
+      
     </>
   )
 }
