@@ -12,9 +12,6 @@ const SchoolsUrl = `${Baseurl}/school`;
 
 const TokenRefreshUrl = `${Baseurl}/account/token/refresh`;
 
-const placeholderLogo = '/asset/img/logos/placeholder.svg';
-const placeholderDP = '/asset/img/avatar.svg';
-
 const SetCookie = (data) => {
     Object.keys(data).forEach((item) => {
         localStorage.setItem(item, data[item])
@@ -982,8 +979,6 @@ module.exports = {
     CreateAccountUrl,
     SchoolsUrl,
     TokenRefreshUrl,
-    placeholderLogo,
-    placeholderDP,
     SetCookie,
     CreateAccount,
     AccountLogin

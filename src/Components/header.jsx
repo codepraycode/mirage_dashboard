@@ -1,6 +1,9 @@
 import React from 'react'
+// Variables
+import { avatar_placeholder } from '../constants';
 
 function Header() {
+
     return (
         <header>
             <nav className="navbar sticky">
@@ -23,7 +26,7 @@ function Header() {
 
                 <span className="avatar__container">
                     <span>codepraycode</span>
-                    <div className="user__avatar">
+                    <div className="user__avatar" style={{backgroundImage:`url('${avatar_placeholder}')`}}>
                         {/* <img src="/asset/img/avatar.svg" alt="avatar"/> */}
                     </div>
 
