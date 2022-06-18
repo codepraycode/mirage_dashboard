@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 // Components
-import Schools from '../Components/Schools';
+import Schools from '../Components/schools';
 
 // Widgets
 import BreadCrumb from '../widget/breadcrumb';

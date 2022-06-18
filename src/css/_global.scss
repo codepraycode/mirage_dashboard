@@ -79,29 +79,33 @@ ul {
 
 /*----------------------------*/
 
-.text {
-    &-muted {
-        color: $gray;
-    }
-    &-success {
-        color: $green;
-    }
-    &-primary {
-        color: $primary;
-    }
-    &-danger {
-        color: $red;
-    }
-    // POSITIONS
-    &-center {
-        text-align: center;
-    }
-    &-right {
-        text-align: right;
-    }
-    &-left {
-        text-align: left;
-    }
+.text-muted {
+    color: $gray;
+}
+
+.text-success {
+    color: $green;
+}
+
+.text-primary {
+    color: $primary;
+}
+
+.text-danger {
+    color: $red;
+}
+
+// POSITIONS
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
 }
 
 .float-right {

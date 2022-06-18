@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useParams, Outlet } from 'react-router-dom';
+import { NavLink, useParams, useLocation, Outlet } from 'react-router-dom';
 
 // Widgets
 import BreadCrumb from '../../widget/breadcrumb';
@@ -11,13 +11,18 @@ import BreadCrumb from '../../widget/breadcrumb';
 
 function TabNav() {
     let {id} = useParams();
-    
+    const location = useLocation();
+    // console.log(key);
+
+    let {pathname} = location;
+
+    // console.log(hash,hash === "overview")
 
     return (
         <div className="tabnav">
             <ul className="">
                 <li>
-                    <NavLink to={`/school/${id}/overview`}>
+                    <NavLink to={`/school/${id}/overview`} className={`${pathname === `/school/${id}` ? 'active':''}`}>
                         Overview
                     </NavLink>
                 </li>

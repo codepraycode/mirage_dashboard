@@ -1,6 +1,9 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Moment from 'react-moment';
 import { useNavigate } from 'react-router-dom';
+
+// Widgets
+import {Loading} from '../widget/Preloaders';
 
 const SchoolItem = () => {
     const navigate = useNavigate();
@@ -50,4 +53,41 @@ const SchoolItem = () => {
     )
 }
 
-export default SchoolItem
+const Schools = ()=>{
+    // eslint-disable-next-line
+    const [schools, setSchools] = useState([1]);
+    // eslint-disable-next-line
+    const [loading, setLoading] = useState(false);
+
+
+    let template;
+
+    if(loading){
+        template = <Loading/>;
+    }else if(schools.length === 0){
+        template = (
+            <div className="text-center text-muted">
+                <p>No school Record</p>
+            </div>
+        )
+    }
+    else{
+        template = (
+            <>
+                <SchoolItem/>
+                
+            </>
+        )
+    }
+
+
+
+    return (
+        <div className="listings__container">
+            {template}
+        </div>
+    )
+}
+
+
+export default Schools;

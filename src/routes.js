@@ -53,20 +53,24 @@ const AppRoutes = () => {
                 />
 
                 <Route path="/school/:id" exact element={<SchoolLayout/>}>
-                    
-                    <Route path="overview" index element={
+                    <Route path="" index element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <SchoolOverview/>
+                        </Suspense>}
+                    />
+                    <Route path="overview" element={
                         <Suspense fallback={<CircleLoader/>}>
                             <SchoolOverview/>
                         </Suspense>}
                     />
 
-                    <Route path="users" index element={
+                    <Route path="users" element={
                         <Suspense fallback={<CircleLoader/>}>
                             <SchoolUsers/>
                         </Suspense>}
                     />
 
-                    <Route path="settings" index element={
+                    <Route path="settings" element={
                         <Suspense fallback={<CircleLoader/>}>
                             <SchoolSettings/>
                         </Suspense>}
