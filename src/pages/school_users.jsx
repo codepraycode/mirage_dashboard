@@ -1,10 +1,10 @@
 import React from 'react'
 
 // Main Page for School (with school id)
-const School = () => {
+const SchoolUsers = () => {
   return (
-    <div>School Page with Id: </div>
+    <div>School Users</div>
   )
 }
 
-export default School
+export default SchoolUsers;

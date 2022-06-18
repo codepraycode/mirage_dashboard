@@ -22,7 +22,9 @@ const NewSchool = React.lazy(() => import('./Components/Dashboard/new_school'));
 // Lazy Loaded components
 const Auth = React.lazy(()=>import('./pages/auth'));
 const Dashboard = React.lazy(()=>import('./pages/dashboard'));
-const Overview = React.lazy(()=>import('./pages/school'));
+const SchoolOverview = React.lazy(()=>import('./pages/school_overview'));
+const SchoolUsers = React.lazy(()=>import('./pages/school_users'));
+const SchoolSettings = React.lazy(()=>import('./pages/school_settings'));
 
 const AppRoutes = () => {
     return (
@@ -50,14 +52,26 @@ const AppRoutes = () => {
                     </Suspense>}
                 />
 
-                <Route path="/school" exact element={<SchoolLayout/>}>
+                <Route path="/school/:id" exact element={<SchoolLayout/>}>
                     
-                    <Route path=":id" index element={
+                    <Route path="overview" index element={
                         <Suspense fallback={<CircleLoader/>}>
-                            <Overview/>
+                            <SchoolOverview/>
                         </Suspense>}
                     />
-                    
+
+                    <Route path="users" index element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <SchoolUsers/>
+                        </Suspense>}
+                    />
+
+                    <Route path="settings" index element={
+                        <Suspense fallback={<CircleLoader/>}>
+                            <SchoolSettings/>
+                        </Suspense>}
+                    />
+
                 </Route>
             </Route>
 

@@ -1,9 +1,5 @@
 import React from 'react'
-import { Link, useParams, useLocation, Outlet } from 'react-router-dom';
-
-// COMPONENTS
-import Header from '../../Components/header';
-import Footer from '../../Components/footer';
+import { NavLink, useParams, Outlet } from 'react-router-dom';
 
 // Widgets
 import BreadCrumb from '../../widget/breadcrumb';
@@ -15,33 +11,27 @@ import BreadCrumb from '../../widget/breadcrumb';
 
 function TabNav() {
     let {id} = useParams();
-    const location = useLocation();
-    // console.log(key);
-
-    // console.log(location);
-    let {hash} = location;
-
-    // console.log(hash,hash === "overview")
+    
 
     return (
         <div className="tabnav">
             <ul className="">
                 <li>
-                    <Link to={`/school/${id}/#overview`} className={`${hash === "#overview" || hash === '' ? "active":''}`}>
+                    <NavLink to={`/school/${id}/overview`}>
                         Overview
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to={`/school/${id}/#users`} className={`${hash === "#users" ? "active":''}`}>
+                    <NavLink to={`/school/${id}/users`}>
                         Users
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to={`/school/${id}/#settings`} className={`${hash === "#settings" ? "active":''}`}>
+                    <NavLink to={`/school/${id}/settings`}>
                         Settings
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </div>
