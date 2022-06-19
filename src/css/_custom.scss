@@ -108,6 +108,16 @@ footer {
         align-items: center;
         flex-direction: row;
         color: $gray;
+        a:not(.btn) {
+            color: $gray;
+            font-weight: 300;
+            &:hover {
+                color: $primary;
+            }
+            // &.btn:hover {
+            //     color: $white;
+            // }
+        }
         .right {
             ul {
                 display: flex;
