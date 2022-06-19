@@ -19,6 +19,24 @@ import Info from '../../widget/info';
 */
 const Layout = () => {
     // eslint-disable-next-line
+    const [info, setInfo] = useState({
+        type:"warning", //default
+        text:"A Sample warning info",
+        actionText: "call to action",
+        action:()=>{console.log("Performaing something...")},
+        closable:true
+    });
+    // Info Stucture
+    /* 
+        - type: string
+        - text: string
+        - actionText: string
+        - action : ()=>{}
+        - closeable:boolean
+    */
+
+
+    // eslint-disable-next-line
     const [tokens,setTokens] = useState({
         access:'',
         refresh:''
@@ -57,7 +75,7 @@ const Layout = () => {
         <>
             <Header/>
             
-            <Info text="Checking" type="warning" action={()=>{console.log("Verifying email...")}} actionText="click here to verify"/>
+            <Info {...info}/>
 
             <main>
                 <Outlet test="testing props"/>

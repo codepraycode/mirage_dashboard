@@ -7,7 +7,7 @@ import { useState } from 'react'
 // supported types:- warning, success, danger
 // default warning
 
-const Info = ({text, type, action, actionText}) => {
+const Info = ({text, type, action, actionText, closable}) => {
 
 
     const [show,setShow] = useState(text.length > 0);
@@ -18,7 +18,7 @@ const Info = ({text, type, action, actionText}) => {
             
 
                 <p>
-                        You are yet to verify your email            
+                        {text}
                     </p>
                     
                     {
@@ -33,10 +33,13 @@ const Info = ({text, type, action, actionText}) => {
                 
 
 
-
-                <span className="close" onClick={()=>setShow(()=>false)}>
-                    <i className="fa fa-times" aria-hidden="true"></i>
-                </span>
+                {
+                    closable && 
+                
+                    <span className="close" onClick={()=>setShow(()=>false)}>
+                        <i className="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                }
             </div>
         </>
         
