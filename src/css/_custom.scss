@@ -288,6 +288,15 @@ footer {
     }
 }
 
+
+/*-----------------------*/
+
+
+/*      SETTINGS PANEL   */
+
+
+/*-----------------------*/
+
 .panel {
     &_header {
         font-weight: bold;
@@ -305,6 +314,39 @@ footer {
                 margin: 0;
             }
         }
+    }
+}
+
+
+/*------------------*/
+
+
+/*      INFO        */
+
+
+/*------------------*/
+
+.quick_info {
+    background: $orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 40px;
+    position: relative;
+    p {
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        margin-left: 5px;
+        display: block;
+    }
+    .close {
+        position: absolute;
+        right: 20px;
+        // top: 10px;
+        font-size: 18px;
+        cursor: pointer;
     }
 }
 
@@ -464,5 +506,11 @@ footer {
                 }
             }
         }
+    }
+    /*------------------*/
+    /*      INFO        */
+    /*------------------*/
+    .quick_info {
+        flex-direction: column;
     }
 }

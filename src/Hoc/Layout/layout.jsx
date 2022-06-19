@@ -8,6 +8,9 @@ import Footer from '../../Components/footer';
 // cookie
 // import { useCookies } from "react-cookie";
 
+// Widgets
+import Info from '../../widget/info';
+
 /* 
     Wrapped around component, doing the following
     > provding component tokens,
@@ -53,6 +56,7 @@ const Layout = () => {
     return (
         <>
             <Header/>
+            <Info text="Checking"/>
             <main>
                 <Outlet test="testing props"/>
             </main>
