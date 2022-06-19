@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 // Variables
 import { avatar_placeholder } from '../constants/filepaths';
 
 function Header() {
+
+    const [showMenu, setShowMenu] = useState(false)
 
     return (
         <header>
@@ -24,10 +27,27 @@ function Header() {
                 
 
 
-                <span className="avatar__container">
+                <span 
+                    className="avatar__container" 
+                    onClick={()=>{setShowMenu((prev)=>!prev)}}
+                >
                     <span>codepraycode</span>
                     <div className="user__avatar" style={{backgroundImage:`url('${avatar_placeholder}')`}}>
                         {/* <img src="/asset/img/avatar.svg" alt="avatar"/> */}
+                    </div>
+                    <span 
+                        className={`dropdown_icon ${showMenu ? 'open':''}`}
+                        
+                    >
+                        <i className="fa fa-chevron-down" aria-hidden="true"></i>
+                        
+                    </span>
+
+                    <div className={`dropdown_menu ${showMenu ? 'show':''}`}>
+                        <div className="dropdown_menu--item">
+                            <i className="fad fa-sign-out"></i>
+                            <Link to="/signin">Logout</Link>
+                        </div>
                     </div>
 
                 </span>

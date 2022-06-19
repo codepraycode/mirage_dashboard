@@ -1,19 +1,6 @@
 /*---------------------*/
 
 
-/*      DROPDOWN       */
-
-
-/*---------------------*/
-
-.dropdown-menu {
-    display: none;
-}
-
-
-/*---------------------*/
-
-
 /*      NAVBAR       */
 
 
@@ -41,6 +28,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
         .icons {
             display: flex;
             align-items: center;
@@ -62,9 +50,19 @@
         .avatar__container {
             display: flex;
             align-items: center;
+            cursor: pointer;
+            user-select: none;
             span {
                 margin-right: 10px;
                 font-size: 14px;
+                &.dropdown_icon {
+                    margin-right: 0;
+                    margin-left: 5px;
+                    transition: all 0.7s ease;
+                    &.open {
+                        transform: rotate(180deg);
+                    }
+                }
             }
             .user__avatar {
                 // background: url('http://localhost:3000/asset/img/avatar.svg');
@@ -79,6 +77,65 @@
     }
 }
 
+
+/*---------------------*/
+
+
+/*      DROPDOWN       */
+
+
+/*---------------------*/
+
+.dropdown_menu {
+    display: none;
+    position: fixed;
+    background: $white;
+    border: 1px solid $light-gray;
+    border-radius: 4px;
+    right: 15px;
+    top: 58px;
+    z-index: 3;
+    padding: 7px 10px;
+    transition: all 0.7s ease;
+    &.show {
+        display: block;
+    }
+    &--item {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        i {
+            margin-right: 12px;
+        }
+    }
+    // padding: 20px 10px;
+}
+
+// .dropdown {
+//     background: #f3f2f2;
+//     color: #79589f;
+//     padding: 20px 10px;
+//     position: absolute;
+//     border-radius: 5px;
+//     bottom: -45px;
+//     // top: 10px;
+//     right: 5%;
+//     z-index: 9999;
+//     display: none;
+//     .dropdown-item {
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+//         i {
+//             margin-right: 12px;
+//         }
+//     }
+//     &.show {
+//         display: block;
+//     }
+// }
 
 /*---------------------*/
 
@@ -427,7 +484,7 @@ footer {
                 }
             }
             .avatar__container {
-                span {
+                span:not(.dropdown_icon) {
                     display: none;
                 }
                 .user__avatar {
