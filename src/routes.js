@@ -33,23 +33,31 @@ const AppRoutes = () => {
                 </Suspense>
             }/>
 
-            
 
             <Route path="/" exact element={<Layout/>}>
-                
                 <Route path="" index element={
                     <Suspense fallback={<CircleLoader/>}>
                         <Dashboard/>
                     </Suspense>}
                 />
+            </Route>
+            
 
-                <Route path="/school/new" exact element={
+            <Route path="/school" exact element={<Layout/>}>
+                
+                <Route path="" element={
+                    <Suspense fallback={<CircleLoader/>}>
+                        <Page404 />
+                    </Suspense>
+                } />
+
+                <Route path="new" exact element={
                     <Suspense fallback={<CircleLoader/>}>
                         <CreateSchool/>
                     </Suspense>
                 }/>
 
-                <Route path="/school/:id" exact element={<SchoolLayout/>}>
+                <Route path=":id" exact element={<SchoolLayout/>}>
                     <Route path="" index element={
                         <Suspense fallback={<CircleLoader/>}>
                             <SchoolOverview/>
@@ -74,6 +82,8 @@ const AppRoutes = () => {
                     />
 
                 </Route>
+
+
             </Route>
 
 

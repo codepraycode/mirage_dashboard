@@ -65,6 +65,7 @@
     align-items: center;
     justify-content: space-between;
     border: 1px solid $light-gray2;
+    user-select: none;
     p {
         font-size: 15px;
         position: relative;

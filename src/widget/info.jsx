@@ -10,10 +10,7 @@ const Info = ({text}) => {
 
     return (
         <>
-        {
-            show && (
-            
-            <div className='quick_info'>
+            <div className={`quick_info ${!show ? 'hide':''}`}>
             
 
                 <p>
@@ -29,8 +26,6 @@ const Info = ({text}) => {
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </span>
             </div>
-            )
-        }
         </>
         
     )
