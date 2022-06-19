@@ -40,6 +40,14 @@ const UserRegisterFormConfig = {
 
     },
 
+    contact: {
+        required: true,
+        type: "tel",
+        name: "contacts",
+        label: "Phone number",
+        placeholder: "Enter reachable contact"
+    },
+
     email: {
         required: true,
         type: "email",

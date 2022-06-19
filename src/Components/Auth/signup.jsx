@@ -8,6 +8,7 @@ import Card from '../../widget/card';
 
 // Constants and utils
 import { UserRegisterFormConfig } from '../../constants/forms';
+import { avatar_placeholder } from '../../constants/filepaths';
 import {CreateAccount} from '../../utils';
 
 
@@ -108,6 +109,7 @@ const SignUp = ()=> {
                     <div className="col">
                         <FileUpload 
                             {...formConfig.avatar}
+                            placeholder={avatar_placeholder}
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
@@ -131,17 +133,27 @@ const SignUp = ()=> {
                         />
 
                         <Input
-                            {...formConfig.email}
+                            {...formConfig.contact}
                             updateForm = {updateFormData}
                             getIssue = {checkIssue}
                             clearIssue = {clearIssue}
                             disable={loading}
-                        />    
+                        />
+                        
                     </div>
 
 
 
                     <div className="col">
+
+                        <Input
+                            {...formConfig.email}
+                            updateForm = {updateFormData}
+                            getIssue = {checkIssue}
+                            clearIssue = {clearIssue}
+                            disable={loading}
+                        />
+
                         <Input
                             {...formConfig.username}
                             updateForm = {updateFormData}
