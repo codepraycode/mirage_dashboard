@@ -333,8 +333,19 @@ footer {
     justify-content: center;
     padding: 10px 40px;
     position: relative;
+    transition: all 0.5s ease;
     &.hide {
         display: none;
+    }
+    // success
+    &.success {
+        background: $green;
+        color: $white;
+    }
+    // danger
+    &.danger {
+        background: $red;
+        color: $white;
     }
     p {
         margin: 0;
@@ -350,6 +361,7 @@ footer {
         // top: 10px;
         font-size: 18px;
         cursor: pointer;
+        color: $white;
     }
 }
 

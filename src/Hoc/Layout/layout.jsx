@@ -56,7 +56,9 @@ const Layout = () => {
     return (
         <>
             <Header/>
-            <Info text="Checking"/>
+            
+            <Info text="Checking" type="warning" action={()=>{console.log("Verifying email...")}} actionText="click here to verify"/>
+
             <main>
                 <Outlet test="testing props"/>
             </main>

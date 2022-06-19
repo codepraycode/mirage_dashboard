@@ -3,21 +3,33 @@ import { useState } from 'react'
 
 // Component to display information
 // could be collapsable or not
-const Info = ({text}) => {
+
+// supported types:- warning, success, danger
+// default warning
+
+const Info = ({text, type, action, actionText}) => {
 
 
     const [show,setShow] = useState(text.length > 0);
 
     return (
         <>
-            <div className={`quick_info ${!show ? 'hide':''}`}>
+            <div className={`quick_info ${!show ? 'hide':''} ${type || ''}`}>
             
 
                 <p>
                         You are yet to verify your email            
                     </p>
                     
-                    <a href="/">click here to verify</a>
+                    {
+                        action ?
+                        
+                        <a href="/" onClick={(e)=>{e.preventDefault(); action()}}>
+                            {actionText}
+                        </a>
+                        :
+                        null
+                    }
                 
 
 
