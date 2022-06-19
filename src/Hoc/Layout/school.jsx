@@ -1,6 +1,9 @@
 import React from 'react'
 import { NavLink, useParams, useLocation, Outlet } from 'react-router-dom';
 
+// Components
+import { NoSchool } from '../../Components/Errors';
+
 // Widgets
 import BreadCrumb from '../../widget/breadcrumb';
 /* 
@@ -10,19 +13,23 @@ import BreadCrumb from '../../widget/breadcrumb';
 */
 
 function TabNav() {
-    let {id} = useParams();
+    let { id } = useParams();
     const location = useLocation();
     // console.log(key);
 
-    let {pathname} = location;
+    let { pathname } = location;
 
     // console.log(hash,hash === "overview")
 
-    return (
-        <div className="tabnav">
-            <ul className="">
-                <li>
-                    <NavLink to={`/school/${id}/overview`} className={`${pathname === `/school/${id}` ? 'active':''}`}>
+    return ( <
+            div className = "tabnav" >
+            <
+            ul className = "" >
+            <
+            li >
+            <
+            NavLink to = { `/school/${id}/overview` }
+            className = { `${pathname === `/school/${id}` ? 'active':''}`}>
                         Overview
                     </NavLink>
                 </li>
@@ -45,32 +52,41 @@ function TabNav() {
 
 const SchoolLayout = () => {
 
+    // Display error page for no school
+    // if school information could not be fetched
+    const noSchool = false;
+
   return (
     <>
-        
-        <div className='school_page'>
-            <BreadCrumb>
-                <div className="left_crumb">
-                    <span className='school_name'> A School Name</span>
+        {
+            noSchool ?
+            <NoSchool/>
+            :
+            <div className='school_page'>
+                <BreadCrumb>
+                    <div className="left_crumb">
+                        <span className='school_name'> A School Name</span>
+                    </div>
+
+                    <div className="right_crumb school_status active">
+                        <span>
+                            Approved
+                        </span>
+                        <i className="fas fa-star"></i>
+                        
+                    </div>
+                </BreadCrumb>
+
+
+                <TabNav/>
+
+                <div className="container">
+                    <Outlet/>
                 </div>
-
-                <div className="right_crumb school_status active">
-                    <span>
-                        Approved
-                    </span>
-                    <i className="fas fa-star"></i>
-                    
-                </div>
-            </BreadCrumb>
-
-
-            <TabNav/>
-
-            <div className="container">
-                <Outlet/>
-            </div>
             
-        </div>
+            </div>
+        }
+        
         
     </>
   )

@@ -9,6 +9,9 @@ import {Loading} from '../widget/Preloaders';
 // Variables
 import { img_placeholder } from '../constants/filepaths';
 
+
+// Display Schools (at main dashboard)
+
 const SchoolItem = () => {
     const navigate = useNavigate();
 

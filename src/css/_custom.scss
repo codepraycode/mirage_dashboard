@@ -353,6 +353,31 @@ footer {
     }
 }
 
+
+/*------------------------*/
+
+
+/*      ERRORS  PAGES     */
+
+
+/*------------------------*/
+
+.error_splash {
+    // background: red;
+    min-height: 300px;
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h2 {
+        font-size: 25px;
+        margin: 0;
+    }
+    span {
+        margin-top: 8px;
+    }
+}
+
 .no-record {
     display: flex;
     flex-direction: column;

@@ -5,7 +5,7 @@ import {Routes , Route} from 'react-router-dom';
 import Layout from './Hoc/Layout/layout';
 import SchoolLayout from './Hoc/Layout/school';
 
-import Page404 from './Components/Errors/404';
+import {Error404} from './Components/Errors';
 import {CircleLoader} from './widget/Preloaders';
 
 
@@ -47,7 +47,7 @@ const AppRoutes = () => {
                 
                 <Route path="" element={
                     <Suspense fallback={<CircleLoader/>}>
-                        <Page404 />
+                        <Error404 />
                     </Suspense>
                 } />
 
@@ -85,16 +85,11 @@ const AppRoutes = () => {
 
 
             </Route>
-
-
-            
-            
-
             
 
             <Route path="*" element={
                 <Layout>
-                <Page404 />
+                <Error404 />
                 </Layout>
             } />
 
