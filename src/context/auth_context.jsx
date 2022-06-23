@@ -3,6 +3,8 @@ import { useCookies} from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
+import { refreshTokenRequest,loginRequest } from "../constants/requests";
+
 const AuthContext = createContext();
 
 
@@ -38,25 +40,22 @@ export const AuthProvider = ({children})=>{
     // console.log(authTokens.refresh);
 
     const updateToken = async ()=>{
-        console.log("Updating token...")
-        let response = await fetch('http://127.0.0.1:8000/api/token/refresh/',{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify({"refresh":authTokens?.refresh})
-        });
+        
 
-        let data = await response.json();
+        let response = await refreshTokenRequest(authTokens?.refresh);
 
-        if(response.status === 200){
-            setAuthTokens(data);
-            setUser(jwtDecode(data.access))
-            setAuthCookie('authTokens', data);
-        }else{
-            logoutUser()
+        if(!response.error){
+            let {status,data} = response;
+
+            if(status === 200){
+                setAuthTokens(data);
+                setUser(jwtDecode(data.access))
+                setAuthCookie('authTokens', data);
+            }else{
+                logoutUser()
+            }
         }
-
+        
         if(loading){
             setLoading(false);
         }
@@ -65,27 +64,42 @@ export const AuthProvider = ({children})=>{
     
     const loginUser = async(form_data, cb)=>{
 
-        let response = await fetch('http://127.0.0.1:8000/api/token/',{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify(form_data)
-        });
+        let response = await loginRequest(form_data)
 
-        let data = await response.json();
+        console.log(response);
+        
+        if(response.error){
+            cb({
+                message:response.error_message
+            });
+            return
+        }
+
 
         if(response.status === 200){
+            let {data} = response;
+
             setAuthTokens(data);
             setUser(jwtDecode(data.access))
 
             setAuthCookie('authTokens', data);
-            // console.log(data)
-            cb(null);
-        }else{
-            // alert("Something went wrong!");
-            cb("err");
+            cb(null);// no issue
+            return
+
+        }else if(response.statusText === "Unauthorized"){
+            
+            cb({
+                message:"Invalid Username or Password"
+            });
+            return
             // console.log(response)
+        }
+        else{
+            // console.log(response);
+            cb({
+                message:"Unable to Login, Try again"
+            });
+            return
         }
 
         

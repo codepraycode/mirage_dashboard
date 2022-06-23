@@ -104,8 +104,12 @@ const Login = () => {
 
             else{
                setLoading(()=>false);
+               
+               let {message,formIssues} = err;
+
                setIssues((prev)=>{
-                prev.message = "Could Not Login, Try again";
+                prev.message = message;
+                prev.formIssues = formIssues || {}
                 return {...prev};
                });
             }
