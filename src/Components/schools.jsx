@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useContext, useEffect} from 'react';
 import Moment from 'react-moment';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import {Loading} from '../widget/Preloaders';
 
 // Variables
 import { img_placeholder } from '../constants/filepaths';
+import AuthContext from '../context/auth_context';
 
 
 // Display Schools (at main dashboard)
@@ -67,6 +68,28 @@ const Schools = ()=>{
     const [loading, setLoading] = useState(false);
 
 
+    const {token,logoutUser} = useContext(AuthContext);
+
+    const fetchSchools = async ()=>{
+        
+        let response = await fetch('http://127.0.0.1:8000/api/schools/',{
+            method:'GET',
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${String(token)}`
+            }
+        })
+
+        let data = await response.json();
+
+        if (response.status === 200){
+            console.log(data);
+        }else if(response.statusText === "Unauthorized"){
+            logoutUser();
+        }
+        
+    }
+
     let template;
 
     if(loading){
@@ -86,6 +109,12 @@ const Schools = ()=>{
             </>
         )
     }
+
+
+    useEffect(()=>{
+        fetchSchools()
+    // eslint-disable-next-line
+    },[])
 
 
 

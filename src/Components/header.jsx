@@ -7,7 +7,7 @@ import AuthContext from '../context/auth_context';
 function Header() {
 
     const [showMenu, setShowMenu] = useState(false)
-    const {logoutUser} = useContext(AuthContext);
+    const {logoutUser, user} = useContext(AuthContext);
 
     return (
         <header>
@@ -33,7 +33,7 @@ function Header() {
                     className="avatar__container" 
                     onClick={()=>{setShowMenu((prev)=>!prev)}}
                 >
-                    <span>codepraycode</span>
+                    <span>{user?.username}</span>
                     <div className="user__avatar" style={{backgroundImage:`url('${avatar_placeholder}')`}}>
                         {/* <img src="/asset/img/avatar.svg" alt="avatar"/> */}
                     </div>
