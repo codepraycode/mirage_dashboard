@@ -1,15 +1,14 @@
-import React,{useState, useEffect} from 'react'
-import {Outlet} from 'react-router-dom';
+import React,{useState,useEffect, useContext} from 'react'
+import {Outlet, useNavigate} from 'react-router-dom';
 
 // COMPONENTS
 import Header from '../../Components/header';
 import Footer from '../../Components/footer';
 
-// cookie
-// import { useCookies } from "react-cookie";
 
 // Widgets
 import Info from '../../widget/info';
+import AuthContext from '../../context/auth_context';
 
 /* 
     Wrapped around component, doing the following
@@ -35,41 +34,18 @@ const Layout = () => {
         - closeable:boolean
     */
 
+    const navigate = useNavigate();
 
     // eslint-disable-next-line
-    const [tokens,setTokens] = useState({
-        access:'',
-        refresh:''
-    });
-
-    // eslint-disable-next-line
-    const refreshAccessToken = (refresh_token) => {
-        // fetch access tokens
-        console.log(refresh_token);
-    };
-
-    const verifyCookie = ()=>{
-        // Checks if access token is available, or valid
-        // if access token is not valid, use refresh token to renew access token
-        // if either access and refresh token isn't valid or available
-        //      redirect back to authentication sign in
-
-        // if(this.state.tokens.refresh_token === null){
-        //     //  No Token in Cookie
-        //     window.location.href="/login";
-        // }
-
-        return
-    }
-
+    const {user} = useContext(AuthContext);
+    // console.log(user);
 
 
     useEffect(()=>{
-        verifyCookie();
+        if(!user){
+            navigate('/signin');
+        }
     })
-
-
-    
 
     return (
         <>

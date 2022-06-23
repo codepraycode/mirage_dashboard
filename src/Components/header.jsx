@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 // Variables
 import { avatar_placeholder } from '../constants/filepaths';
+import AuthContext from '../context/auth_context';
 
 function Header() {
 
     const [showMenu, setShowMenu] = useState(false)
+    const {logoutUser} = useContext(AuthContext);
 
     return (
         <header>
@@ -46,7 +48,7 @@ function Header() {
                     <div className={`dropdown_menu ${showMenu ? 'show':''}`}>
                         <div className="dropdown_menu--item">
                             <i className="fad fa-sign-out"></i>
-                            <Link to="/signin">Logout</Link>
+                            <Link to="/signin" onClick={(e)=>{e.preventDefault(); logoutUser()}}>Logout</Link>
                         </div>
                     </div>
 
