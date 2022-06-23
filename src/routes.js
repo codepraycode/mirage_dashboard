@@ -33,7 +33,7 @@ const AppRoutes = () => {
                 </Suspense>
             }/>
 
-
+            
             <Route path="/" exact element={<Layout/>}>
                 <Route path="" index element={
                     <Suspense fallback={<CircleLoader/>}>

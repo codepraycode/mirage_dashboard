@@ -4,11 +4,15 @@ import { Login, Register } from '../Components/Auth';
 
 
 
+
 const Auth = () => {
+  
 
-  const location = useLocation();
 
-  let {pathname} = location;
+  
+  const {pathname} = useLocation();
+
+  // let {pathname} = location;
 
   const isSignup = pathname === '/signup';
 

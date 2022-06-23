@@ -1,5 +1,9 @@
-import React,{useState} from 'react'
-import {Link} from 'react-router-dom';
+import React,{useState, useContext} from 'react'
+import {Link, useNavigate} from 'react-router-dom';
+
+// Contexts
+import AuthContext from '../../context/auth_context';
+
 
 // Widgets
 import {Form,Input} from '../../widget/Form';
@@ -9,9 +13,14 @@ import Card from '../../widget/card';
 
 // Constants and utils
 import { UserLoginFormConfig } from '../../constants/forms';
-import {AccountLogin} from '../../utils';
 
 const Login = () => {
+
+    const {loginUser}=useContext(AuthContext);
+
+    const navigate = useNavigate();
+    
+
     const initialIssueState = {
         message:null,// general message,
         formIssues:{
@@ -41,7 +50,6 @@ const Login = () => {
         return issues.formIssues[name]
     }
 
-
     const clearIssue = (name)=>{
         setIssues((prev)=>{
             delete prev.formIssues[name]
@@ -50,31 +58,31 @@ const Login = () => {
         })
     }
 
-    const handleRequest = (auth_data)=>{
-        // expecting error and data object
+    // const handleRequest = (auth_data)=>{
+    //     // expecting error and data object
 
-        setIssues((prev)=>{
-            let formIssues = {}
-            let msg = null
-            if (auth_data.error){
-                msg = auth_data.data.message || "An Error Occured";
-                for (let each of Object.keys(formData)){
-                    if (auth_data.data[each]){
-                        formIssues[each] = "Issue With Your Input Here";
-                    }
-                }
-            }
+    //     setIssues((prev)=>{
+    //         let formIssues = {}
+    //         let msg = null
+    //         if (auth_data.error){
+    //             msg = auth_data.data.message || "An Error Occured";
+    //             for (let each of Object.keys(formData)){
+    //                 if (auth_data.data[each]){
+    //                     formIssues[each] = "Issue With Your Input Here";
+    //                 }
+    //             }
+    //         }
 
-            prev.message = msg;
-            prev.formIssues = formIssues
+    //         prev.message = msg;
+    //         prev.formIssues = formIssues
 
-            console.log(prev);
+    //         console.log(prev);
 
-            return {...prev};
-        })
+    //         return {...prev};
+    //     })
 
-        setLoading(()=>false);
-    }
+    //     setLoading(()=>false);
+    // }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -86,9 +94,25 @@ const Login = () => {
             return initialIssueState
         })
 
-        AccountLogin(formData, handleRequest);
+        // AccountLogin(formData, handleRequest);
+        loginUser(formData,(err=null)=>{
+            // console.log(res);
+            if(!err){
+                navigate('/')
+                return
+            }
 
-        setLoading(()=>false);
+            else{
+               setLoading(()=>false);
+               setIssues((prev)=>{
+                prev.message = "Could Not Login, Try again";
+                return {...prev};
+               });
+            }
+            // setLoading(()=>false);
+        });
+
+        setLoading(()=>true);
     }
 
 
@@ -101,7 +125,7 @@ const Login = () => {
             <Form onSubmit={handleSubmit} err={issues.message}>
                 
                 <Input 
-                    {...formConfig.email}
+                    {...formConfig.username}
                     updateForm = {updateFormData}
                     getIssue = {checkIssue}
                     clearIssue = {clearIssue}

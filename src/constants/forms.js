@@ -1,17 +1,17 @@
 // Form configurations
 
 const UserLoginFormConfig = {
-    email: {
+    username: {
         required: true,
-        type: "email",
-        name: "email",
-        label: "Enter email",
+        type: "text",
+        name: "username",
+        label: "Username",
     },
     password: {
         required: true,
         type: "password",
         name: "password",
-        label: "Enter password",
+        label: "Password",
 
     },
 };
