@@ -30,11 +30,34 @@ export const AuthProvider = ({children})=>{
         return authCookie['authTokens'] || null
     });
 
+    const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
 
-    // console.log(authCookie['authTokens']);
-    // console.log(authTokens);
-    // console.log(user);
+
+    // console.log(authTokens.refresh);
+
+    const updateToken = async ()=>{
+        console.log("Updating token...")
+        let response = await fetch('http://127.0.0.1:8000/api/token/refresh/',{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify({"refresh":authTokens.refresh})
+        });
+
+        let data = await response.json();
+
+        if(response.status === 200){
+            setAuthTokens(data);
+            setUser(jwtDecode(data.access))
+            setAuthCookie('authTokens', data);
+        }else{
+            logoutUser()
+        }
+
+    }
     
     const loginUser = async(form_data, cb)=>{
 
@@ -78,6 +101,21 @@ export const AuthProvider = ({children})=>{
         loginUser,
         logoutUser,
     }
+
+
+
+    useEffect(()=>{
+        let fourMinutes = 1000 * 60 * 4;
+        let interval = setInterval(()=>{
+            if(authTokens){
+                updateToken()
+            }
+        }, fourMinutes)
+
+
+        return ()=> clearInterval(interval);
+    // eslint-disable-next-line
+    },[authTokens,loading])
 
     return(
         <AuthContext.Provider value={contextData}>
