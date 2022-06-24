@@ -286,6 +286,10 @@ footer {
             align-items: center;
             justify-content: space-between;
             padding: 10px 50px 10px 20px;
+            .descrip {
+                max-width: 60%;
+                text-align: end;
+            }
             &--sm {
                 padding: 10px;
                 font-size: 15px;

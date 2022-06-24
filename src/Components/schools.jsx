@@ -14,7 +14,7 @@ import { img_placeholder } from '../constants/filepaths';
 import AuthContext from '../context/auth_context';
 
 // utils
-import { getSchoolRequest } from '../constants/requests';
+import { getSchoolsRequest } from '../constants/requests';
 
 
 // Display Schools (at main dashboard)
@@ -103,9 +103,9 @@ const SchoolItem = (props) => {
 }
 
 const Schools = ()=>{
-    // eslint-disable-next-line
-    const [schools, setSchools] = useState([1]);
-    // eslint-disable-next-line
+    
+    const [schools, setSchools] = useState([]);
+    
     const [loading, setLoading] = useState(true);
 
     const [errorMessage, setErrorMessage] = useState('');
@@ -116,7 +116,7 @@ const Schools = ()=>{
     const fetchSchools = async ()=>{
         
 
-        let response = await getSchoolRequest(token);
+        let response = await getSchoolsRequest(token);
 
         if (response.error){
             setErrorMessage(()=>response.error_message)
@@ -142,28 +142,32 @@ const Schools = ()=>{
         
     }
 
-    let template;
+    const renderTemplate = () => {
+        let template;
 
-    if(loading){
-        template = <Loading/>;
+        if(loading){
+            template = <Loading/>;
 
-    }else if(schools.length === 0){
-        
-        template = (
-            <NoSchool message={errorMessage}/>
-        )
-    }
-    else{
-        template = (
-            <>
-            {
-                schools.map((school,i)=>{
-                    return <SchoolItem {...school}/>
-                })
-            }
-                
-            </>
-        )
+        }else if(schools.length === 0){
+            
+            template = (
+                <NoSchool message={errorMessage}/>
+            )
+        }
+        else{
+            template = (
+                <>
+                {
+                    schools.map((school,i)=>{
+                        return <SchoolItem {...school}/>
+                    })
+                }
+                    
+                </>
+            )
+        }
+
+        return template;
     }
 
 
@@ -176,7 +180,7 @@ const Schools = ()=>{
 
     return (
         <div className="listings__container">
-            {template}
+            {renderTemplate()}
         </div>
     )
 }

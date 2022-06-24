@@ -6,6 +6,7 @@ import { NoSchool } from '../../Components/Errors';
 
 // Widgets
 import BreadCrumb from '../../widget/breadcrumb';
+
 /* 
     Role of this layout includes
     > Fetch the school information and pass it to children
@@ -21,17 +22,17 @@ function TabNav() {
 
     // console.log(hash,hash === "overview")
 
-    return ( <
-            div className = "tabnav" >
-            <
-            ul className = "" >
-            <
-            li >
-            <
-            NavLink to = { `/school/${id}/overview` }
-            className = { `${pathname === `/school/${id}` ? 'active':''}`}>
-                        Overview
+    return ( 
+        <div className="tabnav">
+            <ul>
+                <li>
+                    <NavLink 
+                        to = { `/school/${id}/overview` }
+                        className = { `${pathname === `/school/${id}` ? 'active':''}`}
+                    >
+                            Overview
                     </NavLink>
+
                 </li>
 
                 <li>

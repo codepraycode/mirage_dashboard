@@ -96,7 +96,7 @@ const loginRequest = async (login_data)=>{
 
 }
 
-const getSchoolRequest = async (token)=>{
+const getSchoolsRequest = async (token)=>{
     
     
     let response = {
@@ -142,4 +142,51 @@ const getSchoolRequest = async (token)=>{
 
 }
 
-export {refreshTokenRequest,loginRequest,getSchoolRequest}
+
+const getSchoolRequest = async (id,token)=>{
+    
+    
+    let response = {
+        error:false,
+        error_message:"",
+        data:null,
+        status:'',
+        statusText:''
+    };
+
+    let request_response;
+
+
+    try{
+        request_response = await fetch(`http://127.0.0.1:8000/api/schools/${id}`,{
+                method:"GET",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":`Bearer ${String(token)}`
+                }
+            });
+
+        let data = await request_response.json();        
+        
+        response = {
+            ...response,
+            data,
+            status:request_response.status,
+            statusText:request_response.statusText,
+            
+        }
+    }
+    catch (err){
+
+        response.error = true;
+        response.error_message = "Could not load school information, please make sure you are connected to the internet";
+
+        
+    }
+
+
+    return response;
+
+}
+
+export {refreshTokenRequest,loginRequest,getSchoolsRequest,getSchoolRequest}
