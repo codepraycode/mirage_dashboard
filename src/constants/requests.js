@@ -1,7 +1,8 @@
 // Utility and resuable functions
 
+
 const refreshTokenRequest = async (refresh_token)=>{
-    console.log("Refreshing token...", refresh_token);
+    
     let response = {
         error:false,
         error_message:"",
@@ -48,7 +49,7 @@ const refreshTokenRequest = async (refresh_token)=>{
 
 
 const loginRequest = async (login_data)=>{
-    console.log("Refreshing login...");
+    
     
     let response = {
         error:false,
@@ -72,7 +73,7 @@ const loginRequest = async (login_data)=>{
 
         let data = await request_response.json();
 
-        console.log(request_response);
+        
         response = {
             ...response,
             data,
@@ -94,6 +95,5 @@ const loginRequest = async (login_data)=>{
     return response;
 
 }
-
 
 export {refreshTokenRequest,loginRequest}

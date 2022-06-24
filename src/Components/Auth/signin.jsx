@@ -13,6 +13,8 @@ import Card from '../../widget/card';
 
 // Constants and utils
 import { UserLoginFormConfig } from '../../constants/forms';
+import { filterFormIssues } from '../../constants/utils';
+
 
 const Login = () => {
 
@@ -103,15 +105,18 @@ const Login = () => {
             }
 
             else{
-               setLoading(()=>false);
                
-               let {message,formIssues} = err;
-
+               let {message,data} = err;
+               
+               let formIssues = filterFormIssues(Object.keys(UserLoginFormConfig), data)
+               
                setIssues((prev)=>{
                 prev.message = message;
-                prev.formIssues = formIssues || {}
+                prev.formIssues = formIssues
                 return {...prev};
                });
+
+               setLoading(()=>false);
             }
             // setLoading(()=>false);
         });

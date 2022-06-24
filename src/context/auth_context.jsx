@@ -65,8 +65,6 @@ export const AuthProvider = ({children})=>{
     const loginUser = async(form_data, cb)=>{
 
         let response = await loginRequest(form_data)
-
-        console.log(response);
         
         if(response.error){
             cb({
@@ -76,8 +74,9 @@ export const AuthProvider = ({children})=>{
         }
 
 
+        let {data} = response;
+
         if(response.status === 200){
-            let {data} = response;
 
             setAuthTokens(data);
             setUser(jwtDecode(data.access))
@@ -97,7 +96,8 @@ export const AuthProvider = ({children})=>{
         else{
             // console.log(response);
             cb({
-                message:"Unable to Login, Try again"
+                message:"Unable to Login, Try again",
+                data,
             });
             return
         }
