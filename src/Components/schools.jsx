@@ -13,8 +13,8 @@ import {Loading} from '../widget/Preloaders';
 import { img_placeholder } from '../constants/filepaths';
 import AuthContext from '../context/auth_context';
 
-// utils
-import { getSchoolsRequest } from '../constants/requests';
+// // utils
+// import { getSchoolsRequest } from '../constants/requests';
 
 
 // Display Schools (at main dashboard)
@@ -111,63 +111,50 @@ const Schools = ()=>{
     const [errorMessage, setErrorMessage] = useState('');
 
 
-    const {token,logoutUser} = useContext(AuthContext);
+    const {fetchAllSchools} = useContext(AuthContext);
 
     const fetchSchools = async ()=>{
         
 
-        let response = await getSchoolsRequest(token);
+        let data = await fetchAllSchools();
 
-        if (response.error){
-            setErrorMessage(()=>response.error_message)
-            return
-        }
-
-        let {status,data} = response;
-
-        if (status === 200){
-            console.log(data);
-            
-            if (data.length === 0){
-                setErrorMessage(()=>"You haven't created any school")
-                
-            }
-
-            setSchools(()=>[...data]);
-            setLoading(false)
-
-        }else if(response.statusText === "Unauthorized"){
-            logoutUser();
-        }
+        setSchools(()=>[...data.schools]);
+        setErrorMessage(()=>data.errorMessage)
+        setLoading(false)
         
     }
 
     const renderTemplate = () => {
-        let template;
 
         if(loading){
-            template = <Loading/>;
+            return <Loading/>;
 
-        }else if(schools.length === 0){
+        }
+
+        
+        if(errorMessage === null || errorMessage.length > 0){
             
-            template = (
+            return (
                 <NoSchool message={errorMessage}/>
             )
         }
-        else{
-            template = (
-                <>
-                {
-                    schools.map((school,i)=>{
-                        return <SchoolItem {...school} key={i}/>
-                    })
-                }
-                    
-                </>
-            )
-        }
 
-        return template;
+
+        
+        
+        return (
+            <>
+            {
+                schools.map((school,i)=>{
+                    return <SchoolItem {...school} key={i}/>
+                })
+            }
+                
+            </>
+        )
+        
+
+        
     }
 
 

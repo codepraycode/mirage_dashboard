@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Credentials = () => {
+const Credentials = ({school_key}) => {
+
   return (
     <>
         <p className="mb-1">Credentials</p>
@@ -19,7 +20,7 @@ const Credentials = () => {
                 <p className="w-60 text-right">
               
                   <span >
-                    dslfjkdaflsdkfjl
+                    {school_key || '******************'}
                   </span>
 
                   <span className="mx-2 safe copy-icon" onClick={()=>{}}>

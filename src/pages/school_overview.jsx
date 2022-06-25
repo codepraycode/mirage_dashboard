@@ -12,7 +12,7 @@ import NoSchool from '../Components/Errors/no_school';
 // import {Loading} from '../widget/Preloaders';
 
 // utils
-import { getSchoolRequest } from '../constants/requests';
+// import { getSchoolRequest } from '../constants/requests';
 // import { capitalizeText } from '../constants/utils';
 
 // Variables
@@ -28,47 +28,36 @@ const SchoolOverView = () => {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const {token,logoutUser} = useContext(AuthContext);
+  const {fetchSchool:getSchool} = useContext(AuthContext);
 
-  const fetchSchool = async ()=>{
-        
 
-        let response = await getSchoolRequest(id,token);
 
-        if (response.error){
-            setErrorMessage(()=>response.error_message)
-            return
-        }
+  const fetchSchool = async()=>{
+    let school_response = await getSchool(id);
 
-        let {status,data} = response;
+    // console.log(school);
+    setSchool(()=>{ 
+        return {...school_response.school}
+      }
+    );
 
-        if (status === 200){
-            // console.log(data);
-            
-            if (data.length === 0){
-                setErrorMessage(()=>"You haven't created any school")
-                
-            }
+    setErrorMessage(()=>school_response.errorMessage);
+    setLoading(()=>false);
 
-            setSchool(()=> data);
-
-            setLoading(false)
-
-        }else if(response.statusText === "Unauthorized"){
-            logoutUser();
-        }
-        
   }
 
   useEffect(()=>{
         fetchSchool()
+        // runFetchSchool()
+        
     // eslint-disable-next-line
     },[])
 
   return (
     <>
       {
-        errorMessage !== '' ?
+        errorMessage === null || errorMessage !== '' ?
+
         <NoSchool message={errorMessage}/>
         :
         <div className="row">
@@ -76,7 +65,7 @@ const SchoolOverView = () => {
           <div className="col">
             <div className="mb-3">
 
-              <Credentials/>
+              <Credentials school_key={school?.key}/>
 
             </div>
 
