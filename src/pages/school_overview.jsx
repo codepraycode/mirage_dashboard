@@ -35,6 +35,11 @@ const SchoolOverView = () => {
   const fetchSchool = async()=>{
     let school_response = await getSchool(id);
 
+    // let school_response = {
+    //   school:[],
+    //   errorMessage:"Testing Page"
+    // }
+
     // console.log(school);
     setSchool(()=>{ 
         return {...school_response.school}
