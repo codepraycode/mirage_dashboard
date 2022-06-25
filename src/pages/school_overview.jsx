@@ -1,15 +1,76 @@
-import React from 'react';
+import React,{useState, useContext, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
 // Components
 import Activities from '../Components/activities';
 import Credentials from '../Components/credentials';
 import SchoolInformation from '../Components/school_information';
+import NoSchool from '../Components/Errors/no_school';
+
+
+// Widgets
+// import {Loading} from '../widget/Preloaders';
+
+// utils
+import { getSchoolRequest } from '../constants/requests';
+// import { capitalizeText } from '../constants/utils';
+
+// Variables
+import AuthContext from '../context/auth_context';
+
 
 // Main Page for School (with school id)
 const SchoolOverView = () => {
+
+  const {id} = useParams();
+
+  const [school, setSchool] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const {token,logoutUser} = useContext(AuthContext);
+
+  const fetchSchool = async ()=>{
+        
+
+        let response = await getSchoolRequest(id,token);
+
+        if (response.error){
+            setErrorMessage(()=>response.error_message)
+            return
+        }
+
+        let {status,data} = response;
+
+        if (status === 200){
+            // console.log(data);
+            
+            if (data.length === 0){
+                setErrorMessage(()=>"You haven't created any school")
+                
+            }
+
+            setSchool(()=> data);
+
+            setLoading(false)
+
+        }else if(response.statusText === "Unauthorized"){
+            logoutUser();
+        }
+        
+  }
+
+  useEffect(()=>{
+        fetchSchool()
+    // eslint-disable-next-line
+    },[])
+
   return (
     <>
-      
+      {
+        errorMessage !== '' ?
+        <NoSchool message={errorMessage}/>
+        :
         <div className="row">
           
           <div className="col">
@@ -21,7 +82,7 @@ const SchoolOverView = () => {
 
             <div className="mb-3">
 
-                <SchoolInformation/>
+                <SchoolInformation school_info={school} loading={loading}/>
 
             </div>
 
@@ -31,6 +92,9 @@ const SchoolOverView = () => {
             <Activities/>
           </div>
         </div>
+      }
+      
+        
       
     </>
   )

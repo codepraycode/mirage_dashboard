@@ -159,7 +159,7 @@ const Schools = ()=>{
                 <>
                 {
                     schools.map((school,i)=>{
-                        return <SchoolItem {...school}/>
+                        return <SchoolItem {...school} key={i}/>
                     })
                 }
                     
