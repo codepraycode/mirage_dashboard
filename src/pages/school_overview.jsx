@@ -17,6 +17,7 @@ import NoSchool from '../Components/Errors/no_school';
 
 // Variables
 import AuthContext from '../context/auth_context';
+import SchoolContext from '../context/school_context';
 
 
 // Main Page for School (with school id)
@@ -27,6 +28,11 @@ const SchoolOverView = () => {
   const [school, setSchool] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+
+
+  // const schoolContext = useContext(SchoolContext);
+
+  // schoolContext.fetchAllSchools()
 
   const {fetchSchool:getSchool} = useContext(AuthContext);
 

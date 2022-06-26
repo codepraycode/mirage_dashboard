@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink, useParams, useLocation, Outlet } from 'react-router-dom';
 
 // Components
 import { NoSchool } from '../../Components/Errors';
+import SchoolContext, { SchoolProvider } from '../../context/school_context';
 
 
 // Widgets
 import BreadCrumb from '../../widget/breadcrumb';
+
 
 /* 
     Role of this layout includes
@@ -23,13 +25,15 @@ function TabNav() {
 
     // console.log(hash,hash === "overview")
 
-    return ( 
-        <div className="tabnav">
-            <ul>
-                <li>
-                    <NavLink 
-                        to = { `/school/${id}/overview` }
-                        className = { `${pathname === `/school/${id}` ? 'active':''}`}
+    return ( <
+            div className = "tabnav" >
+            <
+            ul >
+            <
+            li >
+            <
+            NavLink to = { `/school/${id}/overview` }
+            className = { `${pathname === `/school/${id}` ? 'active':''}`}
                     >
                             Overview
                     </NavLink>
@@ -56,41 +60,75 @@ const SchoolLayout = () => {
 
     // Display error page for no school
     // if school information could not be fetched
-    const noSchool = false;
+    // const noSchool = false;
 
   return (
-    <>
-        {
-            noSchool ?
-            <NoSchool/>
-            :
-            <div className='school_page'>
-                <BreadCrumb>
-                    <div className="left_crumb">
-                        <span className='school_name'> A School Name</span>
-                    </div>
+    <SchoolProvider>
+    
+        <SchoolContext.Consumer>
+            {
+                (schoolContext)=>{
+                    
+                    // console.log(schoolContext)
 
-                    <div className="right_crumb school_status active">
-                        <span>
-                            Approved
-                        </span>
-                        <i className="fas fa-star"></i>
+                    return (
+                        <div className='school_page'>
+                            <BreadCrumb>
+                                <div className="left_crumb">
+                                    <span className='school_name'> A School Name</span>
+                                </div>
+
+                                <div className="right_crumb school_status active">
+                                    <span>
+                                        Approved
+                                    </span>
+                                    <i className="fas fa-star"></i>
+                                    
+                                </div>
+                            </BreadCrumb>
+
+
+                            <TabNav/>
+
+                            <div className="container">
+                                <Outlet/>
+                            </div>
                         
-                    </div>
-                </BreadCrumb>
+                        </div>
+                    )
+                }
+                // noSchool ?
+                // <NoSchool/>
+                // :
+                // <div className='school_page'>
+                //     <BreadCrumb>
+                //         <div className="left_crumb">
+                //             <span className='school_name'> A School Name</span>
+                //         </div>
+
+                //         <div className="right_crumb school_status active">
+                //             <span>
+                //                 Approved
+                //             </span>
+                //             <i className="fas fa-star"></i>
+                            
+                //         </div>
+                //     </BreadCrumb>
 
 
-                <TabNav/>
+                //     <TabNav/>
 
-                <div className="container">
-                    <Outlet/>
-                </div>
+                //     <div className="container">
+                //         <Outlet/>
+                //     </div>
+                
+                // </div>
+            }
             
-            </div>
-        }
-        
-        
-    </>
+            
+        </SchoolContext.Consumer>
+
+    </SchoolProvider>
   )
 }
 
