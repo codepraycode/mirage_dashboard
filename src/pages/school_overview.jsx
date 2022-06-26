@@ -25,21 +25,25 @@ const SchoolOverView = () => {
 
   const {id} = useParams();
 
-  const [school, setSchool] = useState(null);
+  // const [school, setSchool] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState('');
+  // const [errorMessage, setErrorMessage] = useState('');
 
 
   // const schoolContext = useContext(SchoolContext);
 
   // schoolContext.fetchAllSchools()
 
-  const {fetchSchool:getSchool} = useContext(AuthContext);
+  // const {fetchSchool:getSchool} = useContext(AuthContext);
+
+  const {currentSchool:school,errorMessage,loadSchool} = useContext(SchoolContext);
+
+  // console.log(school_cont);
 
 
 
   const fetchSchool = async()=>{
-    let school_response = await getSchool(id);
+    let school_response = await loadSchool(id);
 
     // let school_response = {
     //   school:[],
@@ -47,12 +51,12 @@ const SchoolOverView = () => {
     // }
 
     // console.log(school);
-    setSchool(()=>{ 
-        return {...school_response.school}
-      }
-    );
+    // setSchool(()=>{ 
+    //     return {...school_response.school}
+    //   }
+    // );
 
-    setErrorMessage(()=>school_response.errorMessage);
+    // setErrorMessage(()=>school_response.errorMessage);
     setLoading(()=>false);
 
   }
@@ -64,10 +68,13 @@ const SchoolOverView = () => {
     // eslint-disable-next-line
     },[])
 
+
+
+
   return (
     <>
       {
-        errorMessage === null || errorMessage !== '' ?
+        errorMessage !== null || errorMessage?.length > 0 ?
 
         <NoSchool message={errorMessage}/>
         :

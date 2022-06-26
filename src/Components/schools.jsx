@@ -8,8 +8,8 @@ import NoSchool from './Errors/no_school';
 // Widgets
 import {Loading} from '../widget/Preloaders';
 
-// Hight Order component
-import SchoolContextWrapper from '../Hoc/wrappers/school_context_wrapper';
+// // Hight Order component
+// import SchoolContextWrapper from '../Hoc/wrappers/school_context_wrapper';
 
 // Variables
 import { img_placeholder } from '../constants/filepaths';
@@ -155,7 +155,6 @@ const Schools = ()=>{
     },[])
 
 
-
     return (
         <div className="listings__container">
             {renderTemplate()}
@@ -164,4 +163,4 @@ const Schools = ()=>{
 }
 
 
-export default SchoolContextWrapper(Schools);
+export default Schools;

@@ -1,5 +1,5 @@
-import React,{useContext, useEffect} from 'react';
-import SchoolContext from '../context/school_context';
+import React from 'react';
+// import SchoolContext from '../context/school_context';
 
 
 

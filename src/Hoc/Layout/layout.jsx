@@ -9,6 +9,7 @@ import Footer from '../../Components/footer';
 // Widgets
 import Info from '../../widget/info';
 import AuthContext from '../../context/auth_context';
+import SchoolContextWrapper from '../wrappers/school_context_wrapper';
 
 /* 
     Wrapped around component, doing the following
@@ -54,11 +55,11 @@ const Layout = () => {
             <Info {...info}/>
 
             <main>
-                <Outlet test="testing props"/>
+                <Outlet/>
             </main>
             <Footer/>
         </>
     )
 }
 
-export default Layout;
+export default SchoolContextWrapper(Layout);

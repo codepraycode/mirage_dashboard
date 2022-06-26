@@ -1,15 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink, useParams, useLocation, Outlet } from 'react-router-dom';
-
-// Components
-import { NoSchool } from '../../Components/Errors';
-
-// Higher Order Components
-import SchoolContextWrapper from '../wrappers/school_context_wrapper';
 
 // Widgets
 import BreadCrumb from '../../widget/breadcrumb';
-import SchoolContext from '../../context/school_context';
+
 
 
 /* 
@@ -58,15 +52,15 @@ function TabNav() {
     )
 }
 
-const SchoolLayoutContent = () => {
+const SchoolLayout = () => {
 
     // Display error page for no school
     // if school information could not be fetched
     // const noSchool = false;
 
-    const schoolContext = useContext(SchoolContext);
+    // const schoolContext = useContext(SchoolContext);
 
-    console.log(schoolContext);
+    // console.log(schoolContext);
 
   return (
     
@@ -133,14 +127,6 @@ const SchoolLayoutContent = () => {
 }
 
 
-
-const SchoolLayout = ()=>{
-    return (
-        <SchoolContextWrapper>
-            <SchoolLayoutContent/>
-        </SchoolContextWrapper>
-    )
-}
 
 
 

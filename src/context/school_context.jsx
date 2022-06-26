@@ -99,8 +99,6 @@ export const SchoolProvider = ({children})=>{
         //     errorMessage,
         // }
 
-        let found = false;
-
 
         if (schools && schools.length > 0){
             for (let each of schools){
@@ -108,7 +106,6 @@ export const SchoolProvider = ({children})=>{
                 if(each.id === parseInt(id)){
                     school = {...each}
                     error_message = null
-                    found = true;
                     break
                 }
             }

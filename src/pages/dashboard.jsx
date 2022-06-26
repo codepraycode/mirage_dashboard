@@ -10,7 +10,6 @@ import Search from '../widget/search';
 
 
 const Dashboard = ()=>{
-    
 
     return (
         <>
