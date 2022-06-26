@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { NavLink, useParams, useLocation, Outlet } from 'react-router-dom';
 
 // Widgets
 import BreadCrumb from '../../widget/breadcrumb';
 
+
+// Variables
+import SchoolContext from '../../context/school_context';
+import { CircleLoader } from '../../widget/Preloaders';
+import { NoSchool } from '../../Components/Errors';
 
 
 /* 
@@ -62,68 +67,81 @@ const SchoolLayout = () => {
 
     // console.log(schoolContext);
 
-  return (
-    
-    
-    
-        <div className='school_page'>
-            <BreadCrumb>
-                <div className="left_crumb">
-                    <span className='school_name'> A School Name</span>
-                </div>
-
-                <div className="right_crumb school_status active">
-                    <span>
-                        Approved
-                    </span>
-                    <i className="fas fa-star"></i>
-                    
-                </div>
-            </BreadCrumb>
+    const {id} = useParams();
 
 
-            <TabNav/>
+    const [loading, setLoading] = useState(true);
 
-            <div className="container">
-                <Outlet/>
-            </div>
+    const {currentSchool,loadSchool,errorMessage} = useContext(SchoolContext);
+
+
+    const fetchSchool = async()=>{
+        await loadSchool(id);
+
+    // let school_response = {
+    //   school:[],
+    //   errorMessage:"Testing Page"
+    // }
+
+    // console.log(school);
+    // setSchool(()=>{ 
+    //     return {...school_response.school}
+    //   }
+    // );
+
+    // setErrorMessage(()=>school_response.errorMessage);
+    setLoading(()=>false);
+
+  }
+
+  useEffect(()=>{
+        fetchSchool()
+        // runFetchSchool()
         
-        </div>
-        
-            
-            // noSchool ?
-            // <NoSchool/>
-            // :
-            // <div className='school_page'>
-            //     <BreadCrumb>
-            //         <div className="left_crumb">
-            //             <span className='school_name'> A School Name</span>
-            //         </div>
+    // eslint-disable-next-line
+    },[])
 
-            //         <div className="right_crumb school_status active">
-            //             <span>
-            //                 Approved
-            //             </span>
-            //             <i className="fas fa-star"></i>
+
+    const renderComponent = ()=>{
+        console.log(currentSchool);
+        if (loading){
+            return <CircleLoader/>
+        }
+
+        if (errorMessage !== null || errorMessage?.length > 0){
+            return <NoSchool message={errorMessage}/>
+        }
+
+
+        
+        return (
+            <div className='school_page'>
+                <BreadCrumb>
+                    <div className="left_crumb">
+                        <span className='school_name'> {currentSchool.name}</span>
+                    </div>
+
+                    <div className={`right_crumb school_status ${currentSchool.approved ? "active":"not-active"}`}>
+                        <span>
+                            {currentSchool.approved ? "Approved":"Not Approved"}
+                        </span>
+                        <i className="fas fa-star"></i>
                         
-            //         </div>
-            //     </BreadCrumb>
+                    </div>
+                </BreadCrumb>
 
 
-            //     <TabNav/>
+                <TabNav/>
 
-            //     <div className="container">
-            //         <Outlet/>
-            //     </div>
+                <div className="container">
+                    <Outlet/>
+                </div>
             
-            // </div>
-        
-        
-        
-    // </SchoolContextWrapper>
+            </div>
+        )
+    }
 
-    
-  )
+  return renderComponent()
 }
 
 

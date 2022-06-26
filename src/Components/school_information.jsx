@@ -2,22 +2,17 @@ import React from 'react';
 
 // Widgets
 import Card from '../widget/card';
-import {Loading} from '../widget/Preloaders';
 
-// // utils
-
+// utils
 import { capitalizeText } from '../constants/utils';
 
 
 
-const SchoolInformation = ({school_info, loading}) => {
+const SchoolInformation = ({school_info}) => {
     const fields_to_render = ['name','motto','description','contacts','email','website']
 
     return (
         <>
-        { loading ? 
-            <Loading/>
-            :
             <Card>
                 <div className="card-header">
                     <h4>Infomation</h4>
@@ -51,7 +46,6 @@ const SchoolInformation = ({school_info, loading}) => {
 
                 </div>
             </Card>
-        }
         </>
     )
 }
