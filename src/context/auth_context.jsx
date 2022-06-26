@@ -5,6 +5,8 @@ import jwtDecode from "jwt-decode";
 
 import { refreshTokenRequest,loginRequest,getSchoolsRequest } from "../constants/requests";
 
+import { CircleLoader } from "../widget/Preloaders";
+
 const AuthContext = createContext();
 
 
@@ -277,7 +279,7 @@ export const AuthProvider = ({children})=>{
 
     return(
         <AuthContext.Provider value={contextData}>
-            {loading ? null : children}
+            {loading ? <CircleLoader/> : children}
         </AuthContext.Provider>
     )
 }
