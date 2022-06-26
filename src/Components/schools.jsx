@@ -8,13 +8,12 @@ import NoSchool from './Errors/no_school';
 // Widgets
 import {Loading} from '../widget/Preloaders';
 
+// Hight Order component
+import SchoolContextWrapper from '../Hoc/wrappers/school_context_wrapper';
 
 // Variables
 import { img_placeholder } from '../constants/filepaths';
-import AuthContext from '../context/auth_context';
-
-// // utils
-// import { getSchoolsRequest } from '../constants/requests';
+import SchoolContext from '../context/school_context';
 
 
 // Display Schools (at main dashboard)
@@ -104,22 +103,15 @@ const SchoolItem = (props) => {
 
 const Schools = ()=>{
     
-    const [schools, setSchools] = useState([]);
-    
     const [loading, setLoading] = useState(true);
 
-    const [errorMessage, setErrorMessage] = useState('');
-
-
-    const {fetchAllSchools} = useContext(AuthContext);
+    const {schools,errorMessage,loadSchools} = useContext(SchoolContext);
 
     const fetchSchools = async ()=>{
         
 
-        let data = await fetchAllSchools();
+        await loadSchools();
 
-        setSchools(()=>[...data.schools]);
-        setErrorMessage(()=>data.errorMessage)
         setLoading(false)
         
     }
@@ -157,9 +149,8 @@ const Schools = ()=>{
         
     }
 
-
     useEffect(()=>{
-        fetchSchools()
+        fetchSchools();
     // eslint-disable-next-line
     },[])
 
@@ -173,4 +164,4 @@ const Schools = ()=>{
 }
 
 
-export default Schools;
+export default SchoolContextWrapper(Schools);

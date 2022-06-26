@@ -6,9 +6,9 @@ import SchoolContext from '../context/school_context';
 
 const BreadCrumb = (props)=>{
     
-    const schoolContext = useContext(SchoolContext);
+    // const schoolContext = useContext(SchoolContext);
 
-    console.log(schoolContext);
+    // console.log(schoolContext);
     
     return (
         <div className="breadcrumb">

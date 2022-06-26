@@ -33,6 +33,8 @@ export const SchoolProvider = ({children})=>{
 
 
     const loadSchools = async ()=>{
+
+        console.log("Loading Schools...");
         let error_message = "";
         let all_schools = [];
 
@@ -128,7 +130,7 @@ export const SchoolProvider = ({children})=>{
         // loading,
         schools,
         currentSchool,
-
+        errorMessage,
         loadSchools,
         loadSchool,
         

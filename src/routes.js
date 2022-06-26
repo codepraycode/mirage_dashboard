@@ -3,7 +3,7 @@ import {Routes , Route} from 'react-router-dom';
 
 // High Order Component
 import Layout from './Hoc/Layout/layout';
-import SchoolLayout from './Hoc/Layout/school';
+import SchoolLayout from './Hoc/Layout/school_layout';
 
 import {Error404} from './Components/Errors';
 import {CircleLoader} from './widget/Preloaders';
