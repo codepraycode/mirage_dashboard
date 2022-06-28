@@ -57,12 +57,12 @@ export const SchoolProvider = ({children})=>{
 
     const clearInfo = ()=>{
         if (!info) return
-        
+
         setInfo(()=>null)
     }
 
     const loadSchools = async ()=>{
-        console.log("Loading Schools...");
+        // console.log("Loading Schools...");
         let error_message = "";
         let all_schools = [];
 

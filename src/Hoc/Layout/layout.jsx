@@ -28,14 +28,13 @@ const Layout = () => {
 
     // eslint-disable-next-line
     const {user} = useContext(AuthContext);
-    // console.log(user);
+    
 
 
     useEffect(()=>{
         if(!user){
             navigate('/signin');
         }
-        console.log(user);
         if (!user.verified){
             updateInfo(
                 {
