@@ -574,13 +574,12 @@ footer {
                     }
                     &.span-dots {
                         .item {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
                             &::after {
-                                content: '•';
-                                display: inline-block;
-                                position: relative;
                                 top: 1px;
                                 right: -13px;
-                                color: $deepgray;
                             }
                             &:last-of-type {
                                 &::after {

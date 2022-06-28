@@ -65,7 +65,7 @@ const SchoolItem = (props) => {
 
                 </div>
 
-                <div className="listings__items--item status_n_link span-dots">
+                <div className="listings__items--item status_n_link span-dots dots-sm-none">
 
                     <span className="item link text-grey">
 
