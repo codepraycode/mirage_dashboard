@@ -3,7 +3,7 @@ import { useCookies} from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
-import { refreshTokenRequest,loginRequest,getSchoolsRequest } from "../constants/requests";
+import { refreshTokenRequest,loginRequest } from "../constants/requests";
 
 import { CircleLoader } from "../widget/Preloaders";
 
@@ -36,131 +36,7 @@ export const AuthProvider = ({children})=>{
 
     const [loading, setLoading] = useState(true);
 
-
-
-    // For Schools
-    const [schools, setSchools] = useState(null);
-    // const [loadingSchools, setLoadingSchools] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-
-    const loadSchools = async ()=>{
-        let error_message = "";
-        let all_schools = [];
-
-        let response = await getSchoolsRequest(authTokens?.access);
-
-        if (!response.error){
-            // error_message = response.error_message;
-
-            // setErrorMessage(()=>response.error_message)
-            // return
-
-            let {status,data} = response;
-
-            if (status === 200){
-                // console.log(data);
-                
-                if (data.length === 0){
-                    // setErrorMessage(()=>"You haven't created any school")
-                    error_message = "You haven't created any school";
-                    
-                }else{
-                    // setErrorMessage(()=>"")
-                    error_message = "";
-                }
-
-                // console.log(data);
-                
-                // setSchools(()=> [...data]);
-                all_schools = [...data];
-
-                // setLoading(false)
-
-            }else if(response.statusText === "Unauthorized"){
-                logoutUser();
-            }
-        }
-
-
-        else{
-            error_message = response.error_message;
-            
-        }
-
-
-        setSchools(()=>[...all_schools])
-        setErrorMessage(()=>response.error_message)
-
-
-        return {
-            schools:all_schools,
-            errorMessage:error_message
-        }
-
-        
-    }
-
-    const fetchAllSchools = async()=>{
-        
-        let data = await loadSchools();
-
-        return data;
-        
-
-
-        // if (schools && schools.length > 0){
-        //     for (let each of schools){
-
-        //         if(each.id === parseInt(id)){
-        //             response.school = {...each}
-        //             response.errorMessage = ""
-        //             found = true;
-        //             break
-        //         }
-        //     }
-        // }
-
-
-        // if(!response.schools || response.schools.length === 0 ){
-        //     response.schools = []
-        //     response.errorMessage = "School Not Found"
-        // }
-
-        // return response;
-    }
     
-    const fetchSchool = async(id)=>{
-        console.log("Fetching school with id:", id)
-        
-        
-        let response = {
-            school:null,
-            errorMessage,
-        }
-
-        let found = false;
-
-
-        if (schools && schools.length > 0){
-            for (let each of schools){
-
-                if(each.id === parseInt(id)){
-                    response.school = {...each}
-                    response.errorMessage = ""
-                    found = true;
-                    break
-                }
-            }
-        }
-
-
-        if(!response.school || !found ){
-            response.school = {}
-            response.errorMessage = "Could not find this school"
-        }
-
-        return response;
-    }
 
 
     const navigate = useNavigate();
@@ -211,7 +87,6 @@ export const AuthProvider = ({children})=>{
             setAuthCookie('authTokens', data);
             cb(null);// no issue
 
-            // loadSchools(data.access)
             return
 
         }else if(response.statusText === "Unauthorized"){
@@ -249,9 +124,7 @@ export const AuthProvider = ({children})=>{
 
         loginUser,
         logoutUser,
-        fetchSchool,
-        fetchAllSchools
-        
+
     }
 
 

@@ -1,4 +1,4 @@
-import React,{useState, useContext, useEffect} from 'react';
+import React,{useContext} from 'react';
 import Moment from 'react-moment';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,9 +7,6 @@ import NoSchool from './Errors/no_school';
 
 // Widgets
 import {Loading} from '../widget/Preloaders';
-
-// // Hight Order component
-// import SchoolContextWrapper from '../Hoc/wrappers/school_context_wrapper';
 
 // Variables
 import { img_placeholder } from '../constants/filepaths';
@@ -102,19 +99,8 @@ const SchoolItem = (props) => {
 }
 
 const Schools = ()=>{
-    
-    const [loading, setLoading] = useState(true);
 
-    const {schools,errorMessage,loadSchools} = useContext(SchoolContext);
-
-    const fetchSchools = async ()=>{
-        
-
-        await loadSchools();
-
-        setLoading(false)
-        
-    }
+    const {schools,errorMessage,loading} = useContext(SchoolContext);
 
     const renderTemplate = () => {
 
@@ -148,11 +134,6 @@ const Schools = ()=>{
 
         
     }
-
-    useEffect(()=>{
-        fetchSchools();
-    // eslint-disable-next-line
-    },[])
 
 
     return (

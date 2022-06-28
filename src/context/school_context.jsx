@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState,useEffect } from "react";
 import { useCookies} from "react-cookie";
 // import { useNavigate } from "react-router-dom";
 
@@ -23,7 +23,8 @@ export const SchoolProvider = ({children})=>{
     const [errorMessage, setErrorMessage] = useState(null);
 
     const [currentSchool, setCurrentSchool] = useState(null);
-
+    
+    const [loading, setLoading] = useState(true);
 
     // const [loading, setLoading] = useState(true);
 
@@ -33,7 +34,6 @@ export const SchoolProvider = ({children})=>{
 
 
     const loadSchools = async ()=>{
-
         console.log("Loading Schools...");
         let error_message = "";
         let all_schools = [];
@@ -77,14 +77,13 @@ export const SchoolProvider = ({children})=>{
 
         setSchools(()=>[...all_schools])
         setErrorMessage(()=>error_message)
+
+        if(loading){
+            setLoading(()=>false)
+        }
     }
 
-    // const fetchAllSchools = async()=>{
-        
-    //     let data = await loadSchools();
 
-    //     return data;
-    // }
     
     const loadSchool = async(id)=>{
         console.log("Fetching school with id:", id)
@@ -93,11 +92,6 @@ export const SchoolProvider = ({children})=>{
         let school = null;
 
         let error_message = errorMessage;
-        
-        // let response = {
-        //     school:null,
-        //     errorMessage,
-        // }
 
 
         if (schools && schools.length > 0){
@@ -124,7 +118,7 @@ export const SchoolProvider = ({children})=>{
 
 
     let contextData = {
-        // loading,
+        loading,
         schools,
         currentSchool,
         errorMessage,
@@ -132,6 +126,20 @@ export const SchoolProvider = ({children})=>{
         loadSchool,
         
     }
+
+
+
+    
+    useEffect(()=>{
+
+        // on fresh render
+        if(loading){
+            loadSchools();
+        }
+
+        
+    // eslint-disable-next-line
+    },[loading])
 
 
     return(
