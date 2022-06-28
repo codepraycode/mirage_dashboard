@@ -26,12 +26,40 @@ export const SchoolProvider = ({children})=>{
     
     const [loading, setLoading] = useState(true);
 
+    const [info, setInfo] = useState(null);
+
     // const [loading, setLoading] = useState(true);
 
 
     const tokens = authCookie['authTokens'];
 
+    /*  
+        info sample => {
+        type:"warning", //default
+        text:"A Sample warning info",
+        actionText: "call to action",
+        action:()=>{console.log("Performaing something...")},
+        closable:true
+        });
+    */
+    const updateInfo = ({type,text,actionText,action,closeable}) =>{
+        setInfo(()=>{
+            return {
+                type,
+                text,
+                actionText,
+                action,
+                closeable
+            }
+        })
+    }
 
+
+    const clearInfo = ()=>{
+        if (!info) return
+        
+        setInfo(()=>null)
+    }
 
     const loadSchools = async ()=>{
         console.log("Loading Schools...");
@@ -122,9 +150,11 @@ export const SchoolProvider = ({children})=>{
         schools,
         currentSchool,
         errorMessage,
+        info,
         loadSchools,
         loadSchool,
-        
+        updateInfo,
+        clearInfo
     }
 
 

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useContext } from 'react';
+import SchoolContext from '../context/school_context';
 
 // Component to display information
 // could be collapsable or not
@@ -7,14 +7,62 @@ import { useState } from 'react'
 // supported types:- warning, success, danger
 // default warning
 
-const Info = ({text, type, action, actionText, closable}) => {
+const Info = () => {
 
 
-    const [show,setShow] = useState(text.length > 0);
+    // Info Stucture
+    /* 
+        - type: string
+        - text: string
+        - actionText: string
+        - action : ()=>{}
+        - closeable:boolean
+    */
+
+    const {info,clearInfo} = useContext(SchoolContext);
+
+    //     updateInfo(
+    //         {
+    //             type:"warning", //default
+    //             text:"Testing the Info Feature",
+    //             actionText: "Click Here to clear It",
+    //             action:()=>{
+    //                 console.log("Performaing something...")
+    //                 // clearInfo()
+    //             },
+    //             closeable:true
+    //         }
+    //     )
+
+
+
+    // const [show,setShow] = useState(info !== null && info.text.length > 0);
+    const show = info !== null;
+
+    const type = !info ? "" : info.type;
+
+    const text = !info ? "" : info.text;
+
+    const action = ()=>{
+        // console.log("Perfoming something on the feature widget");
+        if (!info) return
+        
+        info.action();
+
+    }
+
+    const actionText = !info ? "" : info.actionText;
+
+    const closeable = !info ? true : info.closeable;
+    
+
 
     return (
         <>
-            <div className={`quick_info ${!show ? 'hide':''} ${type || ''}`}>
+            
+            <div 
+                className={`quick_info ${!show ? 'hide':''} ${type || ''}`}
+            >
             
 
                 <p>
@@ -34,9 +82,12 @@ const Info = ({text, type, action, actionText, closable}) => {
 
 
                 {
-                    closable && 
+                    closeable && 
                 
-                    <span className="close" onClick={()=>setShow(()=>false)}>
+                    <span 
+                        className="close" 
+                        onClick={clearInfo}
+                    >
                         <i className="fa fa-times" aria-hidden="true"></i>
                     </span>
                 }

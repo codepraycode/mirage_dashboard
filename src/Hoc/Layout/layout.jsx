@@ -1,4 +1,4 @@
-import React,{useState,useEffect, useContext} from 'react'
+import React,{useEffect, useContext} from 'react'
 import {Outlet, useNavigate} from 'react-router-dom';
 
 // COMPONENTS
@@ -10,6 +10,8 @@ import Footer from '../../Components/footer';
 import Info from '../../widget/info';
 import AuthContext from '../../context/auth_context';
 import SchoolContextWrapper from '../wrappers/school_context_wrapper';
+import SchoolContext from '../../context/school_context';
+
 
 /* 
     Wrapped around component, doing the following
@@ -18,22 +20,9 @@ import SchoolContextWrapper from '../wrappers/school_context_wrapper';
     > redirecting back to authentication
 */
 const Layout = () => {
-    // eslint-disable-next-line
-    const [info, setInfo] = useState({
-        type:"warning", //default
-        text:"A Sample warning info",
-        actionText: "call to action",
-        action:()=>{console.log("Performaing something...")},
-        closable:true
-    });
-    // Info Stucture
-    /* 
-        - type: string
-        - text: string
-        - actionText: string
-        - action : ()=>{}
-        - closeable:boolean
-    */
+    
+
+    const {updateInfo} = useContext(SchoolContext);
 
     const navigate = useNavigate();
 
@@ -46,13 +35,29 @@ const Layout = () => {
         if(!user){
             navigate('/signin');
         }
-    })
+        console.log(user);
+        if (!user.verified){
+            updateInfo(
+                {
+                    type:"warning", //default
+                    text:"You are yet to verify your account",
+                    actionText: "Click here to verify",
+                    action:()=>{
+                        console.log("Verifying account...")
+                        // clearInfo()
+                    },
+                    closeable:false
+                }
+            )
+        }
+    // eslint-disable-next-line
+    },[])
 
     return (
         <>
             <Header/>
             
-            <Info {...info}/>
+            <Info/>
 
             <main>
                 <Outlet/>
