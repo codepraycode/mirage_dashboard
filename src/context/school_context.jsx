@@ -180,6 +180,12 @@ export const SchoolProvider = ({children})=>{
         setCurrentSchool(()=>{
             if (!school) return null
 
+            // temporary feature
+            // remove school key if school not approved
+            if (!school.approved){
+                delete school.school_key
+            }
+            
             return {...school}
         })
 
