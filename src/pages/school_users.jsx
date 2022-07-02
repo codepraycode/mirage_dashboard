@@ -3,23 +3,50 @@ import React, { useState } from 'react';
 
 // Widgets
 import Card from '../widget/card';
+import {Loading} from '../widget/Preloaders';
 
 // Assets
-import {avatar_placeholder} from '../constants/filepaths'
+import {avatar_placeholder} from '../constants/filepaths';
+
+// Utils
+import { fecthSchoolUsers } from '../constants/requests';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 // Main Page for School Users
 
-const NoUser = ()=>{
+const UserError = ({empty,error_message})=>{
+
   return(
-      <div className="text-center text-muted">
+    <>
+      {
+        empty ?
+        <div className="text-center text-muted">
           <p>No School User</p>
-      </div>
+        </div>
+        :
+        <div className="text-center text-muted">
+            <p>{error_message}</p>
+        </div>
+      }
+    </>
+      
   )
 }
 
 
 
-const SchoolUserItem = ({approved, suspended,updateSuspended}) =>{
+const SchoolUserItem = ({
+            prefix,
+            firstname,
+            lastname,
+
+            username,
+            email,
+            
+            approved,
+            suspended}) =>{
 
   const renderActions = ()=>{
 
@@ -27,7 +54,7 @@ const SchoolUserItem = ({approved, suspended,updateSuspended}) =>{
           <div className="cta">
               <span
                 className={`toggle_select ${!suspended && 'active'} cta--item`}
-                onClick={updateSuspended}
+                onClick={()=>{}}
               >
               </span>
 
@@ -73,6 +100,11 @@ const SchoolUserItem = ({approved, suspended,updateSuspended}) =>{
   }
 
 
+  const getFullname = ()=>{
+    return `${prefix ||''} ${firstname} ${lastname}`.trim()
+  }
+
+
   return(
       <Card className={`user ${suspended && "text-muted"}`}>
           {/* Display */}
@@ -81,18 +113,18 @@ const SchoolUserItem = ({approved, suspended,updateSuspended}) =>{
             <div>
               <div className="user_info--item">
                 <p className="lead">Full name</p>
-                <p className="lead_val">Lorem Ipsum</p>
+                <p className="lead_val">{getFullname()}</p>
               </div>
 
               <div className="user_info--item">
                 <p className="lead">Email</p>
-                <p className="lead_val">lorem.ipsum@mail.com</p>
+                <p className="lead_val">{email}</p>
               </div>
 
 
               <div className="user_info--item">
                 <p className="lead">Username</p>
-                <p className="lead_val">loremipsum12</p>
+                <p className="lead_val">{username}</p>
               </div>
 
             </div>
@@ -116,22 +148,94 @@ const SchoolUserItem = ({approved, suspended,updateSuspended}) =>{
 }
 
 const SchoolUsers = () => {
-  const users = [1,2,3,4,5,6]
 
-  const [suspended, setSuspended] =  useState(false);
+  const {id} = useParams();
 
-  const renderComponent = ()=>{
-    
-    if (users.length === 0){
-      return <NoUser/>
+  const [authCookie] = useCookies();
+
+  const tokens = authCookie['authTokens'];
+
+
+  const [schoolusers, setSchoolUsers] =  useState(null);
+  const [loading, setLoading] =  useState(true);
+  const [errorMessage, setErrorMessage] =  useState(null);
+
+
+  const loadSchoolUsers = async()=>{
+    console.log("Loading School Users!", id);
+
+    let users = null;
+    let error_message = null;
+
+    let response = await fecthSchoolUsers(id,tokens?.access)
+
+    if (!response.error){
+
+        let {status,data} = response;
+
+        if (status === 200){
+            // console.log(data);
+            
+            if (data.length === 0){
+                error_message = "Your school has no users";
+                
+            }else{
+                error_message = null;
+            }
+
+            users = data;
+
+        }else if(response.statusText === "Unauthorized"){
+            // logoutUser();
+            error_message = "Could not load school users";
+        }
     }
 
-    let template = users.map((user,i)=>{
-      return <SchoolUserItem key={i} approved={true} suspended={suspended} updateSuspended={()=>{
-        setSuspended((prev)=>{
-          return !prev
-        })
-      }}/>
+
+    else{
+        error_message = response.error_message;
+    }
+
+
+    setSchoolUsers(()=>{
+      if (!users) return null
+
+      return [...users]
+    });
+
+    setErrorMessage(()=>error_message)
+
+    setLoading(()=>false)
+
+
+  }
+
+
+  useEffect(()=>{
+    if (loading){
+      loadSchoolUsers()
+    }
+    
+  // eslint-disable-next-line
+  },[loading])
+
+
+  const renderComponent = ()=>{
+
+    if (loading){
+      return <Loading/>
+    }
+    
+    if (schoolusers?.length === 0 || errorMessage != null){
+      return <UserError empty={schoolusers?.length > 0 }  error_message={errorMessage}/>
+    }
+
+    let template = schoolusers.map((user,i)=>{
+      return (<SchoolUserItem 
+                key={i} 
+                approved={true} 
+                {...user}
+              />)
     })
 
     return (
