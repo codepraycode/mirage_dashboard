@@ -111,6 +111,54 @@
     }
 }
 
+
+/*----------------*/
+
+
+/*      USERS     */
+
+
+/*----------------*/
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    align-items: center;
+    // justify-content: space-around;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.user {
+    width: 350px;
+    max-width: 90%;
+    margin: 0;
+    &_info {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        &--item {
+            margin: 15px 0;
+            p {
+                margin: 5px 0;
+            }
+        }
+        .user_avatar {
+            width: 150px !important;
+            height: 150px;
+            img {
+                width: 100%;
+                height: auto;
+                max-height: 100%;
+            }
+        }
+    }
+    hr {
+        margin: 5px 0;
+    }
+}
+
 @media (max-width:760px) {
     .school_page {
         .breadcrumb {
@@ -135,6 +183,15 @@
         }
         .activities {
             margin-bottom: 100px;
+        }
+    }
+    .user {
+        margin: 0 auto;
+        &_info {
+            .user_avatar {
+                width: 100px !important;
+                height: 100px;
+            }
         }
     }
 }
