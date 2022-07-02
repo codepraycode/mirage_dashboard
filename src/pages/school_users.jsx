@@ -162,7 +162,6 @@ const SchoolUsers = () => {
 
 
   const loadSchoolUsers = async()=>{
-    console.log("Loading School Users!", id);
 
     let users = null;
     let error_message = null;
