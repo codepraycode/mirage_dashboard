@@ -30,7 +30,7 @@ const SchoolOverView = () => {
           <div className="col">
             <div className="mb-3">
 
-              <Credentials school_key={school?.key}/>
+              <Credentials school_key={school?.school_key}/>
 
             </div>
 

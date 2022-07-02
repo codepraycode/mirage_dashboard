@@ -1,26 +1,32 @@
 // Utility and resuable functions
 
+// Backend Urls
+const BaseUrl = "http://127.0.0.1:8000/api";
+const refreshTokenUrl = `${BaseUrl}/token/refresh/`;
+const loginUrl = `${BaseUrl}/token/`;
+const schoolsUrl = `${BaseUrl}/schools/`;
+const schoolUrl = `${BaseUrl}/schools`;
 
-const refreshTokenRequest = async (refresh_token)=>{
-    
+const refreshTokenRequest = async(refresh_token) => {
+
     let response = {
-        error:false,
-        error_message:"",
-        data:null,
-        status:'',
-        statusText:''
+        error: false,
+        error_message: "",
+        data: null,
+        status: '',
+        statusText: ''
     };
 
     let request_response;
 
 
-    try{
-        request_response = await fetch('http://127.0.0.1:8000/api/token/refresh/',{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
+    try {
+        request_response = await fetch(refreshTokenUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
             },
-            body:JSON.stringify({"refresh":refresh_token})
+            body: JSON.stringify({ "refresh": refresh_token })
         });
 
         let data = await request_response.json();
@@ -28,18 +34,17 @@ const refreshTokenRequest = async (refresh_token)=>{
         response = {
             ...response,
             data,
-            status:request_response.status,
-            statusText:request_response.statusText,
-            
+            status: request_response.status,
+            statusText: request_response.statusText,
+
         }
-    }
-    catch (err){
+    } catch (err) {
         // console.log(err.message)
 
         response.error = true;
         response.error_message = err.message;
 
-        
+
     }
 
 
@@ -48,47 +53,46 @@ const refreshTokenRequest = async (refresh_token)=>{
 }
 
 
-const loginRequest = async (login_data)=>{
-    
-    
+const loginRequest = async(login_data) => {
+
+
     let response = {
-        error:false,
-        error_message:"",
-        data:null,
-        status:'',
-        statusText:''
+        error: false,
+        error_message: "",
+        data: null,
+        status: '',
+        statusText: ''
     };
 
     let request_response;
 
 
-    try{
-        request_response = await fetch('http://127.0.0.1:8000/api/token/',{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json",
-                },
-                body:JSON.stringify(login_data)
-            });
+    try {
+        request_response = await fetch(loginUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(login_data)
+        });
 
         let data = await request_response.json();
 
-        
+
         response = {
             ...response,
             data,
-            status:request_response.status,
-            statusText:request_response.statusText,
-            
+            status: request_response.status,
+            statusText: request_response.statusText,
+
         }
-    }
-    catch (err){
+    } catch (err) {
         console.error(err.message)
 
         response.error = true;
         response.error_message = "Unable to Connect, please make sure you are connected to the internet";
 
-        
+
     }
 
 
@@ -96,45 +100,44 @@ const loginRequest = async (login_data)=>{
 
 }
 
-const getSchoolsRequest = async (token)=>{
-    
-    
+const getSchoolsRequest = async(token) => {
+
+
     let response = {
-        error:false,
-        error_message:"",
-        data:null,
-        status:'',
-        statusText:''
+        error: false,
+        error_message: "",
+        data: null,
+        status: '',
+        statusText: ''
     };
 
     let request_response;
 
 
-    try{
-        request_response = await fetch('http://127.0.0.1:8000/api/schools/',{
-                method:"GET",
-                headers:{
-                    "Content-Type":"application/json",
-                    "Authorization":`Bearer ${String(token)}`
-                }
-            });
+    try {
+        request_response = await fetch(schoolsUrl, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${String(token)}`
+            }
+        });
 
-        let data = await request_response.json();        
-        
+        let data = await request_response.json();
+
         response = {
             ...response,
             data,
-            status:request_response.status,
-            statusText:request_response.statusText,
-            
+            status: request_response.status,
+            statusText: request_response.statusText,
+
         }
-    }
-    catch (err){
+    } catch (err) {
 
         response.error = true;
         response.error_message = "Could not load schools, please make sure you are connected to the internet";
 
-        
+
     }
 
 
@@ -143,45 +146,44 @@ const getSchoolsRequest = async (token)=>{
 }
 
 
-const getSchoolRequest = async (id,token)=>{
-    
-    
+const getSchoolRequest = async(id, token) => {
+
+
     let response = {
-        error:false,
-        error_message:"",
-        data:null,
-        status:'',
-        statusText:''
+        error: false,
+        error_message: "",
+        data: null,
+        status: '',
+        statusText: ''
     };
 
     let request_response;
 
 
-    try{
-        request_response = await fetch(`http://127.0.0.1:8000/api/schools/${id}`,{
-                method:"GET",
-                headers:{
-                    "Content-Type":"application/json",
-                    "Authorization":`Bearer ${String(token)}`
-                }
-            });
+    try {
+        request_response = await fetch(`${schoolUrl}/${id}/`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${String(token)}`
+            }
+        });
 
-        let data = await request_response.json();        
-        
+        let data = await request_response.json();
+
         response = {
             ...response,
             data,
-            status:request_response.status,
-            statusText:request_response.statusText,
-            
+            status: request_response.status,
+            statusText: request_response.statusText,
+
         }
-    }
-    catch (err){
+    } catch (err) {
 
         response.error = true;
         response.error_message = "Could not load school information, please make sure you are connected to the internet";
 
-        
+
     }
 
 
@@ -189,4 +191,4 @@ const getSchoolRequest = async (id,token)=>{
 
 }
 
-export {refreshTokenRequest,loginRequest,getSchoolsRequest,getSchoolRequest}
+export { refreshTokenRequest, loginRequest, getSchoolsRequest, getSchoolRequest }

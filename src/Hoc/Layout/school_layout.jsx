@@ -20,23 +20,18 @@ import { NoSchool } from '../../Components/Errors';
 function TabNav() {
     let { id } = useParams();
     const location = useLocation();
-    // console.log(key);
 
     let { pathname } = location;
 
-    // console.log(hash,hash === "overview")
-
-    return ( <
-            div className = "tabnav" >
-            <
-            ul >
-            <
-            li >
-            <
-            NavLink to = { `/school/${id}/overview` }
-            className = { `${pathname === `/school/${id}` ? 'active':''}`}
+    return ( 
+        <div className="tabnav">
+            <ul>
+                <li>
+                    <NavLink 
+                        to = { `/school/${id}/overview` }
+                        className = { `${pathname === `/school/${id}` ? 'active':''}`}
                     >
-                            Overview
+                        Overview
                     </NavLink>
 
                 </li>
@@ -58,15 +53,6 @@ function TabNav() {
 }
 
 const SchoolLayout = () => {
-
-    // Display error page for no school
-    // if school information could not be fetched
-    // const noSchool = false;
-
-    // const schoolContext = useContext(SchoolContext);
-
-    // console.log(schoolContext);
-
     const {id} = useParams();
 
 
@@ -78,32 +64,18 @@ const SchoolLayout = () => {
     const fetchSchool = async()=>{
         await loadSchool(id);
 
-    // let school_response = {
-    //   school:[],
-    //   errorMessage:"Testing Page"
-    // }
+        setLoading(()=>false);
+    }
 
-    // console.log(school);
-    // setSchool(()=>{ 
-    //     return {...school_response.school}
-    //   }
-    // );
-
-    // setErrorMessage(()=>school_response.errorMessage);
-    setLoading(()=>false);
-
-  }
-
-  useEffect(()=>{
+    useEffect(()=>{
         fetchSchool()
-        // runFetchSchool()
         
     // eslint-disable-next-line
     },[])
 
 
     const renderComponent = ()=>{
-        console.log(currentSchool);
+        // console.log(currentSchool);
         if (loading){
             return <CircleLoader/>
         }
@@ -113,6 +85,7 @@ const SchoolLayout = () => {
         }
 
 
+        // console.log(currentSchool)
         
         return (
             <div className='school_page'>

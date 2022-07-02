@@ -2,7 +2,7 @@ import { createContext, useState,useEffect } from "react";
 import { useCookies} from "react-cookie";
 // import { useNavigate } from "react-router-dom";
 
-import { getSchoolsRequest } from "../constants/requests";
+import { getSchoolsRequest,getSchoolRequest} from "../constants/requests";
 // import { refreshTokenRequest,loginRequest,getSchoolsRequest } from "../constants/requests";
 
 // import { CircleLoader } from "../widget/Preloaders";
@@ -114,19 +114,21 @@ export const SchoolProvider = ({children})=>{
 
     
     const loadSchool = async(id)=>{
-        console.log("Fetching school with id:", id)
-        
+        // console.log("Fetching school with id:", id)
 
         let school = null;
 
         let error_message = errorMessage;
 
+        let school_exists = false;
 
+        // check school exits
         if (schools && schools.length > 0){
             for (let each of schools){
 
                 if(each.id === parseInt(id)){
-                    school = {...each}
+                    // school = {...each}
+                    school_exists = true
                     error_message = null
                     break
                 }
@@ -134,14 +136,56 @@ export const SchoolProvider = ({children})=>{
         }
 
 
-        if(!school){
-            error_message = "Could not find this school"
+        if(!school_exists){
+            error_message = "School Not Found"
+        }
+        else{
+
+            let response = await getSchoolRequest(id, tokens?.access);
+
+            if (!response.error){
+
+                let {status,data} = response;
+
+                if (status === 200){
+                    
+                    if (data.length === 0){
+                        error_message = "Could not find school"
+                        
+                    }else{
+                        // setErrorMessage(()=>"")
+                        error_message = null;
+                    }
+
+                    // console.log(data);
+                    
+                    // setSchools(()=> [...data]);
+                    school = {...data};
+
+                    // setLoading(false)
+
+                }else{
+                    error_message = "Could not load school";
+                }
+
+            }
+
+
+            else{
+                error_message = response.error_message;
+                school = null;
+            }
         }
 
-        // return response;
+        setCurrentSchool(()=>{
+            if (!school) return null
 
-        setCurrentSchool(()=>{return {...school}})
+            return {...school}
+        })
+
         setErrorMessage(()=>error_message)
+
+
     }
 
 
