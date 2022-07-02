@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 // Widgets
@@ -18,9 +18,63 @@ const NoUser = ()=>{
 }
 
 
-const SchoolUserItem = () =>{
+
+const SchoolUserItem = ({approved, suspended,updateSuspended}) =>{
+
+  const renderActions = ()=>{
+
+    const ctas = (
+          <div className="cta">
+              <span
+                className={`toggle_select ${!suspended && 'active'} cta--item`}
+                onClick={updateSuspended}
+              >
+              </span>
+
+
+              <button className='icon cta--item btn btn-danger'>
+                <i className="fas fa-trash"></i>
+              </button>
+          </div>
+    )
+
+
+    if (!approved){
+      return (
+        <button className='btn btn-primary'>
+          Approve User
+        </button>
+      )
+    }
+
+    if (suspended){
+      return (
+        <>
+            <div className='text-muted text center'>
+              <span>Suspended</span>
+            </div>
+            
+            {ctas}
+        </>
+      )
+    }
+
+
+    return (
+        <>
+            <div className='text-muted text center'>
+              <span>Approved</span>
+            </div>
+            
+            {ctas}
+        </>
+    )
+
+  }
+
+
   return(
-      <Card className={"user"}>
+      <Card className={`user ${suspended && "text-muted"}`}>
           {/* Display */}
           <div className={"user_info"}>
             {/* Info */}
@@ -54,13 +108,17 @@ const SchoolUserItem = () =>{
           <hr/>
 
           {/* Actions */}
-          <div></div>
+          <div className='actions'>
+            {renderActions()}
+          </div>
       </Card>
   )
 }
 
 const SchoolUsers = () => {
-  const users = [1,2,3,4,5]
+  const users = [1,2,3,4,5,6]
+
+  const [suspended, setSuspended] =  useState(false);
 
   const renderComponent = ()=>{
     
@@ -69,7 +127,11 @@ const SchoolUsers = () => {
     }
 
     let template = users.map((user,i)=>{
-      return <SchoolUserItem key={i}/>
+      return <SchoolUserItem key={i} approved={true} suspended={suspended} updateSuspended={()=>{
+        setSuspended((prev)=>{
+          return !prev
+        })
+      }}/>
     })
 
     return (

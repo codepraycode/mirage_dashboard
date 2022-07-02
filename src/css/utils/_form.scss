@@ -168,6 +168,40 @@ form {
     }
 }
 
+.toggle_select {
+    display: block;
+    width: 60px;
+    height: 30px;
+    background: $gray;
+    position: relative;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    &::before {
+        content: "";
+        position: absolute;
+        // display: block;
+        height: 100%;
+        width: 30px;
+        border-radius: 50%;
+        background: $light-gray2;
+        // transition: all ease 0.3s;
+        // transition-delay: 3s;
+    }
+    &.active {
+        background: $primary;
+        &::before {
+            right: -1px !important;
+        }
+    }
+    &:not(.active) {
+        &::before {
+            // right: -1px !important;
+            left: -1px;
+        }
+    }
+}
+
 @media (max-width:760px) {
     .editable_content {
         .cta {
