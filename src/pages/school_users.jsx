@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-
+import React, { useState,useEffect} from 'react';
+import { useParams } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 // Widgets
 import Card from '../widget/card';
@@ -9,10 +10,8 @@ import {Loading} from '../widget/Preloaders';
 import {avatar_placeholder} from '../constants/filepaths';
 
 // Utils
-import { fecthSchoolUsers } from '../constants/requests';
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import { fecthSchoolUsers, modifySchoolUser } from '../constants/requests';
+
 
 // Main Page for School Users
 
@@ -37,113 +36,172 @@ const UserError = ({empty,error_message})=>{
 
 
 
-const SchoolUserItem = ({
-            prefix,
-            firstname,
-            lastname,
+const SchoolUserItem = ({school_id,token,userData}) =>{
 
-            username,
-            email,
-            
-            approved,
-            suspended}) =>{
-
-  const renderActions = ()=>{
-
-    const ctas = (
-          <div className="cta">
-              <span
-                className={`toggle_select ${!suspended && 'active'} cta--item`}
-                onClick={()=>{}}
-              >
-              </span>
+    const [userInfo, setUserInfo] = useState({...userData});
+    
+    const [loading, setLoading] = useState(false);
 
 
-              <button className='icon cta--item btn btn-danger'>
-                <i className="fas fa-trash"></i>
-              </button>
-          </div>
-    )
+
+    const renderActions = ()=>{
+
+      const ctas = (
+            <div className="cta">
+                <span
+                  className={`toggle_select ${!userInfo.suspended && 'active'} cta--item`}
+                  onClick={()=>{
+                    ChangeStatus(userInfo.suspended ? "unsuspend":"suspend")
+                  }}
+                >
+                </span>
 
 
-    if (!approved){
-      return (
-        <button className='btn btn-primary'>
-          Approve User
-        </button>
+                <button 
+                  className='icon cta--item btn btn-danger'
+                  onClick={()=>{
+                    ChangeStatus("delete")
+                  }}
+                >
+                  <i className="fas fa-trash"></i>
+                </button>
+
+            </div>
       )
+
+
+      if (!userInfo.approved){
+        return (
+          <button 
+            className='btn btn-primary'
+            onClick={()=>{
+              ChangeStatus("approve")
+            }}
+          >
+            Approve User
+          </button>
+        )
+      }
+
+      if (userInfo.suspended){
+        return (
+          <>
+              <div className='text-muted text center'>
+                <span>Suspended</span>
+              </div>
+              
+              {ctas}
+          </>
+        )
+      }
+
+
+      return (
+          <>
+              <div className='text-muted text center'>
+                <span>Approved</span>
+              </div>
+              
+              {ctas}
+          </>
+      )
+
     }
 
-    if (suspended){
-      return (
-        <>
-            <div className='text-muted text center'>
-              <span>Suspended</span>
-            </div>
-            
-            {ctas}
-        </>
-      )
+    const getFullname = ()=>{
+      return `${userInfo.prefix ||''} ${userInfo.firstname} ${userInfo.lastname}`.trim()
     }
 
 
-    return (
-        <>
-            <div className='text-muted text center'>
-              <span>Approved</span>
-            </div>
-            
-            {ctas}
-        </>
-    )
 
-  }
+    const ChangeStatus = async (action)=>{
+      if (loading) return
+
+      modifySchoolUser(school_id,{user_id:userInfo.id,action}, token)
+      .then((response)=>{
+        // console.log(response);
+
+        if (!response.error){
+          if (response.ok){
+            let {user} = response.data;
+
+            setUserInfo(()=>{
+              if (!user) return null
+              return {...user}
+            })
+
+          }else{
+            // pass
+          }
+
+        }
+        else{
+          // pass
+        }
+
+        setLoading(()=>false)
+        return
+      })
+      .catch((err)=>{
+        console.error(err);
+        setLoading(()=>false)
+        return
+      })
 
 
-  const getFullname = ()=>{
-    return `${prefix ||''} ${firstname} ${lastname}`.trim()
-  }
+      setLoading(()=>true)
+
+
+
+    }
 
 
   return(
-      <Card className={`user ${suspended && "text-muted"}`}>
-          {/* Display */}
-          <div className={"user_info"}>
-            {/* Info */}
-            <div>
-              <div className="user_info--item">
-                <p className="lead">Full name</p>
-                <p className="lead_val">{getFullname()}</p>
+    <>
+      {
+        !userInfo ? 
+        null
+        :
+        <Card className={`user ${userInfo.suspended && "text-muted"}`} loading={loading}>
+            {/* Display */}
+            <div className={"user_info"}>
+              {/* Info */}
+              <div>
+                <div className="user_info--item">
+                  <p className="lead">Full name</p>
+                  <p className="lead_val">{getFullname()}</p>
+                </div>
+
+                <div className="user_info--item">
+                  <p className="lead">Email</p>
+                  <p className="lead_val">{userInfo.email}</p>
+                </div>
+
+
+                <div className="user_info--item">
+                  <p className="lead">Username</p>
+                  <p className="lead_val">{userInfo.username}</p>
+                </div>
+
               </div>
 
-              <div className="user_info--item">
-                <p className="lead">Email</p>
-                <p className="lead_val">{email}</p>
-              </div>
-
-
-              <div className="user_info--item">
-                <p className="lead">Username</p>
-                <p className="lead_val">{username}</p>
+              {/* Avatar */}
+              <div className='user_avatar'>
+                
+                <img src={avatar_placeholder} alt="Lorem Ipsum"/>
               </div>
 
             </div>
 
-            {/* Avatar */}
-            <div className='user_avatar'>
-              
-              <img src={avatar_placeholder} alt="Lorem Ipsum"/>
+            <hr/>
+
+            {/* Actions */}
+            <div className='actions'>
+              {renderActions()}
             </div>
-
-          </div>
-
-          <hr/>
-
-          {/* Actions */}
-          <div className='actions'>
-            {renderActions()}
-          </div>
-      </Card>
+        </Card>
+      }
+    </>
   )
 }
 
@@ -232,8 +290,9 @@ const SchoolUsers = () => {
     let template = schoolusers.map((user,i)=>{
       return (<SchoolUserItem 
                 key={i} 
-                approved={true} 
-                {...user}
+                school_id={id}
+                token={tokens?.access}
+                userData={user}
               />)
     })
 

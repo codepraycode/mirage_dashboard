@@ -7,6 +7,7 @@ const loginUrl = `${BaseUrl}/token/`;
 const schoolsUrl = `${BaseUrl}/schools/`;
 const schoolUrl = `${BaseUrl}/schools`;
 
+
 const refreshTokenRequest = async(refresh_token) => {
 
     let response = {
@@ -240,4 +241,55 @@ const fecthSchoolUsers = async(school_id, token) => {
 }
 
 
-export { refreshTokenRequest, loginRequest, getSchoolsRequest, getSchoolRequest, fecthSchoolUsers }
+const modifySchoolUser = async(school_id, { user_id, action }, token) => {
+    const endpoint = `${schoolUrl}/${school_id}/users/modify/`;
+
+
+    let response = {
+        error: false,
+        error_message: "",
+        data: null,
+        ok: false,
+        status: '',
+        statusText: ''
+    };
+
+    let request_response;
+
+
+    try {
+        request_response = await fetch(endpoint, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${String(token)}`
+            },
+            body: JSON.stringify({ "user_id": user_id, "action": action })
+        });
+
+        let data = await request_response.json();
+
+        response = {
+            ...response,
+            ok: request_response.ok,
+            data,
+            status: request_response.status,
+            statusText: request_response.statusText,
+
+        }
+    } catch (err) {
+
+        response.error = true;
+        response.error_message = "please make sure you are connected to the internet";
+
+
+    }
+
+
+    return response;
+
+
+}
+
+
+export { refreshTokenRequest, loginRequest, getSchoolsRequest, getSchoolRequest, fecthSchoolUsers, modifySchoolUser }
