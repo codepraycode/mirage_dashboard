@@ -2,7 +2,7 @@ import { createContext, useState,useEffect } from "react";
 import { useCookies} from "react-cookie";
 // import { useNavigate } from "react-router-dom";
 
-import { getSchoolsRequest,getSchoolRequest} from "../constants/requests";
+import { getSchoolsRequest,getSchoolRequest, fecthSchoolSlotsRequest} from "../constants/requests";
 // import { refreshTokenRequest,loginRequest,getSchoolsRequest } from "../constants/requests";
 
 // import { CircleLoader } from "../widget/Preloaders";
@@ -26,7 +26,10 @@ export const SchoolProvider = ({children})=>{
     
     const [loading, setLoading] = useState(true);
 
+    // General Info Widgets
     const [info, setInfo] = useState(null);
+
+    const [slots, setSlots] = useState(null);
 
     // const [loading, setLoading] = useState(true);
 
@@ -195,12 +198,61 @@ export const SchoolProvider = ({children})=>{
     }
 
 
+    const loadSlots = async (school_id) => {
+        let slots = null;
+
+        let error_message = errorMessage;
+
+
+        let response = await fecthSchoolSlotsRequest(school_id, tokens?.access);
+
+        if (!response.error) {
+
+            let { ok, data } = response;
+
+            if (ok) {
+
+                // setSchools(()=> [...data]);
+                slots = data;
+
+                // setLoading(false)
+
+            } else {
+                error_message = "Could not load slots";
+            }
+
+        }
+
+
+        else {
+            error_message = response.error_message;
+            slots = null;
+        }
+
+
+        // console.log(slots, error_message);
+
+
+        setSlots(() => {
+            if (!slots) return null
+
+            return [...slots]
+        })
+
+        setErrorMessage(() => error_message)
+
+
+    }
+
+
     let contextData = {
         loading,
         schools,
         currentSchool,
         errorMessage,
         info,
+        slots,
+        loadSlots,
         loadSchools,
         loadSchool,
         updateInfo,

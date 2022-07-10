@@ -1,36 +1,170 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom';
 
-const Credentials = ({school_key}) => {
+// Widgets
+import Card from '../widget/card';
+import { Loading } from '../widget/Preloaders';
+
+// Utils
+// import { fecthSchoolSlotsRequest } from '../constants/requests';
+import {computer_img} from '../constants/filepaths';
+import { useContext } from 'react';
+import SchoolContext from '../context/school_context';
+
+const Computers = ({slots}) => {
+  
 
   return (
     <>
-        <p className="mb-1">Credentials</p>
+      {
+        !slots || slots.length === 0 ?
 
-              <div className="box bg-default">
-                
-                <div className="p-10 w-40 bg-white flex align-center">
-                  
-                  <div className="text-primary p-10 mr-1 text-center">
-                    <i className="fas fa-key"></i>
+          <p className="text-center text-muted" style={{ width: '100%' }}>
+
+            <span >
+              No Engaged Computer
+            </span>
+
+          </p>
+        :
+
+
+        <div className="comp-lists">
+          {
+            slots.map((slot,i)=>{
+              return (
+                <Card className="comp" key={i}>
+
+                  <div className="comp_content">
+                    <div
+                      className="comp_icon"
+                      style={{ backgroundImage: `url('${computer_img}')` }}
+                    ></div>
+
+                    <div className="comp_details">
+                      <p className='lead'>{slot.host_name}</p>
+                      <p>{slot.host_type}({slot.host_platform})</p>
+                      <p>{slot.host_version}</p>
+                    </div>
+
                   </div>
 
-                  <span> School Key</span>
-                </div>
 
-                <p className="w-60 text-right">
-              
-                  <span >
-                    {school_key || '******************'}
-                  </span>
+                  <div className="comp_cta">
 
-                  <span className="mx-2 safe copy-icon" onClick={()=>{}}>
-                    <i className="fas fa-copy"></i>
-                  </span>
-                  
-              
-                </p>
+                    <a href='/'>
+                      View
+                    </a>
+                  </div>
 
-              </div>
+
+
+                </Card>
+              )
+            })
+          }
+          
+
+        </div>
+
+      }
+      
+    </>
+  )
+}
+
+
+
+
+const SchoolKey = ({value}) => {
+
+
+  return (
+    <div className="box bg-default">
+
+      <div className="p-10 w-40 bg-white flex align-center">
+
+        <div className="text-primary p-10 mr-1 text-center">
+          <i className="fas fa-key"></i>
+        </div>
+
+        <span> School Key</span>
+      </div>
+
+      <p className="w-60 text-right">
+
+        <span >
+          {value || '******************'}
+        </span>
+
+        <span className="mx-2 safe copy-icon" onClick={() => { }}>
+          <i className="fas fa-copy"></i>
+        </span>
+
+
+      </p>
+
+    </div>
+  )
+}
+
+
+
+const Credentials = ({ school_key }) => {
+
+  // eslint-disable-next-line
+  const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line
+  // const [slots, setSlots] = useState(null);
+
+
+  const {slots, loadSlots} = useContext(SchoolContext);
+
+
+  const {id} = useParams();
+
+
+
+
+  const fetchSlots = async() => {
+
+    await loadSlots(id)
+
+    setLoading(()=>false)
+  }
+
+
+  useEffect(() => {
+
+    if (loading) {
+      fetchSlots()
+    }
+
+  // eslint-disable-next-line
+  }, [loading])
+
+
+
+  // console.log(slots);
+  return (
+    <>
+      
+      <p className="mb-1">Credentials</p>
+
+      <SchoolKey value={school_key}/>
+      <br/>
+
+
+      <p className="mb-1">Computers</p>
+
+      {
+        loading?
+          <Loading />
+          :
+          <Computers slots={slots}/>
+      }
+      
+
     </>
   )
 }
