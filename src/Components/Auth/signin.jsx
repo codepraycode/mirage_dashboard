@@ -1,5 +1,5 @@
 import React,{useState, useContext} from 'react'
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 // Contexts
 import StoreContext from '../../context';
@@ -19,9 +19,7 @@ import { filterFormIssues } from '../../constants/utils';
 
 const Login = () => {
 
-    const {loginUser}=useContext(StoreContext);
-
-    const navigate = useNavigate();
+    const { loginUser }=useContext(StoreContext);
     
 
     const initialIssueState = {
@@ -74,7 +72,8 @@ const Login = () => {
         loginUser(formData,(err=null)=>{
             // console.log(res);
             if(!err){
-                navigate('/')
+                // navigate('/')
+                // redirect()
                 return
             }
 

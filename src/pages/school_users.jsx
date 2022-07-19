@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react';
+import React, { useState,useEffect, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
@@ -11,6 +11,9 @@ import {avatar_placeholder} from '../constants/filepaths';
 
 // Utils
 import { fecthSchoolUsers, modifySchoolUser } from '../constants/requests';
+
+// Context
+import StoreContext from '../context';
 
 
 // Main Page for School Users
@@ -219,6 +222,8 @@ const SchoolUsers = () => {
   const [errorMessage, setErrorMessage] =  useState(null);
 
 
+  const { logoutUser } = useContext(StoreContext);
+
   const loadSchoolUsers = async()=>{
 
     let users = null;
@@ -243,9 +248,11 @@ const SchoolUsers = () => {
             users = data;
 
         }else if(response.statusText === "Unauthorized"){
-            // logoutUser();
+            logoutUser();
+            // redirect()
             error_message = "Could not load school users";
         }
+        
     }
 
 

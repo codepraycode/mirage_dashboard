@@ -1,7 +1,7 @@
 // App Store
 import { createContext, useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 import { refreshTokenRequest, loginRequest, getSchoolsRequest, getSchoolRequest, fecthSchoolSlotsRequest } from "../constants/requests";
@@ -46,6 +46,9 @@ export const StoreProvider = ({children})=>{
 
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    console.log(location);
 
 
     // Authentication
@@ -91,6 +94,7 @@ export const StoreProvider = ({children})=>{
             setUser(jwtDecode(data.access))
 
             setAuthCookie('authTokens', data);
+            redirect()
             cb(null);// no issue
 
             return
@@ -121,15 +125,42 @@ export const StoreProvider = ({children})=>{
         setAuthTokens(null)
         setUser(null)
         removeCookie('authTokens');
-        navigate('/signin');
+
+        const { pathname } = location;
+        
+        let link = '/signin';
+
+        if (pathname !== '/') {
+            link = `/signin?rdr=${pathname}`;
+        }    
+        navigate(link);
     }
+
+    
 
     const getAccessToken = ()=>{
         const access_token = authTokens?.access
+        
 
-        if (!access_token) { console.log("should redirect!") }
+        if (!access_token) { 
+            // console.log("should redirect!") 
+            logoutUser()
+        }
 
         return access_token
+    }
+
+    
+    const redirect = () => {
+        const { search } = location;
+
+        const pathname = search.replace('?rdr=','')
+
+        console.log(pathname)
+
+        navigate(pathname)
+
+        return
     }
     // ===================
 
@@ -188,8 +219,9 @@ export const StoreProvider = ({children})=>{
                 }
 
             } else if (res.statusText === "Unauthorized") {
-                error_message = "Could not load schools";
-                console.log("should redirect!")
+                // error_message = "Could not load schools";
+                // console.log("should redirect!")
+                logoutUser()
             }else{
                 console.log("Res: ",res)
                 error_message = "Could not load schools";
@@ -306,7 +338,13 @@ export const StoreProvider = ({children})=>{
 
                 school_slots = data;
 
-            } else {
+            } 
+            else if (res.statusText === "Unauthorized") {
+                // error_message = "Could not load schools";
+                // console.log("should redirect!")
+                logoutUser()
+            }
+            else {
                 error_message = "Could not load slots";
             }
 
