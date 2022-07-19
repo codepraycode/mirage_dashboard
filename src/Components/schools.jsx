@@ -10,15 +10,16 @@ import {Loading} from '../widget/Preloaders';
 
 // Variables
 import { img_placeholder } from '../constants/filepaths';
-// import SchoolContext from '../context/school_context';
+// Context
 import StoreContext from '../context';
 
+// Site Url
+import {school} from '../constants/site_urls';
 
 // Display Schools (at main dashboard)
 
 const SchoolItem = (props) => {
-    const navigate = useNavigate();
-
+    const navigate = useNavigate();    
 
     let {id,logo,name,date_created,website,approved} = props
 
@@ -26,7 +27,7 @@ const SchoolItem = (props) => {
         <div className="listings mb-5">
             <ul 
                 className="listings__items" 
-                onClick={()=>navigate(`/school/${id}`)}
+                onClick={() => navigate(`${school }/${id}`)}
             >
 
                 <div className="listings__items--item">
