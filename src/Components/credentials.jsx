@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom';
 
 // Widgets
@@ -6,14 +6,13 @@ import Card from '../widget/card';
 import { Loading } from '../widget/Preloaders';
 
 // Utils
-// import { fecthSchoolSlotsRequest } from '../constants/requests';
 import {computer_img} from '../constants/filepaths';
-import { useContext } from 'react';
-import SchoolContext from '../context/school_context';
+// Context
+import StoreContext from '../context';
 
 const Computers = ({slots}) => {
-  
 
+  // console.log(slots)
   return (
     <>
       {
@@ -43,8 +42,8 @@ const Computers = ({slots}) => {
 
                     <div className="comp_details">
                       <p className='lead'>{slot.host_name}</p>
-                      <p>{slot.host_type}({slot.host_platform})</p>
-                      <p>{slot.host_version}</p>
+                      <p>{slot.host_model}({slot.host_arch})</p>
+                      <p>{slot.host_os}</p>
                     </div>
 
                   </div>
@@ -110,7 +109,7 @@ const SchoolKey = ({value}) => {
 
 
 
-const Credentials = ({ school_key }) => {
+const Credentials = () => {
 
   // eslint-disable-next-line
   const [loading, setLoading] = useState(true);
@@ -118,7 +117,7 @@ const Credentials = ({ school_key }) => {
   // const [slots, setSlots] = useState(null);
 
 
-  const {slots, loadSlots} = useContext(SchoolContext);
+  const {currentSchool:school,slots, loadSlots} = useContext(StoreContext);
 
 
   const {id} = useParams();
@@ -151,7 +150,7 @@ const Credentials = ({ school_key }) => {
       
       <p className="mb-1">Credentials</p>
 
-      <SchoolKey value={school_key}/>
+      <SchoolKey value={school?.school_key}/>
       <br/>
 
 

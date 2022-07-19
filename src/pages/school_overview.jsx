@@ -5,16 +5,18 @@ import Activities from '../Components/activities';
 import Credentials from '../Components/credentials';
 import SchoolInformation from '../Components/school_information';
 
-// Variables
-import SchoolContext from '../context/school_context';
+// Widgets
 import { Loading } from '../widget/Preloaders';
+
+// Context
+import StoreContext from '../context';
 
 
 // Main Page for School (with school id)
 const SchoolOverView = () => {
 
 
-  const {currentSchool:school} = useContext(SchoolContext);
+  const { currentSchool: school } = useContext(StoreContext);
 
 
   const renderComponent = ()=>{
@@ -29,8 +31,10 @@ const SchoolOverView = () => {
           
           <div className="col">
             <div className="mb-3">
-
-              <Credentials school_key={school?.school_key}/>
+              {/* 
+                school_key={school?.school_key}
+              */}
+            <Credentials /> 
 
             </div>
 

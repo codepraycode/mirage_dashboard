@@ -148,7 +148,7 @@ const Schools = ()=>{
         fetchSchools()
     
     // eslint-disable-next-line
-    },[loading])
+    },[])
 
     return (
         <div className="listings__container">

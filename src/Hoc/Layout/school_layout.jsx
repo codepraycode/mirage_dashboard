@@ -6,9 +6,9 @@ import BreadCrumb from '../../widget/breadcrumb';
 
 
 // Variables
-import SchoolContext from '../../context/school_context';
 import { CircleLoader } from '../../widget/Preloaders';
 import { NoSchool } from '../../Components/Errors';
+import StoreContext from '../../context';
 
 
 /* 
@@ -53,16 +53,16 @@ function TabNav() {
 }
 
 const SchoolLayout = () => {
-    const {id} = useParams();
+    const {id:schoolid} = useParams();
 
 
     const [loading, setLoading] = useState(true);
 
-    const {currentSchool,loadSchool,errorMessage} = useContext(SchoolContext);
+    const { currentSchool, loadSchool, errorMessage } = useContext(StoreContext);
 
 
     const fetchSchool = async()=>{
-        await loadSchool(id);
+        await loadSchool(schoolid);
 
         setLoading(()=>false);
     }
@@ -80,7 +80,7 @@ const SchoolLayout = () => {
             return <CircleLoader/>
         }
 
-        if (errorMessage !== null || errorMessage?.length > 0){
+        if (errorMessage !== null){
             return <NoSchool message={errorMessage}/>
         }
 
