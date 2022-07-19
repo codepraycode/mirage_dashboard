@@ -30,13 +30,9 @@
 }
 
 .btn-primary {
-    background-color: $secondary;
+    background-color: $primary;
     color: $white;
-    &.disabled,
-    &:disabled {
-        opacity: 0.6;
-        color: $white;
-    }
+
     &:hover {
         opacity: 0.8;
     }
@@ -48,7 +44,17 @@
             background-color: $primary;
             color: $white;
         }
+        
     }
+    &.disabled,
+    &:disabled {
+        opacity: 0.6;
+        color: $gray;
+        &:hover {
+            background-color: inherit;
+        }
+    }
+    
 }
 
 .btn-success {

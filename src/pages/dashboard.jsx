@@ -28,32 +28,15 @@ const Dashboard = ()=>{
                 <div className="right_crumb">
                     <Link 
                         to={newSchool} 
-                        className="btn btn-primary btn-primary-outline"
+                        className={`btn btn-primary btn-primary-outline ${!user.approved ? "disabled":''}`}
                         onClick={(e)=>{
                             if (!user.approved){
                                 e.preventDefault();
                             }
                         } }
-                        disable="true"
                     >
                         New School
                     </Link>
-
-
-                    {/* <button 
-                        className="btn btn-primary btn-primary-outline ml-2 "
-                    >
-                        Menu
-                    </button> */}
-                    
-                    {/* <div className={`dropdown ${this.state.showMenu ? 'show':''}`}>
-                        <div className="dropdown-content">
-                            <div className="dropdown-item">
-                                <i className="fad fa-sign-out"></i>
-                                <Link to="/login">Logout</Link>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </BreadCrumb>
 
