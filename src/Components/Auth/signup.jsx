@@ -21,9 +21,8 @@ const SignUp = ()=> {
         } // input name:error message
     }
 
-    // States
-    // eslint-disable-next-line
-    const [formConfig, setFormConfig] = useState(UserRegisterFormConfig);
+    // States    
+    const [formConfig] = useState(UserRegisterFormConfig);
     const [formData, setFormData] = useState({});
     
     const [loading, setLoading] = useState(false);

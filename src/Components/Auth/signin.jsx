@@ -2,7 +2,7 @@ import React,{useState, useContext} from 'react'
 import {Link, useNavigate} from 'react-router-dom';
 
 // Contexts
-import AuthContext from '../../context/auth_context';
+import StoreContext from '../../context';
 
 
 // Widgets
@@ -16,9 +16,10 @@ import { UserLoginFormConfig } from '../../constants/forms';
 import { filterFormIssues } from '../../constants/utils';
 
 
+
 const Login = () => {
 
-    const {loginUser}=useContext(AuthContext);
+    const {loginUser}=useContext(StoreContext);
 
     const navigate = useNavigate();
     
@@ -31,8 +32,7 @@ const Login = () => {
     }
 
     // States
-    // eslint-disable-next-line
-    const [formConfig, setFormConfig] = useState(UserLoginFormConfig);
+    const [formConfig] = useState(UserLoginFormConfig);
     const [formData, setFormData] = useState({});
     
     const [loading, setLoading] = useState(false);
@@ -59,32 +59,6 @@ const Login = () => {
             return prev
         })
     }
-
-    // const handleRequest = (auth_data)=>{
-    //     // expecting error and data object
-
-    //     setIssues((prev)=>{
-    //         let formIssues = {}
-    //         let msg = null
-    //         if (auth_data.error){
-    //             msg = auth_data.data.message || "An Error Occured";
-    //             for (let each of Object.keys(formData)){
-    //                 if (auth_data.data[each]){
-    //                     formIssues[each] = "Issue With Your Input Here";
-    //                 }
-    //             }
-    //         }
-
-    //         prev.message = msg;
-    //         prev.formIssues = formIssues
-
-    //         console.log(prev);
-
-    //         return {...prev};
-    //     })
-
-    //     setLoading(()=>false);
-    // }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
