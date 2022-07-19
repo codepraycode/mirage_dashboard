@@ -8,6 +8,8 @@ import Schools from '../Components/schools';
 import BreadCrumb from '../widget/breadcrumb';
 import Search from '../widget/search';
 
+// Site Urls
+import { newSchool } from '../constants/site_urls';
 
 const Dashboard = ()=>{
 
@@ -19,7 +21,7 @@ const Dashboard = ()=>{
                 </div>
                 
                 <div className="right_crumb">
-                    <Link to='/school/new' className="btn btn-primary btn-primary-outline">
+                    <Link to={newSchool} className="btn btn-primary btn-primary-outline">
                         New School
                     </Link>
 

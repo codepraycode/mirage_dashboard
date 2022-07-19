@@ -108,7 +108,8 @@ const getSchoolsRequest = async(token) => {
 
     let response = {
         error: false,
-        error_message: "",
+        error_message: null,
+        ok:false,
         data: null,
         status: '',
         statusText: ''
@@ -131,16 +132,14 @@ const getSchoolsRequest = async(token) => {
         response = {
             ...response,
             data,
+            ok: request_response.ok,
             status: request_response.status,
             statusText: request_response.statusText,
 
         }
     } catch (err) {
-
         response.error = true;
-        response.error_message = "Could not load schools, please make sure you are connected to the internet";
-
-
+        response.error_message = "please make sure you are connected to the internet";
     }
 
 
@@ -149,12 +148,13 @@ const getSchoolsRequest = async(token) => {
 }
 
 
-const getSchoolRequest = async(id, token) => {
+const getSchoolRequest = async(schoolid, token) => {
 
 
     let response = {
         error: false,
-        error_message: "",
+        error_message: null,
+        ok: false,
         data: null,
         status: '',
         statusText: ''
@@ -164,7 +164,7 @@ const getSchoolRequest = async(id, token) => {
 
 
     try {
-        request_response = await fetch(`${schoolUrl}/${id}/`, {
+        request_response = await fetch(`${schoolUrl}/${schoolid}/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -177,6 +177,7 @@ const getSchoolRequest = async(id, token) => {
         response = {
             ...response,
             data,
+            ok: request_response.ok,
             status: request_response.status,
             statusText: request_response.statusText,
 
@@ -184,7 +185,7 @@ const getSchoolRequest = async(id, token) => {
     } catch (err) {
 
         response.error = true;
-        response.error_message = "Could not load school information, please make sure you are connected to the internet";
+        response.error_message = "please make sure you are connected to the internet";
 
 
     }

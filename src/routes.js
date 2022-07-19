@@ -5,8 +5,14 @@ import {Routes , Route} from 'react-router-dom';
 import Layout from './Hoc/Layout/layout';
 import SchoolLayout from './Hoc/Layout/school_layout';
 
+// Errors
 import {Error404} from './Components/Errors';
+
+// Widgets
 import {CircleLoader} from './widget/Preloaders';
+
+// Site Urls
+import {home, signin, signup, school, } from './constants/site_urls';
 
 
 // Lazy Loaded components
@@ -21,20 +27,20 @@ const AppRoutes = () => {
     return (
         <Routes>
                                 
-            <Route path="/signin" element={
+            <Route path={signin} element={
                 <Suspense fallback={<CircleLoader/>}>
                     <Auth/>
                 </Suspense>
             }/>
 
-            <Route path="/signup" element={
+            <Route path={signup} element={
                 <Suspense fallback={<CircleLoader/>}>
                     <Auth/>
                 </Suspense>
             }/>
 
             
-            <Route path="/" exact element={<Layout/>}>
+            <Route path={home} exact element={<Layout/>}>
                 <Route path="" index element={
                     <Suspense fallback={<CircleLoader/>}>
                         <Dashboard/>
@@ -43,7 +49,7 @@ const AppRoutes = () => {
             </Route>
             
 
-            <Route path="/school" exact element={<Layout/>}>
+            <Route path={school} exact element={<Layout/>}>
                 
                 <Route path="" element={
                     <Suspense fallback={<CircleLoader/>}>
