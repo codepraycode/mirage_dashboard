@@ -48,9 +48,6 @@ export const StoreProvider = ({children})=>{
     const navigate = useNavigate();
     const location = useLocation();
 
-    console.log(location);
-
-
     // Authentication
     const updateToken = async () => {
 
@@ -156,8 +153,6 @@ export const StoreProvider = ({children})=>{
 
         const pathname = search.replace('?rdr=','')
 
-        console.log(pathname)
-
         navigate(pathname)
 
         return
@@ -249,34 +244,10 @@ export const StoreProvider = ({children})=>{
 
         let error_message = null;
 
-        // let school_exists = false;
-
-        
-
-        // // check school exits
-        // if (schools && schools.length > 0) {
-        //     console.log("Cheking")
-        //     for (let each of schools) {
-        //         if (each.id === parseInt(schoolid)) {
-        //             // school = {...each}
-        //             school_exists = true
-        //             // error_message = null
-        //             break
-        //         }
-        //     }
-        // }
-
-        
-        // if (!school_exists) {
-        //     error_message = "School Not Found"
-        // }
-        //else {
 
             const access_token = getAccessToken()
 
             let res = await getSchoolRequest(schoolid, access_token);
-
-            // console.log(res)
 
             if (!res.error) {
 
@@ -292,7 +263,12 @@ export const StoreProvider = ({children})=>{
                         error_message = null;
                     }
 
-                } else {
+                } 
+                else if (res.statusText === "Unauthorized") {
+                    logoutUser();
+                    return;
+                }
+                else {
                     error_message = "Could not load school";
                 }
 
@@ -301,7 +277,7 @@ export const StoreProvider = ({children})=>{
                 error_message = res.error_message;
                 school = null;
             }
-        //}
+        
 
         setCurrentSchool(() => {
             if (!school) return null

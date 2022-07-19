@@ -249,8 +249,9 @@ const SchoolUsers = () => {
 
         }else if(response.statusText === "Unauthorized"){
             logoutUser();
+            return;
             // redirect()
-            error_message = "Could not load school users";
+            // error_message = "Could not load school users";
         }
         
     }

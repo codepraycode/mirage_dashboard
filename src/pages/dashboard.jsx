@@ -34,6 +34,7 @@ const Dashboard = ()=>{
                                 e.preventDefault();
                             }
                         } }
+                        disable="true"
                     >
                         New School
                     </Link>
