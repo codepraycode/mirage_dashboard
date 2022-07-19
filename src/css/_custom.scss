@@ -1,9 +1,5 @@
 /*---------------------*/
-
-
 /*      NAVBAR       */
-
-
 /*---------------------*/
 
 .navbar {
@@ -20,7 +16,7 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        background: $accent;
+        background: $primary;
         height: 3px;
         width: 100%;
     }
@@ -90,7 +86,7 @@
     display: none;
     position: fixed;
     background: $white;
-    border: 1px solid $light-gray;
+    border: 1px solid $lightgray;
     border-radius: 4px;
     right: 15px;
     top: 58px;
@@ -152,7 +148,7 @@ footer {
     width: 100% !important;
     overflow-x: hidden;
     padding: 10px 0px;
-    border: 1px solid $light-gray;
+    border: 1px solid $lightgray;
     // border-color: #eef1f6;
     background: $white;
     font-size: 14px;
@@ -238,7 +234,7 @@ footer {
 .breadcrumb {
     margin: 0;
     padding: 10px 50px;
-    background: $light-gray2;
+    background: $lightgray;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -247,7 +243,7 @@ footer {
     .left_crumb {
         font-size: 18px;
         font-weight: bold;
-        color: $accent;
+        color: $primary;
         text-overflow: ellipsis;
     }
     // .right_crumb {
@@ -268,18 +264,10 @@ footer {
         position: relative;
         transition: all 0.2s ease-in;
         cursor: pointer;
-        // background: $light-gray2;
         margin: 15px 0;
-        // &::after {
-        //     content: "";
-        //     position: absolute;
-        //     width: 100%;
-        //     background: #e2e2e2;
-        //     height: 1px;
-        // }
+        
         &:hover {
-            // background: $light-gray;
-            background: $light-gray2;
+            background: $lightgray;
         }
         &__items {
             display: flex;
