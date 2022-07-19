@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import SchoolContext from '../context/school_context';
+
+// Store
+import StoreContext from '../context';
 
 // Component to display information
 // could be collapsable or not
@@ -19,7 +21,7 @@ const Info = () => {
         - closeable:boolean
     */
 
-    const {info,clearInfo} = useContext(SchoolContext);
+    const {info,clearInfo} = useContext(StoreContext);
 
     //     updateInfo(
     //         {

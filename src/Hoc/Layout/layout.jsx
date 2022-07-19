@@ -8,9 +8,8 @@ import Footer from '../../Components/footer';
 
 // Widgets
 import Info from '../../widget/info';
-import AuthContext from '../../context/auth_context';
-import SchoolContextWrapper from '../wrappers/school_context_wrapper';
-import SchoolContext from '../../context/school_context';
+// import SchoolContextWrapper from '../wrappers/school_context_wrapper';
+import StoreContext from '../../context';
 
 
 /* 
@@ -21,13 +20,10 @@ import SchoolContext from '../../context/school_context';
 */
 const Layout = () => {
     
-
-    const {updateInfo} = useContext(SchoolContext);
-
     const navigate = useNavigate();
 
     // eslint-disable-next-line
-    const {user} = useContext(AuthContext);
+    const { user, updateInfo } = useContext(StoreContext);
     
 
 
@@ -66,4 +62,4 @@ const Layout = () => {
     )
 }
 
-export default SchoolContextWrapper(Layout);
+export default Layout;

@@ -2,12 +2,14 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 // Variables
 import { avatar_placeholder } from '../constants/filepaths';
-import AuthContext from '../context/auth_context';
+// Context
+import StoreContext from '../context';
+
 
 function Header() {
 
     const [showMenu, setShowMenu] = useState(false)
-    const {logoutUser, user} = useContext(AuthContext);
+    const {logoutUser, user} = useContext(StoreContext);
 
     return (
         <header>

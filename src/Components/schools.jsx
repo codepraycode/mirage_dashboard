@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, useEffect, useState} from 'react';
 import Moment from 'react-moment';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +10,8 @@ import {Loading} from '../widget/Preloaders';
 
 // Variables
 import { img_placeholder } from '../constants/filepaths';
-import SchoolContext from '../context/school_context';
+// import SchoolContext from '../context/school_context';
+import StoreContext from '../context';
 
 
 // Display Schools (at main dashboard)
@@ -100,7 +101,9 @@ const SchoolItem = (props) => {
 
 const Schools = ()=>{
 
-    const {schools,errorMessage,loading} = useContext(SchoolContext);
+    const { schools, errorMessage, loadSchools } = useContext(StoreContext);
+    
+    const [loading, setLoading] = useState(true);
 
     const renderTemplate = () => {
 
@@ -110,7 +113,7 @@ const Schools = ()=>{
         }
 
         
-        if(errorMessage === null || errorMessage.length > 0){
+        if(errorMessage !== null){
             
             return (
                 <NoSchool message={errorMessage}/>
@@ -135,6 +138,17 @@ const Schools = ()=>{
         
     }
 
+    const fetchSchools = async()=>{
+        await loadSchools()
+
+        setLoading(()=>false)
+    }
+
+    useEffect(()=>{
+        fetchSchools()
+    
+    // eslint-disable-next-line
+    },[loading])
 
     return (
         <div className="listings__container">
