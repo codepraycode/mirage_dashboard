@@ -2,13 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import { NavLink, useParams, useLocation, Outlet } from 'react-router-dom';
 
 // Widgets
-import BreadCrumb from '../../widget/breadcrumb';
+import BreadCrumb from '../widget/breadcrumb';
 
 
 // Variables
-import { CircleLoader } from '../../widget/Preloaders';
-import { NoSchool } from '../../Components/Errors';
-import StoreContext from '../../context';
+import { CircleLoader } from '../widget/Preloaders';
+import { NoSchool } from '../Components/Errors';
+import StoreContext from '../context';
 
 
 /* 

@@ -2,8 +2,8 @@ import React,{Suspense} from 'react';
 import {Routes , Route} from 'react-router-dom';
 
 // High Order Component
-import Layout from './Hoc/Layout/layout';
-import SchoolLayout from './Hoc/Layout/school_layout';
+import Layout from './Layout/layout';
+import SchoolLayout from './Layout/school_layout';
 
 // Errors
 import {Error404} from './Components/Errors';

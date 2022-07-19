@@ -2,14 +2,14 @@ import React,{useEffect, useContext} from 'react'
 import {Outlet, useNavigate} from 'react-router-dom';
 
 // COMPONENTS
-import Header from '../../Components/header';
-import Footer from '../../Components/footer';
+import Header from '../Components/header';
+import Footer from '../Components/footer';
 
 
 // Widgets
-import Info from '../../widget/info';
+import Info from '../widget/info';
 // import SchoolContextWrapper from '../wrappers/school_context_wrapper';
-import StoreContext from '../../context';
+import StoreContext from '../context';
 
 
 /* 
@@ -31,7 +31,7 @@ const Layout = () => {
         if(!user){
             navigate('/signin');
         }
-        if (!user.verified){
+        if (!user?.verified){
             updateInfo(
                 {
                     type:"warning", //default
