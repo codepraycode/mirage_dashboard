@@ -9,7 +9,7 @@
             margin: 0;
         }
         .school_status {
-            font-size: 14px;
+            font-size: $regular;
             font-weight: bold;
             i {
                 display: none;
@@ -53,7 +53,7 @@
 }
 
 .copy-icon {
-    font-size: 15px;
+    font-size: $regular;
     cursor: pointer;
     padding: 10px;
     background: $white;
@@ -67,7 +67,7 @@
     border: 1px solid $lightgray;
     user-select: none;
     p {
-        font-size: 15px;
+        font-size: $regular;
         position: relative;
         display: flex;
         align-items: center;
@@ -104,7 +104,7 @@
     }
     .form_footer {
         margin: 15px 0;
-        font-size: 12px;
+        font-size: $small;
     }
     .btn {
         padding: 15px 20px;
@@ -188,7 +188,7 @@
                 }
                 i {
                     display: block;
-                    font-size: 23px;
+                    font-size: $medium;
                 }
             }
         }

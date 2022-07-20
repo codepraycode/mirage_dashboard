@@ -22,7 +22,7 @@
 .spinner {
     // display: block;
     // color: #79589F;
-    font-size: 18px;
+    font-size: $medium;
     margin: 0;
     i {
         @include Spin360;

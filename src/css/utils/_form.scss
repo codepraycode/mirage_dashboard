@@ -7,7 +7,6 @@ input {
     outline: none;
     border-radius: 4px;
     // line-height: 20px;
-    // font-size: 1px;
     background: $white;
     // width: 300px;
     // max-width: 80%;
@@ -17,7 +16,7 @@ input {
     transition: all 0.5s ease;
     &::placeholder {
         color: $deepgray;
-        font-size: 13px;
+        font-size: $small;
     }
     &:read-only {
         opacity: 0.6;
@@ -53,7 +52,7 @@ input {
         align-items: center;
         justify-content: space-evenly;
         button {
-            font-size: 12px;
+            font-size: $small;
         }
     }
 }
@@ -76,7 +75,7 @@ input {
         align-items: center;
         justify-content: center;
         height: 100%;
-        font-size: 13px;
+        font-size: $small;
         font-weight: 100;
     }
 }
@@ -117,7 +116,7 @@ input {
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        font-size: 15px;
+        font-size: $regular;
         bottom: 0px;
         right: 0px;
         cursor: pointer;
@@ -137,7 +136,7 @@ input {
     &::after {
         content: '*';
         position: absolute;
-        font-size: 20px;
+        font-size: $medium;
         color: $red;
         right: -15px;
         top: -5px;
@@ -148,7 +147,7 @@ form {
     padding: 10px 5px;
     .msg {
         display: block;
-        font-size: 15px;
+        font-size: $regular;
         margin-left: 10px;
     }
     .btn {

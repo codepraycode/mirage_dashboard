@@ -50,7 +50,7 @@
             user-select: none;
             span {
                 margin-right: 10px;
-                font-size: 14px;
+                font-size: $regular;
                 &.dropdown_icon {
                     margin-right: 0;
                     margin-left: 5px;
@@ -101,7 +101,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 12px;
+        font-size: $small;
         i {
             margin-right: 12px;
         }
@@ -151,7 +151,7 @@ footer {
     border: 1px solid $lightgray;
     // border-color: #eef1f6;
     background: $white;
-    font-size: 14px;
+    font-size: $regular;
     font-weight: 300;
     .content {
         width: 95% !important;
@@ -241,7 +241,7 @@ footer {
     flex-wrap: wrap;
     position: relative;
     .left_crumb {
-        font-size: 18px;
+        font-size: $medium;
         font-weight: bold;
         color: $primary;
         text-overflow: ellipsis;
@@ -280,7 +280,7 @@ footer {
             }
             &--sm {
                 padding: 10px;
-                font-size: 15px;
+                font-size: $small;
                 p,
                 .lead {
                     margin: 0;
@@ -294,18 +294,18 @@ footer {
                 line-height: 10px;
             }
             span {
-                font-size: 13px;
+                font-size: $regular;
                 font-weight: 300;
                 margin-right: 3px;
             }
             h3 {
                 margin: 0;
                 font-weight: 500;
-                font-size: 25px;
+                font-size: $large;
             }
             i {
                 margin-left: 10px;
-                font-size: 15px;
+                font-size: $regular;
                 background: transparent;
             }
             &--item {
@@ -331,7 +331,7 @@ footer {
             text-align: start;
             span,
             i {
-                font-size: 14px;
+                font-size: $regular;
             }
         }
     }
@@ -349,7 +349,7 @@ footer {
 .panel {
     &_header {
         font-weight: bold;
-        font-size: 18px;
+        font-size: $medium;
     }
     .panel_content {
         // 
@@ -408,7 +408,7 @@ footer {
         position: absolute;
         right: 20px;
         // top: 10px;
-        font-size: 18px;
+        font-size: $medium;
         cursor: pointer;
         color: $white;
     }
@@ -431,7 +431,7 @@ footer {
     align-items: center;
     justify-content: center;
     h2 {
-        font-size: 25px;
+        font-size: $large;
         margin: 0;
     }
     span {
@@ -445,7 +445,7 @@ footer {
     align-items: center;
     justify-content: center;
     i {
-        font-size: 20px;
+        font-size: $medium;
         margin-right: 5px;
     }
 }
@@ -493,7 +493,7 @@ footer {
             // background: red;
             padding: 5px 0;
             text-align: center;
-            a{font-size: 15px;}
+            a{font-size: $regular;}
         }
     }
 }
@@ -515,7 +515,7 @@ footer {
     .navbar {
         .nav_item {
             .brand {
-                font-size: 30px !important;
+                font-size: $extraLarge !important;
             }
             .icons {
                 margin-right: 10px;
@@ -591,10 +591,10 @@ footer {
             &__items {
                 padding: 10px;
                 h3 {
-                    font-size: 18px;
+                    font-size: $medium;
                 }
                 i {
-                    font-size: 13px;
+                    font-size: $small;
                 }
                 &--item {
                     display: flex;
