@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // Widgets
 import { Input, FileUpload } from '../../widget/Form';
 
@@ -6,11 +6,17 @@ import { Input, FileUpload } from '../../widget/Form';
 import { SchoolRegistrationFormConfig } from '../../constants/forms';
 import { img_placeholder } from '../../constants/filepaths';
 
+// Context
+import StoreContext from '../../context';
+
 const SchoolInfo = () => {
     
     const updateFormData = ()=>{}
     const checkIssue = ()=>{}
     const clearIssue = ()=>{}
+
+
+    const {currentSchool:school} = useContext(StoreContext);
 
     const loading = false
 
@@ -36,7 +42,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input 
                             {...SchoolRegistrationFormConfig.name}
-                            value={"Sample Data"}
+                            value={school.name}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -48,7 +54,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.description}
-                            value={"Sample Data"}
+                            value={school.description}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -61,7 +67,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.motto}
-                            value={"Sample Data"}
+                            value={school.motto}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -73,7 +79,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.email}
-                            value={"Sample Email"}
+                            value={school.email}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -83,8 +89,8 @@ const SchoolInfo = () => {
 
                     <div className="panel_content--item">
                         <Input
-                            {...SchoolRegistrationFormConfig.contact}
-                            value={"Sample Data"}
+                            {...SchoolRegistrationFormConfig.contacts}
+                            value={school.contacts}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -95,7 +101,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.website}
-                            value={"Sample Data"}
+                            value={school.website}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -121,7 +127,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.address}
-                            value={"Sample Data"}
+                            value={school.address}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -132,7 +138,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.town}
-                            value={"Sample Data"}
+                            value={school.town}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -143,7 +149,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.city}
-                            value={"Sample Data"}
+                            value={school.city}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -153,7 +159,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.country}
-                            value={"Sample Data"}
+                            value={school.country}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -163,7 +169,7 @@ const SchoolInfo = () => {
                     <div className="panel_content--item">
                         <Input
                             {...SchoolRegistrationFormConfig.zipcode}
-                            value={"Sample Data"}
+                            value={school.zipcode}
                             updateForm={updateFormData}
                             getIssue={checkIssue}
                             clearIssue={clearIssue}
@@ -174,13 +180,20 @@ const SchoolInfo = () => {
 
                         <div className="flex mb-1">
                             <p className='lead mr-3 '>Status: </p>
-                            <p>Approved</p>
+                            <p>
+                                {
+                                    school.approved ?
+                                    "Approved"
+                                    :
+                                    "Not Approved"
+                                }
+                            </p>
                         </div>
 
 
                         <div className="flex">
                             <p className='lead mr-3'>Created: </p>
-                            <p>YYYY-MM-DD</p>
+                            <p>{school.date_created}</p>
                         </div>
 
 

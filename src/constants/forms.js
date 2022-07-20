@@ -121,7 +121,7 @@ const SchoolRegistrationFormConfig = {
         placeholder: "Enter school's official email",
     },
 
-    contact: {
+    contacts: {
         required: true,
         type: "tel",
         name: "contacts",
