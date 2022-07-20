@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ImageUpload = ({placeholder})=>{
+const ImageUpload = ({ placeholder, center, className })=>{
     return (
-        <div className="image-group">
+        <div className={`image-group ${center ? 'center' : ''} ${className ? className:''}`}>
             <div className="preview">
                 <div className='image'>
                     <img src={placeholder} alt="Upload"/>
@@ -27,11 +27,11 @@ const File = ()=>{
     )
 }
 
-const FileUpload = ({type, placeholder}) => {
+const FileUpload = ({type, placeholder,notCenter, className}) => {
     let template;
 
     if(type === 'image'){
-        template = <ImageUpload placeholder={placeholder}/>;
+        template = <ImageUpload placeholder={placeholder} className={className} center={!notCenter}/>;
     }
     else{
         template = <File/>

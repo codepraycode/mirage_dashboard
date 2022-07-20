@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 
-const Input = ({label, name,type,required, placeholder, disable,updateForm,getIssue,clearIssue:resolveIssue}) => {
+const Input = ({ label, value: originalValue, name, type, required, placeholder, disable, updateForm, getIssue, clearIssue: resolveIssue, multiple }) => {
     
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(originalValue||'');
     const [validation, setValidation] = useState({
         valid:!required,
         msg:'',
@@ -75,23 +75,35 @@ const Input = ({label, name,type,required, placeholder, disable,updateForm,getIs
     }
 
 
-    return (
-        <div className={`label-group ${anyIssue ? 'error':''}`}>
-            <label className={required ? 'required':''}>{label || name}</label>
-            <input
-                type={type}
-                placeholder={placeholder||label}
-                onChange = {handleInputChange}
-                required={required}
-                value = {value}
-                readOnly = {disable}
-                // onBlur={(e)=>this.handleInputChange(e,true)}
-                // onChange={(e)=>this.handleInputChange(e,false)}
-            />
+    const renderComponent = ()=>{
+        const template_props = {
+            type: type,
+            placeholder: placeholder|| label,
+            onChange:handleInputChange,
+            required: required,
+            value,
+            readOnly: disable 
+        }
+
+        let template;
+
+        if (multiple){
+            template = <textarea {...template_props} rows={10}/>
+        }else{
+            template = <input {...template_props} />
+        }
+
+
+        return <div className={`label-group ${anyIssue ? 'error' : ''}`}>
+            <label className={required ? 'required' : ''}>{label || name}</label>
+            {template}
 
             {renderError()}
         </div>
-    )
+    }
+
+
+    return renderComponent()
 }
 
 export default Input
