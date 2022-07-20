@@ -3,7 +3,6 @@
 /*---------------------*/
 
 .navbar {
-    // height: 90px;
     overflow-x: hidden;
     display: flex;
     justify-content: space-between;
@@ -186,21 +185,8 @@ footer {
     }
 }
 
-/*-----------------------*/
-/*      No Activity      */
-/*-----------------------*/
-.no-activity{
-    i{
-        font-size: $large*3;
-    }
-}
-
 /*---------------------*/
-
-
 /*      Breadcrum      */
-
-
 /*---------------------*/
 
 .breadcrumb {
@@ -224,11 +210,7 @@ footer {
 
 
 /*---------------------*/
-
-
 /*      Listings       */
-
-
 /*---------------------*/
 
 .listings__container {
@@ -338,7 +320,7 @@ footer {
     }
     .cta{
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
     }
     .btn{
         display: block;
@@ -370,11 +352,7 @@ footer {
 
 
 /*------------------*/
-
-
 /*      INFO        */
-
-
 /*------------------*/
 
 .quick_info {
@@ -417,13 +395,9 @@ footer {
 }
 
 
-/*------------------------*/
-
-
-/*      ERRORS  PAGES     */
-
-
-/*------------------------*/
+/*---------------------------*/
+/*      ERRORS  DISPLAYS     */
+/*---------------------------*/
 
 .error_splash {
     // background: red;
@@ -452,6 +426,11 @@ footer {
     }
 }
 
+.no-activity {
+    i {
+        font-size: $large*3;
+    }
+}
 
 
 /*---------------------*/
