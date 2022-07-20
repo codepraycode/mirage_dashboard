@@ -268,7 +268,10 @@ footer {
                 .logo {
                     height: 50px;
                     width: 50px;
-                    background-size: contain;
+                    background-size: cover;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    // background-color: $lightgray;
                     margin-right: 20px;
                     img {
                         width: 100%;

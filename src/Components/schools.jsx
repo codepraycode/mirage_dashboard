@@ -9,7 +9,7 @@ import NoSchool from './Errors/no_school';
 import {Loading} from '../widget/Preloaders';
 
 // Variables
-import { img_placeholder } from '../constants/filepaths';
+import { school_logo_placeholder } from '../constants/filepaths';
 // Context
 import StoreContext from '../context';
 
@@ -36,7 +36,7 @@ const SchoolItem = (props) => {
                         className="logo" 
                         style={
                             {
-                                background:`url('${logo || img_placeholder}') center center no-repeat`
+                                backgroundImage:`url('${logo || school_logo_placeholder}')`
                             }
                         }
                     >
