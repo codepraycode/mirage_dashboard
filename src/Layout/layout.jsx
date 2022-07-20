@@ -45,6 +45,14 @@ const Layout = () => {
                 }
             )
         }
+
+        const webtitle = "Mirage Education";
+        // console.log(webtitle)
+        document.title = `Dashboard | ${webtitle}`
+
+        return ()=>{
+            document.title = webtitle
+        }
     // eslint-disable-next-line
     },[])
 

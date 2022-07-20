@@ -62,6 +62,8 @@ const SchoolLayout = () => {
 
 
     const fetchSchool = async()=>{
+        if(!loading) return
+
         await loadSchool(schoolid);
 
         setLoading(()=>false);
@@ -69,9 +71,17 @@ const SchoolLayout = () => {
 
     useEffect(()=>{
         fetchSchool()
+
+        const webtitle = "Mirage Education";
+        // console.log(webtitle)
+        document.title = `${currentSchool?.name || "School"} | ${webtitle}`
+
+        return () => {
+            document.title = webtitle
+        }
         
     // eslint-disable-next-line
-    },[])
+    })
 
 
     const renderComponent = ()=>{
