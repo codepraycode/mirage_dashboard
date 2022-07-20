@@ -4,7 +4,7 @@ import { Input, FileUpload } from '../../widget/Form';
 
 // Configs
 import { SchoolRegistrationFormConfig } from '../../constants/forms';
-import { img_placeholder } from '../../constants/filepaths';
+import { school_logo_placeholder } from '../../constants/filepaths';
 
 // Context
 import StoreContext from '../../context';
@@ -30,7 +30,7 @@ const SchoolInfo = () => {
                 <div>
                     <FileUpload
                         {...SchoolRegistrationFormConfig.logo}
-                        placeholder={img_placeholder}
+                        placeholder={school_logo_placeholder}
                         updateForm={updateFormData}
                         getIssue={checkIssue}
                         clearIssue={clearIssue}
@@ -115,7 +115,7 @@ const SchoolInfo = () => {
                 <div>
                     <FileUpload
                         {...SchoolRegistrationFormConfig.logo}
-                        placeholder={img_placeholder}
+                        placeholder={school_logo_placeholder}
                         updateForm={updateFormData}
                         getIssue={checkIssue}
                         clearIssue={clearIssue}
