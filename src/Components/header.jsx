@@ -17,7 +17,7 @@ function Header() {
             <div className="nav_item">
                 <a href="/" className="brand">
                     {/* <span className="brand-logo" style={{background:`url('/asset/logo.svg') center center no-repeat`}}></span> */}
-                    Mirage
+                    Mirage Education
                 </a>
                 
             </div>
