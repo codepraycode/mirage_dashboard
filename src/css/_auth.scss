@@ -16,7 +16,7 @@
             margin: 10px auto;
             text-align: center;
             color: $white;
-            font-size: calc($extraLarge + 15px);
+            font-size: $extraLarge + 15;
         }
         &--content {
             width: max-content;
