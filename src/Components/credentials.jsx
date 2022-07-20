@@ -42,7 +42,7 @@ const Computers = ({slots}) => {
 
                     <div className="comp_details">
                       <p className='lead'>{slot.host_name}</p>
-                      <p>{slot.host_model}({slot.host_arch})</p>
+                      <p>{slot.host_model}</p>
                       <p>{slot.host_os}</p>
                     </div>
 

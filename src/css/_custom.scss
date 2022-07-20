@@ -459,7 +459,7 @@ footer {
 .comp-lists{
 
     .comp{
-        width: 250px;
+        width: 280px;
         p{
             margin: 8px;
         }
@@ -468,9 +468,6 @@ footer {
             display: flex;
             align-items: center;
             justify-content: space-evenly;
-            // &>div:first-of-type{
-            //     width: ;
-            // }
         }
         &_icon{
             $dim:80px;
@@ -481,12 +478,11 @@ footer {
             background-position: center center;
             background-repeat: no-repeat;
             background-size: contain;
-            
-
 
         }
         &_details{
             text-align: start;
+            font-size: $small;
         }
 
         &_cta{
