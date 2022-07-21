@@ -1,13 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useLocation } from 'react-router-dom'
 
 const ErrorWrapper = ({children}) => {
+  const {pathname} = useLocation();
+
   return (
     <div className='error_splash'>
         <div className="content">
             {children}
 
-            <span><Link to="/">Go to Dashboard</Link></span>
+            <span>
+              {
+                pathname === '/'?
+                null
+                :
+                <Link to="/">Go to Dashboard</Link>
+              }
+              
+            </span>
         </div>
     </div>
   )
