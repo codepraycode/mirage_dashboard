@@ -118,6 +118,7 @@ export const StoreProvider = ({children})=>{
 
     }
 
+    const blacklisted_redirects = ['/signin', '/']
     const logoutUser = () => {
         setAuthTokens(null)
         setUser(null)
@@ -127,7 +128,8 @@ export const StoreProvider = ({children})=>{
         
         let link = '/signin';
 
-        if (pathname !== '/') {
+        
+        if (!blacklisted_redirects.includes(pathname)) {
             link = `/signin?rdr=${pathname}`;
         }    
         navigate(link);
