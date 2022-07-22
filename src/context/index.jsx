@@ -209,7 +209,7 @@ export const StoreProvider = ({children})=>{
             if (ok) {
 
                 if (data.length === 0) {
-                    error_message = "You don't any school";
+                    error_message = "No school created";
                 } else {
                     all_schools = data;
                     error_message = null;
@@ -218,7 +218,8 @@ export const StoreProvider = ({children})=>{
             } else if (res.statusText === "Unauthorized") {
                 // error_message = "Could not load schools";
                 // console.log("should redirect!")
-                logoutUser()
+                // logoutUser()
+                return false
             }else{
                 console.log("Res: ",res)
                 error_message = "Could not load schools";

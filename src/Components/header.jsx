@@ -36,7 +36,7 @@ function Header() {
                     onClick={()=>{setShowMenu((prev)=>!prev)}}
                 >
                     <span>{user?.username}</span>
-                    <div className="user__avatar" style={{backgroundImage:`url('${avatar_placeholder}')`}}>
+                    <div className="user__avatar" style={{backgroundImage:`url('${user?.avatar || avatar_placeholder}')`}}>
                         {/* <img src="/asset/img/avatar.svg" alt="avatar"/> */}
                     </div>
                     <span 

@@ -4,8 +4,12 @@
 const BaseUrl = "http://127.0.0.1:8000/api";
 const refreshTokenUrl = `${BaseUrl}/token/refresh/`;
 const loginUrl = `${BaseUrl}/token/`;
+
+const accountUrl = `${BaseUrl}/account`;
+
 const schoolsUrl = `${BaseUrl}/schools/`;
 const schoolUrl = `${BaseUrl}/schools`;
+
 
 const slotsUrl = 'http://127.0.0.1:8000/software/slots';
 
@@ -54,7 +58,6 @@ const refreshTokenRequest = async(refresh_token) => {
     return response;
 
 }
-
 
 const loginRequest = async(login_data) => {
 
@@ -294,8 +297,6 @@ const modifySchoolUser = async(school_id, { user_id, action }, token) => {
 
 }
 
-
-
 const fecthSchoolSlotsRequest = async (school_id, token) => {
     const endpoint = `${slotsUrl}/${school_id}/`;
 
@@ -345,4 +346,64 @@ const fecthSchoolSlotsRequest = async (school_id, token) => {
 
 }
 
-export { refreshTokenRequest, loginRequest, getSchoolsRequest, getSchoolRequest, fecthSchoolUsers, modifySchoolUser, fecthSchoolSlotsRequest }
+// Verifying user request
+
+
+const VerifyUserRequest = async (user_id) => {
+
+
+    let response = {
+        error: false,
+        error_message: null,
+        ok: false,
+        data: null,
+        status: '',
+        statusText: ''
+    };
+
+    let request_response;
+
+
+    try {
+        request_response = await fetch(`${accountUrl}/resend-verify-link/?uid=${user_id}`, {
+            method: "GET",
+            // headers: {
+            //     "Content-Type": "application/json",
+            //     // "Authorization": `Bearer ${String(token)}`
+            // }
+        });
+
+        let data = await request_response.json();
+
+        response = {
+            ...response,
+            data,
+            ok: request_response.ok,
+            status: request_response.status,
+            statusText: request_response.statusText,
+
+        }
+    } catch (err) {
+
+        response.error = true;
+        response.error_message = "please make sure you are connected to the internet";
+
+
+    }
+
+
+    return response;
+
+}
+
+
+export { 
+    refreshTokenRequest, 
+    loginRequest, 
+    getSchoolsRequest, 
+    getSchoolRequest, 
+    fecthSchoolUsers, 
+    modifySchoolUser, 
+    fecthSchoolSlotsRequest,
+    VerifyUserRequest,
+}

@@ -102,7 +102,7 @@ const SchoolItem = (props) => {
 
 const Schools = ()=>{
 
-    const { schools, errorMessage, loadSchools } = useContext(StoreContext);
+    const { schools, errorMessage, loadSchools, logoutUser } = useContext(StoreContext);
     
     const [loading, setLoading] = useState(true);
 
@@ -140,7 +140,11 @@ const Schools = ()=>{
     }
 
     const fetchSchools = async()=>{
-        await loadSchools()
+        const res = await loadSchools();
+
+        if (res === false){
+            return logoutUser()
+        }
 
         setLoading(()=>false)
     }
