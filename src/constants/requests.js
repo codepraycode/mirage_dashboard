@@ -19,6 +19,7 @@ const refreshTokenRequest = async(refresh_token) => {
     let response = {
         error: false,
         error_message: "",
+        ok:false,
         data: null,
         status: '',
         statusText: ''
@@ -41,6 +42,7 @@ const refreshTokenRequest = async(refresh_token) => {
         response = {
             ...response,
             data,
+            ok:request_response.ok,
             status: request_response.status,
             statusText: request_response.statusText,
 

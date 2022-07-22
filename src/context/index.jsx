@@ -54,9 +54,9 @@ export const StoreProvider = ({children})=>{
         let response = await refreshTokenRequest(authTokens?.refresh);
 
         if (!response.error) {
-            let { status, data } = response;
+            let { ok, data } = response;
 
-            if (status === 200) {
+            if (ok) {
                 setAuthTokens(data);
                 setUser(jwtDecode(data.access))
                 setAuthCookie('authTokens', data);

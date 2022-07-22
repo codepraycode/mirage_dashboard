@@ -12,11 +12,14 @@ import {Error404} from './Components/Errors';
 import {CircleLoader} from './widget/Preloaders';
 
 // Site Urls
-import {home, signin, signup, school, } from './constants/site_urls';
+import { home, signin, signup, accountVerify, school, } from './constants/site_urls';
+
 
 
 // Lazy Loaded components
 const Auth = React.lazy(()=>import('./pages/auth'));
+const VeriFyAccount = React.lazy(() => import('./pages/verify_account')); 
+
 const Dashboard = React.lazy(()=>import('./pages/dashboard'));
 const SchoolOverview = React.lazy(()=>import('./pages/school_overview'));
 const CreateSchool = React.lazy(()=>import('./pages/new_school'));
@@ -47,6 +50,13 @@ const AppRoutes = () => {
                     </Suspense>}
                 />
             </Route>
+
+
+            <Route path={accountVerify} exact element={
+                <Suspense fallback={<CircleLoader />}>
+                    <VeriFyAccount />
+                </Suspense>}
+            />
             
 
             <Route path={school} exact element={<Layout/>}>

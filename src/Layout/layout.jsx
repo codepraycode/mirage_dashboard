@@ -1,5 +1,5 @@
 import React,{useEffect, useContext} from 'react'
-import {Outlet, useNavigate} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 
 // COMPONENTS
 import Header from '../Components/header';
@@ -20,11 +20,9 @@ import { VerifyUserRequest } from '../constants/requests';
     > redirecting back to authentication
 */
 const Layout = () => {
-    
-    const navigate = useNavigate();
 
     // eslint-disable-next-line
-    const { user, updateInfo } = useContext(StoreContext);
+    const { user, updateInfo, logoutUser } = useContext(StoreContext);
     
     const processingInfo = {
         text: "Sending link...",
@@ -86,7 +84,8 @@ const Layout = () => {
 
     useEffect(()=>{
         if(!user){
-            navigate('/signin');
+            // navigate('/signin');
+            logoutUser()
         }
         if (!user?.verified){
             updateInfo(
