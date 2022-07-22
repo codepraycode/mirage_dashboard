@@ -28,9 +28,9 @@ const Dashboard = ()=>{
                 <div className="right_crumb">
                     <Link 
                         to={newSchool} 
-                        className={`btn btn-primary btn-primary-outline ${!user?.approved ? "disabled":''}`}
+                        className={`btn btn-primary btn-primary-outline ${!user?.verified ? "disabled":''}`}
                         onClick={(e)=>{
-                            if (!user.approved){
+                            if (!user.verified){
                                 e.preventDefault();
                             }
                         } }
