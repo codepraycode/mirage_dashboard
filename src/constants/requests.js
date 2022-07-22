@@ -351,8 +351,12 @@ const fecthSchoolSlotsRequest = async (school_id, token) => {
 // Verifying user request
 
 
-const VerifyUserRequest = async (user_id) => {
+const VerifyUserRequest = async (user_id=null,token=null) => {
 
+    const endpoint = token ?
+        `${accountUrl}/verify/?tkn=${token}`
+        :
+        `${accountUrl}/resend-verify-link/?uid=${user_id}`
 
     let response = {
         error: false,
@@ -367,12 +371,8 @@ const VerifyUserRequest = async (user_id) => {
 
 
     try {
-        request_response = await fetch(`${accountUrl}/resend-verify-link/?uid=${user_id}`, {
+        request_response = await fetch(endpoint, {
             method: "GET",
-            // headers: {
-            //     "Content-Type": "application/json",
-            //     // "Authorization": `Bearer ${String(token)}`
-            // }
         });
 
         let data = await request_response.json();

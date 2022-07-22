@@ -42,6 +42,13 @@ const AppRoutes = () => {
                 </Suspense>
             }/>
 
+
+            <Route path={accountVerify} exact element={
+                <Suspense fallback={<CircleLoader />}>
+                    <VeriFyAccount />
+                </Suspense>}
+            />
+
             
             <Route path={home} exact element={<Layout/>}>
                 <Route path="" index element={
@@ -52,11 +59,7 @@ const AppRoutes = () => {
             </Route>
 
 
-            <Route path={accountVerify} exact element={
-                <Suspense fallback={<CircleLoader />}>
-                    <VeriFyAccount />
-                </Suspense>}
-            />
+            
             
 
             <Route path={school} exact element={<Layout/>}>

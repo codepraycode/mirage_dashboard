@@ -22,7 +22,7 @@ import { VerifyUserRequest } from '../constants/requests';
 const Layout = () => {
 
     // eslint-disable-next-line
-    const { user, updateInfo, logoutUser } = useContext(StoreContext);
+    const { user, updateInfo, clearInfo, logoutUser } = useContext(StoreContext);
     
     const processingInfo = {
         text: "Sending link...",
@@ -97,7 +97,7 @@ const Layout = () => {
         if(!user){
             logoutUser()
         }
-        if (!user?.verified){
+        if (user && !user?.verified){
             updateInfo(warningInfo)
         }
 
@@ -106,6 +106,8 @@ const Layout = () => {
 
         return ()=>{
             document.title = webtitle
+
+            clearInfo()
         }
     // eslint-disable-next-line
     },[])
