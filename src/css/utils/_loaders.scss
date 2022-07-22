@@ -1,6 +1,5 @@
 // Styles Pertaining to Load and Loading
-@import '../constants';
-@import '../mixins/animations';
+
 .preloader__container {
     position: fixed;
     left: 0;
@@ -15,7 +14,7 @@
         height: 200px;
         border-bottom: 3px solid #ad81e0;
         border-radius: 50%;
-        animation: Spin360 linear 0.9s infinite;
+        @include Spin360;
     }
 }
 
@@ -26,5 +25,54 @@
     margin: 0;
     i {
         @include Spin360;
+    }
+}
+
+
+.preloader_box_container{
+    @include card;
+    width: 150px;
+    height: 150px;
+    // text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 15px;
+    .mld {
+        transition: all 0.5s ease;
+        i {
+            font-size: $large *2;
+        }
+    }
+    
+    .warning {
+        color: $orange;
+    }
+
+    .danger {
+        color: $red;
+    }
+
+    .success {
+        color: $green;
+    }
+    .loading,
+    .loader{
+        width: 100px;
+        height: 100px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-left: 3px;
+        border-radius: 50%;
+        border-color: $primary;
+        border-style: dotted;
+        @include Spin360;
+    }
+
+    span{
+        display: block;
+        color: $gray;
     }
 }

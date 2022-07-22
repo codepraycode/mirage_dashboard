@@ -31,6 +31,16 @@ const Layout = () => {
         closeable: false
     }
 
+    const warningInfo = {
+        type: "warning", //default
+        text: "You are yet to verify your account",
+        actionText: "Click here to verify",
+        action: () => {
+            handleVerifiyUser()
+        },
+        closeable: false
+    }
+
     const errorInfo = {
         type:'danger',
         text: "Could not send verification link",
@@ -48,6 +58,7 @@ const Layout = () => {
         action: null,
         closeable: true
     }
+
 
     const handleVerifiyUser = ()=>{
         // console.log("Verifying account...", user.id)
@@ -84,25 +95,13 @@ const Layout = () => {
 
     useEffect(()=>{
         if(!user){
-            // navigate('/signin');
             logoutUser()
         }
         if (!user?.verified){
-            updateInfo(
-                {
-                    type:"warning", //default
-                    text:"You are yet to verify your account",
-                    actionText: "Click here to verify",
-                    action:()=>{
-                        handleVerifiyUser()
-                    },
-                    closeable:false
-                }
-            )
+            updateInfo(warningInfo)
         }
 
         const webtitle = "Mirage Education";
-        // console.log(webtitle)
         document.title = `Dashboard | ${webtitle}`
 
         return ()=>{

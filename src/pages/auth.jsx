@@ -35,7 +35,7 @@ const Auth = () => {
         <div className="auth_page__wrapper">
 
           <div className="brand">
-                <p>Mirage</p>
+                <p>Mirage Dashboard</p>
           </div>
 
 
