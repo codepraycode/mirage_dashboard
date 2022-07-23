@@ -19,11 +19,6 @@ const ImageUpload = (props)=>{
     const imageInputRef = createRef();
 
     const [value,setValue] = useState(originalValue || null);
-    // const [validation, setValidation] = useState({
-    //     valid: !required,
-    //     msg: '',
-    //     touched: false
-    // })
 
     const previewUrl = value ? URL.createObjectURL(value) : placeholder;
 

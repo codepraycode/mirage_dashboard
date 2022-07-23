@@ -407,12 +407,12 @@ export const StoreProvider = ({children})=>{
         }
 
         // consecutive renders
-        let fourMinutes = 1000 * 60 * 4;
+        let anHour = 1000 * 60 * 60;
         let interval = setInterval(() => {
             if (authTokens) {
                 updateToken()
             }
-        }, fourMinutes)
+        }, anHour)
 
 
         return () => clearInterval(interval);

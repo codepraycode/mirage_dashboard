@@ -172,7 +172,7 @@ const createSchoolRequest = async(school_formdata, token) => {
         request_response = await fetch(schoolsUrl, {
             method: "POST",
             headers: {
-                "Content-Type":'multipart/form-data',
+                // "Content-Type":'multipart/form-data',
                 "Authorization": `Bearer ${String(token)}`
             },
             body:school_formdata,
