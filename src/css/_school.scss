@@ -55,9 +55,52 @@
 .copy-icon {
     font-size: $regular;
     cursor: pointer;
-    padding: 10px;
+    // padding: 15px;
+    height: 40px;
+    width: 40px;
     background: $white;
     top: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        background: $primary;
+        color: $white;
+    }
+    &.copied{
+        background: $green;
+        color: $white;
+        &:hover{
+            background: $white;
+            color: $green;
+            &::after {
+                    position: absolute;
+                    display: block;
+                    content: "Copied";
+                    left: 0px;
+                    bottom: -20px;
+                    padding: 2px 5px;
+                    border-radius: 6px;
+                    font-size: 10px;
+                    height: fit-content;
+                    width: fit-content;
+                    color: $white;
+                    background: $green;
+                }
+        }
+
+        
+    }
+    &.disabled,
+    &.disabled:hover {
+        background: $fadegray;
+        color: $lightgray;
+        cursor: not-allowed;
+    }
+
+
 }
 
 .box {
@@ -74,14 +117,14 @@
         justify-content: center;
         .safe {
             position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
             right: -20px;
             top: -13px;
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
+            // height: 20px;
+            // width: 20px;
+            // border-radius: 50%;
         }
         &.disabled {
             color: $gray;

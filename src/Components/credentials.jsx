@@ -77,6 +77,16 @@ const Computers = ({slots}) => {
 
 const SchoolKey = ({value}) => {
 
+  const [copied,setCopied] = useState(false);
+
+
+  let state = ''
+
+  if (!value){
+    state = 'disabled'
+  }else if(copied){
+    state = 'copied'
+  }
 
   return (
     <div className="box bg-default">
@@ -96,7 +106,15 @@ const SchoolKey = ({value}) => {
           {value || '******************'}
         </span>
 
-        <span className="mx-2 safe copy-icon" onClick={() => { }}>
+
+
+        <span 
+          className={`mx-2 safe copy-icon ${state}`}
+          onClick={() => {
+            if(!value) return
+
+            setCopied(()=>true)
+         }}>
           <i className="fas fa-copy"></i>
         </span>
 

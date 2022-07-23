@@ -50,7 +50,9 @@ function Header() {
                     <div className={`dropdown_menu ${showMenu ? 'show':''}`}>
                         <div className="dropdown_menu--item">
                             <i className="fad fa-sign-out"></i>
-                            <Link to="/signin" onClick={(e)=>{e.preventDefault(); logoutUser()}}>Logout</Link>
+                            <Link to="/signin">Logout</Link>
+
+                                { }
                         </div>
                     </div>
 
