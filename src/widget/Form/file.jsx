@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { createRef, useState } from 'react';
 
 // Widgets
 import Image from '../image';
@@ -14,7 +14,7 @@ const ImageUpload = (props)=>{
         value: originalValue,
         disable } = props
     
-    const inputRef = useRef();
+    const imageInputRef = createRef();
 
     const [value,setValue] = useState(originalValue || null);
     // const [validation, setValidation] = useState({
@@ -22,6 +22,8 @@ const ImageUpload = (props)=>{
     //     msg: '',
     //     touched: false
     // })
+
+    const previewUrl = value ? URL.createObjectURL(value):null;
 
     let anyIssue;
 
@@ -56,17 +58,17 @@ const ImageUpload = (props)=>{
     return (
         <div className={`image-group ${disable ? 'disable' : ''} ${notCenter ? '' : 'center'} ${className ? className:''}`}>
 
-            <input type="file" accept='image/*' name={name} ref={inputRef} onChange={handleInputChange}/>
+            <input type="file" accept='image/*' name={name} ref={imageInputRef} onChange={handleInputChange}/>
 
             <div className="preview">
                 <div className='image'>
                     {/* <img src={placeholder} alt="Upload" /> */}
-                    <Image src={value} alt="School Logo"/>
+                    <Image src={previewUrl} alt="School Logo"/>
                 </div>
                 <span onClick={()=>{
                     // if (disable) return
 
-                    inputRef.current.click()
+                    imageInputRef.current.click()
                 }}>
                     <i className="fa fa-pencil" aria-hidden="true"></i>
                 </span>
