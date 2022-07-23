@@ -87,8 +87,8 @@ const Input = ({ label, value: originalValue, name, type, required, placeholder,
 
         let template;
 
-        if (multiple){
-            template = <textarea {...template_props} rows={10}/>
+        if (multiple || type === 'long-text'){
+            template = <textarea {...template_props} rows={6}/>
         }else{
             template = <input {...template_props} />
         }

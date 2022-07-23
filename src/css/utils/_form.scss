@@ -101,6 +101,13 @@ textarea{
 .image-group {
     $width: 120px;
     $height: 120px;
+    p{
+        padding: 0;
+        margin: 5px 0!important;
+        
+        text-align: center;
+    }
+    
     .preview {
         position: relative;
         margin: 0;
@@ -173,6 +180,26 @@ textarea{
             border-color: $gray;
             // border: 1px solid $gray;
             cursor:not-allowed;
+            // &:hover {
+            //     background: $lightgray;
+            // }
+        }
+    }
+    &.error {
+        .preview {
+            .image {
+                border-color: $red;
+            }
+        }
+    
+        span,
+        span:hover {
+    
+            background: $red;
+            color: $white;
+            border-color: $red;
+            // border: 1px solid $gray;
+            cursor: not-allowed;
             // &:hover {
             //     background: $lightgray;
             // }

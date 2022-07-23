@@ -3,6 +3,8 @@ import React, { createRef, useState } from 'react';
 // Widgets
 import Image from '../image';
 
+// import { school_logo_placeholder } from '../../constants/filepaths';
+
 const ImageUpload = (props)=>{
     const { name, 
         placeholder,
@@ -23,7 +25,7 @@ const ImageUpload = (props)=>{
     //     touched: false
     // })
 
-    const previewUrl = value ? URL.createObjectURL(value):null;
+    const previewUrl = value ? URL.createObjectURL(value) : placeholder;
 
     let anyIssue;
 
@@ -56,7 +58,7 @@ const ImageUpload = (props)=>{
     }
 
     return (
-        <div className={`image-group ${disable ? 'disable' : ''} ${notCenter ? '' : 'center'} ${className ? className:''}`}>
+        <div className={`image-group ${anyIssue ? 'error' : ''} ${disable ? 'disable' : ''} ${notCenter ? '' : 'center'} ${className ? className:''}`}>
 
             <input type="file" accept='image/*' name={name} ref={imageInputRef} onChange={handleInputChange}/>
 
@@ -73,6 +75,11 @@ const ImageUpload = (props)=>{
                     <i className="fa fa-pencil" aria-hidden="true"></i>
                 </span>
             </div>
+
+            <p className="msg text-danger">
+                {anyIssue}
+                {/* Unsupported FIle */}
+            </p>
             
             
 

@@ -1,7 +1,6 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 
 // CONSTANTS
-import {img_placeholder} from '../constants/filepaths';
 import {SchoolRegistrationFormConfig} from '../constants/forms';
 
 
@@ -9,6 +8,7 @@ import {SchoolRegistrationFormConfig} from '../constants/forms';
 import {Form,Input, FileUpload} from '../widget/Form';
 import Button from '../widget/button';
 import Card from '../widget/card';
+import StoreContext from '../context';
 
 const CreateSchool = () => {
 
@@ -19,6 +19,9 @@ const CreateSchool = () => {
             
         } // input name:error message
     }
+
+    // Context
+    const { createSchool } = useContext(StoreContext);
 
     // STATES
     const [formData, setFormData] = useState({});
@@ -37,7 +40,13 @@ const CreateSchool = () => {
     }
 
     const checkIssue = (name)=>{
-        return issues.formIssues[name]
+        let issue = null;
+        try{
+            issue = issues.formIssues[name]
+        }catch(err){}
+
+        return issue;
+        
     }
 
 
@@ -61,7 +70,7 @@ const CreateSchool = () => {
         })
 
         // CreateAccount(formData, handleRequest);
-        console.log(formData);
+        // console.log(formData);
         console.log("Creating School...");
 
         const fformData = new FormData()
@@ -74,10 +83,27 @@ const CreateSchool = () => {
             fformData.append(field,value)
         })
 
-        console.log("FormData: ", fformData);
+        // console.log("FormData: ", fformData);
+
+        createSchool(fformData)
+        .then((res)=>{
+            // Res is an error message
+            if(!res) return
+
+            console.log(res)
+
+            setIssues((prev)=>{
+                prev.message = "Could Not Create School";
+                return {...prev};
+            })
+            setLoading(()=>false);
+            return
+        })
 
         setLoading(()=>true);
     }
+
+    console.log(issues)
 
     return (
         <div className="new_school">
@@ -94,7 +120,6 @@ const CreateSchool = () => {
                                 getIssue = {checkIssue}
                                 clearIssue = {clearIssue}
                                 disable={loading}
-                                placeholder={img_placeholder}
                             />
                     <div className="row">
                         <div className="col">
@@ -141,18 +166,20 @@ const CreateSchool = () => {
                                 disable={loading}
                             />
 
-                            <Input
-                                {...formConfig.contacts}
-                                updateForm = {updateFormData}
-                                getIssue = {checkIssue}
-                                clearIssue = {clearIssue}
-                                disable={loading}
-                            />
+                            
                         </div>
 
 
 
                         <div className="col">
+                            <Input
+                                {...formConfig.contacts}
+                                updateForm={updateFormData}
+                                getIssue={checkIssue}
+                                clearIssue={clearIssue}
+                                disable={loading}
+                            />
+                            
                             <Input
                                 {...formConfig.address}
                                 updateForm = {updateFormData}
@@ -160,23 +187,22 @@ const CreateSchool = () => {
                                 clearIssue = {clearIssue}
                                 disable={loading}
                             />
-                            
-                            <Input 
-                                {...formConfig.town}
-                                updateForm = {updateFormData}
-                                getIssue = {checkIssue}
-                                clearIssue = {clearIssue}
-                                disable={loading}
-                            />
-                            
+
                             <Input
                                 {...formConfig.city}
+                                updateForm={updateFormData}
+                                getIssue={checkIssue}
+                                clearIssue={clearIssue}
+                                disable={loading}
+                            />
+                            
+                            <Input 
+                                {...formConfig.state}
                                 updateForm = {updateFormData}
                                 getIssue = {checkIssue}
                                 clearIssue = {clearIssue}
                                 disable={loading}
                             />
-
 
                             <Input
                                 {...formConfig.country}
@@ -207,6 +233,9 @@ const CreateSchool = () => {
                     
                     
                     <div className="text-center cta mv-1">
+                        <span className="msg mv-2 text-danger">
+                            {issues.message}
+                        </span>
                         <Button text={`${loading ? "Registring..." :"Register"}`} type="submit" className={`${loading ? 'disabled':''}`}/>
                     </div>
                 </Form>

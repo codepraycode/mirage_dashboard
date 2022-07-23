@@ -4,7 +4,14 @@ import { useCookies } from "react-cookie";
 import { useNavigate, useLocation } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
-import { refreshTokenRequest, loginRequest, getSchoolsRequest, getSchoolRequest, fecthSchoolSlotsRequest } from "../constants/requests";
+import { 
+        refreshTokenRequest, 
+        loginRequest, 
+        getSchoolsRequest, 
+        getSchoolRequest, 
+        fecthSchoolSlotsRequest, 
+        createSchoolRequest } from "../constants/requests";
+
 import { CircleLoader } from "../widget/Preloaders";
 
 const StoreContext = createContext();
@@ -296,6 +303,28 @@ export const StoreProvider = ({children})=>{
 
         setErrorMessage(() => error_message)
     }
+
+    const createSchool = async (school_formdata) => {
+        // console.log("Fetching school with id:", id)
+
+        const access_token = getAccessToken()
+
+        let res = await createSchoolRequest(school_formdata, access_token);
+
+        let { ok, error,error_message, data } = res;
+
+        if (ok) {
+            navigate('/');
+        }
+
+        if (error){
+            return error_message;
+        }
+
+        return data;
+
+        
+    }
     // ===================
 
     // Slot
@@ -361,6 +390,7 @@ export const StoreProvider = ({children})=>{
         loadSlots,
         loadSchools,
         loadSchool,
+        createSchool,
         updateInfo,
         clearInfo,
         loginUser,

@@ -1,5 +1,7 @@
 // Form configurations
 
+import { school_logo_placeholder } from "./filepaths";
+
 const UserLoginFormConfig = {
     username: {
         required: true,
@@ -87,6 +89,7 @@ const SchoolRegistrationFormConfig = {
         type: "image",
         name: "logo",
         required: true,
+        placeholder: school_logo_placeholder
     },
     name: {
         required: true,
@@ -142,18 +145,18 @@ const SchoolRegistrationFormConfig = {
 
     address: {
         required: true,
-        type: "long-text",
+        type: "text",
         name: "address",
         label: "School Address",
         placeholder: "Enter school address",
     },
 
 
-    town: {
+    state: {
         required: true,
         type: "text",
-        name: "town",
-        label: "School town",
+        name: "state",
+        label: "School state",
         placeholder: "Enter school's town",
     },
 

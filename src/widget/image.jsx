@@ -4,7 +4,6 @@ import React from 'react'
 import { img_placeholder } from '../constants/filepaths';
 
 const Image = ({src,alt,...rest}) => {
-    console.log(src);
   return (
       <img
           src={src}
