@@ -350,7 +350,7 @@ export const StoreProvider = ({children})=>{
 
     const contextData = {
         user: user,
-        token: authTokens?.access,//may deprecate
+        //token: authTokens?.access,//may deprecate
         schools,
         currentSchool,
         errorMessage,

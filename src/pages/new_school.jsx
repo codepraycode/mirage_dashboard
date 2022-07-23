@@ -64,6 +64,18 @@ const CreateSchool = () => {
         console.log(formData);
         console.log("Creating School...");
 
+        const fformData = new FormData()
+
+        // const file_types = ['image','file']
+
+        Object.entries(formData).forEach(([field,value])=>{
+            // const config = formConfig[field]
+            
+            fformData.append(field,value)
+        })
+
+        console.log("FormData: ", fformData);
+
         setLoading(()=>true);
     }
 
@@ -130,7 +142,7 @@ const CreateSchool = () => {
                             />
 
                             <Input
-                                {...formConfig.contact}
+                                {...formConfig.contacts}
                                 updateForm = {updateFormData}
                                 getIssue = {checkIssue}
                                 clearIssue = {clearIssue}

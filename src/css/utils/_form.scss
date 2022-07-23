@@ -21,6 +21,8 @@ textarea {
     }
     &:read-only {
         opacity: 0.6;
+        color: $gray;
+        background: $lightgray;
         cursor: not-allowed;
     }
     &-lg {
@@ -44,6 +46,12 @@ textarea{
     label {
         margin: 0px 0 10px 10px;
     }
+    // &.disable{
+    //     label{
+    //         color: $gray;
+    //     }
+        
+    // }
 }
 
 .editable_content {
@@ -123,24 +131,52 @@ textarea{
     span {
         position: absolute;
         display: block;
-        background: $primary;
-        color: $white;
         width: 40px;
         height: 40px;
+        bottom: 0px;
+        right: 0px;
+        
         display: flex;
         align-items: center;
         justify-content: center;
+
+        background: $white;
+        color: $primary;
         border-radius: 50%;
+        border: 2px solid $primary;
+
         font-size: $regular;
-        bottom: 0px;
-        right: 0px;
         cursor: pointer;
         &:hover {
             background: $primary;
+            color: $white;
         }
     }
     input {
         display: none;
+    }
+
+    &.disable{
+        .preview {
+            // background: $lightgray;
+    
+            .image {
+                border-color: $gray;;
+            }
+        }
+
+        span,
+        span:hover {
+            
+            background: $lightgray;
+            color: $gray;
+            border-color: $gray;
+            // border: 1px solid $gray;
+            cursor:not-allowed;
+            // &:hover {
+            //     background: $lightgray;
+            // }
+        }
     }
 }
 

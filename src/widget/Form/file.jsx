@@ -1,18 +1,79 @@
-import React from 'react'
+import React, { useRef, useState } from 'react';
 
-const ImageUpload = ({ placeholder, center, className })=>{
+// Widgets
+import Image from '../image';
+
+const ImageUpload = (props)=>{
+    const { name, 
+        placeholder,
+        notCenter,
+        className,
+        updateForm,
+        getIssue,
+        clearIssue: resolveIssue,
+        value: originalValue,
+        disable } = props
+    
+    const inputRef = useRef();
+
+    const [value,setValue] = useState(originalValue || null);
+    // const [validation, setValidation] = useState({
+    //     valid: !required,
+    //     msg: '',
+    //     touched: false
+    // })
+
+    let anyIssue;
+
+
+    if (getIssue) {
+        anyIssue = getIssue(name);
+    }
+
+    const clearIssue = (name) => {
+        if (!resolveIssue) {
+            return
+        }
+
+        resolveIssue(name);
+    }
+
+    const handleInputChange = (e) => {
+        // e.preventDefault();
+        // if (!validate(e.target.value)) return;
+
+        // updateForm(name, value);
+        setValue(() => {
+            let val = e.target.files[0];
+            updateForm(name, val);
+            clearIssue(name)
+            return val;
+        })
+
+
+    }
+
     return (
-        <div className={`image-group ${center ? 'center' : ''} ${className ? className:''}`}>
+        <div className={`image-group ${disable ? 'disable' : ''} ${notCenter ? '' : 'center'} ${className ? className:''}`}>
+
+            <input type="file" accept='image/*' name={name} ref={inputRef} onChange={handleInputChange}/>
+
             <div className="preview">
                 <div className='image'>
-                    <img src={placeholder} alt="Upload"/>
+                    {/* <img src={placeholder} alt="Upload" /> */}
+                    <Image src={value} alt="School Logo"/>
                 </div>
-                <span>
+                <span onClick={()=>{
+                    // if (disable) return
+
+                    inputRef.current.click()
+                }}>
                     <i className="fa fa-pencil" aria-hidden="true"></i>
                 </span>
             </div>
             
-            <input type="file" accept='image/*'/>
+            
+
         </div>
     )
 }
@@ -27,11 +88,11 @@ const File = ()=>{
     )
 }
 
-const FileUpload = ({type, placeholder,notCenter, className}) => {
+const FileUpload = ({type, ...rest}) => {
     let template;
 
     if(type === 'image'){
-        template = <ImageUpload placeholder={placeholder} className={className} center={!notCenter}/>;
+        template = <ImageUpload {...rest}/>;
     }
     else{
         template = <File/>
