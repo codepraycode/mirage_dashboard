@@ -9,7 +9,7 @@ import StoreContext from '../context';
 function Header() {
 
     const [showMenu, setShowMenu] = useState(false)
-    const {logoutUser, user} = useContext(StoreContext);
+    const {user} = useContext(StoreContext);
 
     return (
         <header>
